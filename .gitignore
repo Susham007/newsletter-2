@@ -1,0 +1,19 @@
+node_modules/
+_site/
+.npm-cache/
+.agent-browser/
+.DS_Store
+Thumbs.db
+
+# Preserved source material from the original single-file edition.
+/nchronicle (1).html
+/ad.jpeg
+/Aravali hearing.JPG.jpeg
+/Cyber crime india.JPG.jpeg
+/Do Parliamentarians really care .JPG.jpeg
+/Gems of india.WEBP
+/Seven bills on the floor.PNG
+/assets/
+/content/
+/scripts/
+/styles/

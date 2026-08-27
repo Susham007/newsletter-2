@@ -1,0 +1,18 @@
+<header class="masthead">
+  <div class="site-shell masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__symbol" aria-hidden="true">π</span>
+      <span class="wordmark__text">
+        <strong>Chronicle</strong>
+        <small>by {{ site.publisher }}</small>
+      </span>
+    </a>
+    <div class="masthead__issue">
+      <span>{{ site.issue }}</span>
+      <time datetime="{{ site.date }}">{{ site.date | displayDate }}</time>
+    </div>
+  </div>
+  <div class="brand-rule" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</header>

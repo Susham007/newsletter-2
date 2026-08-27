@@ -1,0 +1,16 @@
+<article class="lead-story">
+  <div class="lead-story__copy">
+    <p class="eyebrow eyebrow--{{ lead.data.theme or 'purple' }}">{{ lead.data.category }}</p>
+    <h2><a href="{{ lead.url }}">{{ lead.data.title }}</a></h2>
+    <p class="lead-story__dek">{{ lead.data.dek }}</p>
+    {% if lead.data.stat %}
+      <dl class="evidence-chip">
+        <div><dt>{{ lead.data.statLabel }}</dt><dd>{{ lead.data.stat }}</dd></div>
+      </dl>
+    {% endif %}
+    <a class="button button--primary" href="{{ lead.url }}">Read the analysis</a>
+  </div>
+  <a class="lead-story__media" href="{{ lead.url }}" tabindex="-1" aria-hidden="true">
+    {% image lead.data.image, "", "(max-width: 820px) calc(100vw - 32px), 40vw" %}
+  </a>
+</article>

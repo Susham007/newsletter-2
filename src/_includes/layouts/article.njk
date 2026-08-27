@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+{% include "components/masthead.njk" %}
+<main id="content" class="article-page">
+  <article class="article-shell">
+    <a class="back-link" href="/">All briefings</a>
+    <header class="article-header">
+      <p class="eyebrow eyebrow--{{ theme or 'blue' }}">{{ category }}</p>
+      <h1>{{ title }}</h1>
+      <p class="article-dek">{{ dek }}</p>
+      <div class="article-meta">
+        <span>{{ date | displayDate }}</span>
+        {% if source %}<span>Source: {{ source }}</span>{% endif %}
+      </div>
+    </header>
+    {% if image %}
+      <figure class="article-figure">
+        {% image image, imageAlt, "(max-width: 880px) calc(100vw - 32px), 880px", "eager", "high" %}
+        {% if imageCredit %}<figcaption>{{ imageCredit }}</figcaption>{% endif %}
+      </figure>
+    {% endif %}
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+  </article>
+</main>
+{% include "components/signup.njk" %}
+{% include "components/footer.njk" %}

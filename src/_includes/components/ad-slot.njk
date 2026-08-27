@@ -1,0 +1,13 @@
+{% if ad.active %}
+<aside class="partner" aria-label="Sponsored message">
+  <div class="site-shell partner__inner">
+    <div class="partner__meta">
+      <span>{{ ad.label }}</span>
+      <span>Presented by {{ ad.sponsor }}</span>
+    </div>
+    <a class="partner__creative" href="{{ ad.href }}" target="_blank" rel="sponsored noopener">
+      {% image ad.image, ad.alt, "(max-width: 820px) calc(100vw - 32px), 1056px", "eager", "high" %}
+    </a>
+  </div>
+</aside>
+{% endif %}

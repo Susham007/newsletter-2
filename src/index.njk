@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+title: Chronicle
+description: A source-led civic briefing from Niyantran.
+---
+{% set lead = collections.leads | head %}
+{% set dataBriefs = collections.dataBriefs %}
+{% set supporting = collections.storyList %}
+{% include "components/ad-slot.njk" %}
+{% include "components/masthead.njk" %}
+<main id="content" class="editorial">
+  <div class="site-shell">
+    <header class="issue-intro">
+      <p class="issue-intro__kicker">{{ site.tagline }}</p>
+      <h1>{{ site.description }}</h1>
+      <p>Reporting and analysis grounded in parliamentary questions, public filings, and primary records.</p>
+    </header>
+    {% if lead %}
+      <section aria-labelledby="lead-heading">
+        <div class="section-heading">
+          <h2 id="lead-heading">The lead</h2>
+          <span>{{ site.issue }}</span>
+        </div>
+        {% include "components/story-lead.njk" %}
+      </section>
+    {% endif %}
+    {% if dataBriefs.length %}
+      <section class="data-section" aria-labelledby="data-heading">
+        <div class="section-heading">
+          <h2 id="data-heading">On the record</h2>
+          <span>Four readings from the session</span>
+        </div>
+        <div class="data-board">
+          {% for article in dataBriefs %}
+            {% include "components/data-brief.njk" %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    {% if supporting.length %}
+      <section class="latest" aria-labelledby="latest-heading">
+        <div class="section-heading">
+          <h2 id="latest-heading">Also in the issue</h2>
+          <span>{{ supporting.length }} stories</span>
+        </div>
+        {% for article in supporting %}
+          {% include "components/story-row.njk" %}
+        {% endfor %}
+      </section>
+    {% endif %}
+  </div>
+</main>
+{% include "components/signup.njk" %}
+{% include "components/footer.njk" %}
