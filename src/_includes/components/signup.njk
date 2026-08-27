@@ -5,15 +5,16 @@
       <h2 id="signup-title">{{ signup.title }}</h2>
       <p>{{ signup.description }}</p>
     </div>
-    <form class="signup-form" data-signup-form data-endpoint="{{ signup.endpoint }}">
+    <div class="signup__form-wrap">
+    <form class="signup-form" data-signup-form data-endpoint="{{ signup.endpoint }}" novalidate>
       <div class="form-grid">
         <label>
           <span>Name</span>
-          <input type="text" name="entry.2093848879" autocomplete="name" required>
+          <input type="text" name="entry.2093848879" autocomplete="name" data-signup-name required>
         </label>
         <label>
           <span>Email</span>
-          <input type="email" name="entry.1447777989" autocomplete="email" required>
+          <input type="email" name="entry.1447777989" autocomplete="email" data-signup-email required>
         </label>
       </div>
       <details class="optional-fields">
@@ -27,16 +28,28 @@
             <span>What brings you here?</span>
             <input type="text" name="entry.1742279738">
           </label>
-          <label>
-            <span>Coupon code</span>
-            <input type="text" name="entry.256720589">
-          </label>
         </div>
       </details>
+      <input type="hidden" name="entry.256720589" data-coupon-field>
+      <p class="form-error" data-form-error role="alert"></p>
       <div class="signup-form__action">
         <button class="button button--primary" type="submit">Join the list</button>
-        <p class="form-status" data-form-status aria-live="polite">No spam. Unsubscribe anytime.</p>
+        <p class="form-status" data-form-status aria-live="polite">Join before launch to receive your personal 30% code.</p>
       </div>
     </form>
+    <div class="signup-confirmation" data-signup-confirmation hidden tabindex="-1">
+      <p class="eyebrow eyebrow--blue">Early access confirmed</p>
+      <h3>You&rsquo;re on the list.</h3>
+      <p>We&rsquo;ll email <strong data-confirmation-email></strong> when the terminal opens. Keep this code for checkout.</p>
+      <div class="coupon-card">
+        <div>
+          <span>Your early-access code</span>
+          <output data-coupon-output></output>
+        </div>
+        <button class="coupon-copy" type="button" data-copy-code>Copy code</button>
+      </div>
+      <p class="confirmation-note">30% off, locked for as long as your subscription stays active.</p>
+    </div>
+    </div>
   </div>
 </section>

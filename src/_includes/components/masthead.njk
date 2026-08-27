@@ -1,12 +1,21 @@
 <header class="masthead">
   <div class="site-shell masthead__inner">
-    <a class="wordmark" href="/">
-      <span class="wordmark__symbol" aria-hidden="true">π</span>
-      <span class="wordmark__text">
-        <strong>Chronicle</strong>
-        <small>by {{ site.publisher }}</small>
-      </span>
-    </a>
+    <div class="wordmark">
+      <a class="wordmark__logo" href="/" aria-label="Chronicle home">
+        <img src="{{ site.logo }}" width="1254" height="1254" alt="">
+      </a>
+      <div class="wordmark__stack">
+        <a class="wordmark__text" href="/">
+          <strong>Chronicle</strong>
+          <small>by {{ site.publisher }}</small>
+        </a>
+        <nav class="wordmark__socials" aria-label="Nter.pro on social media">
+          <a class="social-link" href="{{ site.socials.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><span aria-hidden="true">◎</span></a>
+          <a class="social-link social-link--x" href="{{ site.socials.x }}" target="_blank" rel="noopener noreferrer" aria-label="X" title="X"><span aria-hidden="true">X</span></a>
+          <a class="social-link social-link--facebook" href="{{ site.socials.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><span aria-hidden="true">f</span></a>
+        </nav>
+      </div>
+    </div>
     <div class="masthead__issue">
       <span>{{ site.issue }}</span>
       <time datetime="{{ site.date }}">{{ site.date | displayDate }}</time>

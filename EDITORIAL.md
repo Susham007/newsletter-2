@@ -45,4 +45,8 @@ Change `status: published` to `status: archived`. The article file remains avail
 
 - Sponsor settings: `src/_data/ad.json`
 - Signup copy and endpoint: `src/_data/signup.json`
-- Publication name, issue, and date: `src/_data/site.json`
+- Publication name, issue, date, logo, and social links: `src/_data/site.json`
+
+## Signup coupon codes
+
+The signup form creates a stable `NTER-30-…` early-access code from each email address. The code is included in the same Google Forms submission as the subscriber's name, email, contact, and reason for joining. Google Forms stores it in field `entry.256720589`.
