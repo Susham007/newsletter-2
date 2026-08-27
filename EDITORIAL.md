@@ -17,6 +17,8 @@ dek: One clear sentence explaining why the story matters.
 date: 2026-08-28
 category: Analysis
 image: /assets/images/example.jpg
+imageWidth: 1200
+imageHeight: 750
 imageAlt: A factual description of the image
 imageCredit: Photographer or source
 source: Primary source used for the reporting
@@ -32,6 +34,7 @@ theme: blue
 - `order`: lower numbers appear first inside their format.
 - `theme`: use `blue`, `purple`, or `red` for the small category label only.
 - `image`: required for `lead` and `story`; omit it for a compact `data` briefing.
+- `imageWidth` and `imageHeight`: the source image dimensions. They prevent layout shift in web and email clients.
 - `stat`: add a short figure to a `data` briefing or the lead evidence line.
 
 ## Remove or archive an article

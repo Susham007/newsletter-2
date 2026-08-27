@@ -5,6 +5,8 @@ dek: Cases passed one lakh for the first time, with Telangana and Karnataka acco
 date: 2026-08-28
 category: Data
 image: /assets/images/cybercrime.jpg
+imageWidth: 1004
+imageHeight: 628
 imageAlt: A hooded figure shown against computer code
 imageCredit: Representative image
 source: Parliamentary response and NCRB data

@@ -16,7 +16,7 @@ layout: layouts/base.njk
     </header>
     {% if image %}
       <figure class="article-figure">
-        {% image image, imageAlt, "(max-width: 880px) calc(100vw - 32px), 880px", "eager", "high" %}
+        <img src="{{ image }}" width="{{ imageWidth }}" height="{{ imageHeight }}" alt="{{ imageAlt }}" decoding="async" fetchpriority="high">
         {% if imageCredit %}<figcaption>{{ imageCredit }}</figcaption>{% endif %}
       </figure>
     {% endif %}

@@ -12,6 +12,7 @@ const escapeAttribute = (value = "") =>
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "favicon.svg" });
   eleventyConfig.addPassthroughCopy({
     "node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2":
@@ -22,35 +23,6 @@ module.exports = function (eleventyConfig) {
       "assets/fonts/source-serif-4-latin-wght-normal.woff2"
   });
   eleventyConfig.addWatchTarget("./src/assets/images/");
-
-  eleventyConfig.addNunjucksAsyncShortcode(
-    "image",
-    async (src, alt = "", sizes = "100vw", loading = "lazy", priority = "auto") => {
-      const inputPath = src.startsWith("/") ? `./src${src}` : src;
-      const metadata = await Image(inputPath, {
-        widths: [480, 800, 1200],
-        formats: ["webp", "jpeg"],
-        outputDir: "./_site/assets/images/generated/",
-        urlPath: "/assets/images/generated/",
-        sharpWebpOptions: { quality: 78 },
-        sharpJpegOptions: { quality: 80, progressive: true },
-        filenameFormat: (id, source, width, format) => {
-          const name = path.basename(source, path.extname(source));
-          return `${name}-${width}w.${format}`;
-        }
-      });
-
-      const attributes = {
-        alt,
-        sizes,
-        loading,
-        decoding: "async"
-      };
-      if (priority === "high") attributes.fetchpriority = "high";
-
-      return ImageModule.generateHTML(metadata, attributes, { whitespaceMode: "inline" });
-    }
-  );
 
   eleventyConfig.addNunjucksAsyncShortcode(
     "emailImage",

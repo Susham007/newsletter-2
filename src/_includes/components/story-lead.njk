@@ -11,6 +11,6 @@
     <a class="button button--primary" href="{{ lead.url }}">Read the analysis</a>
   </div>
   <a class="lead-story__media" href="{{ lead.url }}" tabindex="-1" aria-hidden="true">
-    {% image lead.data.image, "", "(max-width: 820px) calc(100vw - 32px), 40vw" %}
+    <img src="{{ lead.data.image }}" width="{{ lead.data.imageWidth }}" height="{{ lead.data.imageHeight }}" alt="" decoding="async" fetchpriority="high">
   </a>
 </article>

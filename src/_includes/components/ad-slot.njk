@@ -6,7 +6,7 @@
       <span>Presented by {{ ad.sponsor }}</span>
     </div>
     <a class="partner__creative" href="{{ ad.href }}" target="_blank" rel="sponsored noopener">
-      {% image ad.image, ad.alt, "(max-width: 820px) calc(100vw - 32px), 1056px", "eager", "high" %}
+      <img src="{{ ad.image }}" width="{{ ad.imageWidth }}" height="{{ ad.imageHeight }}" alt="{{ ad.alt }}" decoding="async" fetchpriority="high">
     </a>
   </div>
 </aside>

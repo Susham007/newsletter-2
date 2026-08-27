@@ -5,6 +5,8 @@ dek: A Supreme Court committee is taking representations from affected communiti
 date: 2026-08-28
 category: Have your say
 image: /assets/images/aravalli.jpg
+imageWidth: 621
+imageHeight: 388
 imageAlt: Activists on the Aravalli landscape holding a public-protest banner
 imageCredit: Campaign image
 source: Supreme Court committee notice

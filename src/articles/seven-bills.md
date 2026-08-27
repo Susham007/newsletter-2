@@ -5,6 +5,8 @@ dek: From foreign capital in G-secs to four new Supreme Court judges—impact, m
 date: 2026-08-28
 category: The docket
 image: /assets/images/bills.png
+imageWidth: 769
+imageHeight: 480
 imageAlt: A printed legislative bill open on a desk
 imageCredit: Representative image
 source: Parliamentary legislative business

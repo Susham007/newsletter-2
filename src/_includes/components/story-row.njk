@@ -6,6 +6,6 @@
     <a class="text-link" href="{{ article.url }}">Read briefing</a>
   </div>
   <a class="story-row__media" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
-    {% image article.data.image, "", "(max-width: 560px) calc(100vw - 32px), 288px" %}
+    <img src="{{ article.data.image }}" width="{{ article.data.imageWidth }}" height="{{ article.data.imageHeight }}" alt="" loading="lazy" decoding="async">
   </a>
 </article>

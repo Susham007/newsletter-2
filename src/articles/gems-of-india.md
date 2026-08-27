@@ -5,6 +5,8 @@ dek: Up to ₹50,000 per district and ₹5 lakh nationally, with entries open th
 date: 2026-08-28
 category: Creators
 image: /assets/images/gems-of-india.webp
+imageWidth: 1081
+imageHeight: 675
 imageAlt: A grassroots film crew recording a scene outside a village home
 imageCredit: Programme image
 source: MyWAVES programme information

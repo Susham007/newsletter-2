@@ -5,6 +5,8 @@ dek: The Monsoon Session asked thousands of questions. Student welfare received 
 date: 2026-08-28
 category: Analysis
 image: /assets/images/parliament.jpg
+imageWidth: 576
+imageHeight: 360
 imageAlt: Parliamentarians gathered outside the Parliament of India
 imageCredit: Archive image
 source: Parliamentary questions, Monsoon Session 2026
