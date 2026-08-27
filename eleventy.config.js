@@ -47,7 +47,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addGlobalData(
     "absoluteUrl",
-    process.env.URL || process.env.DEPLOY_PRIME_URL || "http://localhost:8080"
+    process.env.URL || process.env.DEPLOY_PRIME_URL || "https://niyantran-chronicle.netlify.app"
   );
 
   const publishedByFormat = (collectionApi, format) => {
@@ -83,3 +83,4 @@ module.exports = function (eleventyConfig) {
     htmlTemplateEngine: "njk"
   };
 };
+
