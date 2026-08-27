@@ -9,6 +9,8 @@
   const nameInput = form.querySelector("[data-signup-name]");
   const emailInput = form.querySelector("[data-signup-email]");
   const couponField = form.querySelector("[data-coupon-field]");
+  const couponPreview = form.querySelector("[data-coupon-preview]");
+  const couponPreviewCode = form.querySelector("[data-coupon-preview-code]");
   const confirmation = document.querySelector("[data-signup-confirmation]");
   const confirmationEmail = confirmation?.querySelector("[data-confirmation-email]");
   const couponOutput = confirmation?.querySelector("[data-coupon-output]");
@@ -21,6 +23,23 @@
     }
     return `NTER-30-${hash.toString(36).toUpperCase().padStart(6, "0").slice(-6)}`;
   };
+
+  const updateCouponPreview = () => {
+    const email = emailInput.value.trim().toLowerCase();
+    if (emailInput.validity.valid && email) {
+      const code = makeCode(email);
+      couponField.value = code;
+      couponPreviewCode.textContent = code;
+      couponPreview.classList.add("is-ready");
+      return;
+    }
+    couponField.value = "";
+    couponPreviewCode.textContent = "NTER-30-••••••";
+    couponPreview.classList.remove("is-ready");
+  };
+
+  emailInput.addEventListener("input", updateCouponPreview);
+  updateCouponPreview();
 
   const readSaved = () => {
     try {
@@ -107,3 +126,4 @@
     }
   });
 })();
+

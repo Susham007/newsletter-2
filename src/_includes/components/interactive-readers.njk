@@ -1,0 +1,407 @@
+<div class="interactive-reader-shell" id="interactive-reader-shell" hidden aria-hidden="true">
+  <div class="interactive-reader-brand" aria-hidden="true">
+    <div class="site-shell interactive-reader-brand__inner">
+      <span>Chronicle</span>
+      <span>Interactive edition · Niyantran</span>
+    </div>
+  </div>
+  <div id="readers">
+  <section class="reader" id="art-1" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-ink">Authority · The Record</span><span class="art-num">02 / 05</span></div>
+    <h1 class="headline">The Question Parliament Asks</h1>
+
+    <div class="utility-row">
+      <div class="source-line">Source: <b>18th Lok Sabha &amp; Rajya Sabha</b>, Session 8 · 19 sitting days, 20 Jul–13 Aug 2026</div>
+      <button class="listen-btn" data-article="art-1"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <div class="visual-block">
+      <div class="visual-label">Ministry Breakdown</div>
+      <div class="visual-frame">
+        <div id="chart-ministries"></div>
+        <div class="chart-legend">
+          <div class="litem"><span class="lswatch sw-blue"></span>Lok Sabha</div>
+          <div class="litem"><span class="lswatch sw-purple"></span>Rajya Sabha</div>
+        </div>
+      </div>
+      <div class="visual-caption">Top 10 of 55 ministries by combined questions admitted, both Houses. Hover a bar for the exact Lok Sabha / Rajya Sabha split.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>A Parliamentary Question is the one thing an MP can put to a minister that the minister cannot avoid. A press conference can be skipped. A speech in the House can be sat through in silence. A question has to be answered, on the record, because the law says so. This session, Parliament used that power <span class="stat st-black">7,825</span> times — and the shape of those 7,825 questions says more than the number does.</p>
+      <p>Start with who is asking. The load is spread astonishingly wide: <span class="stat st-black">1,236</span> MPs filed at least one question, and <span class="stat st-black">614</span> of them filed exactly one. The ten busiest members account for barely <span class="stat st-black">4%</span> of the session between them. So this is not a handful of star performers carrying the House — nearly everyone turns up to the order paper.</p>
+      <p>Now look at who is being asked, and the picture inverts completely. Health and Family Welfare alone absorbed <span class="stat st-black">459</span> questions. The five busiest ministries took <span class="stat st-black">23.8%</span> of everything asked; the ten busiest took <span class="stat st-black">38.3%</span>. So the questioning is wide at the source and narrow at the target — hundreds of MPs, funnelling into a handful of ministries. Parliament is not short of people willing to ask. It is short of range in what they ask about.</p>
+    </div>
+
+    <div class="pullquote">Hundreds of MPs ask the questions. A handful of ministries absorb them. The scrutiny is wide at the source and narrow at the target.</div>
+
+    <div class="supporting-copy">
+      <p>And there is a second silence underneath the first. Only <span class="stat st-black">645</span> questions — <span class="stat st-black">8.2%</span> — were starred, the kind that makes a minister stand up, answer aloud and take a follow-up. The other <span class="stat st-black">7,180</span> were answered on paper, where nobody in the chamber ever has to hear a word of it. A Parliament that mostly asks in writing is a Parliament that mostly lets the government answer in private.</p>
+      <p>At the very bottom of the table sit two names worth holding onto: Defence and Parliamentary Affairs, tied for last at <span class="stat st-red">10 questions each</span> across 19 sitting days and both Houses combined. And it is not only how few — it is what they are. Of Defence's ten, two ask about a Sainik School in Purulia and one about the <span class="qquote">&ldquo;Financial Power of DRDO&rdquo;</span>. The ministry that runs the country's security was asked about a boarding school, twice, and about nobody's operations, procurement or readiness at all. The busiest ministries get chased on delivery; the one you would most want watched gets asked about a school. Whether that silence is trust or a blind spot is where this edition ends — Article 05.</p>
+    </div>
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="art-2" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-purple">Analysis · The Question</span><span class="art-num">01 / 05</span></div>
+    <h1 class="headline">Do Parliamentarians Really Care?</h1>
+
+    <div class="utility-row">
+      <div class="source-line">Source: Niyantran topic classification, <b>4,153 of 7,825</b> questions primary-tagged</div>
+      <button class="listen-btn" data-article="art-2"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <figure class="article-image">
+      <img src="/assets/images/parliament.jpg" alt="Members of Parliament gathered outside Parliament House" width="640" height="360">
+      <figcaption>Parliament House, where political priorities become part of the public record.</figcaption>
+    </figure>
+
+    <div class="visual-block">
+      <div class="visual-label">Priority Simulator</div>
+      <div class="visual-frame">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin:0 0 16px;max-width:58ch;">Parliament's actual mix is fixed — the top bar in every row. Drag a slider to set what <b style="color:var(--ink)">you</b> think the priority should be, and read what that decision would actually cost or buy.</p>
+        <div id="simulator"></div>
+        <div class="impact-readout" id="sim-impact"><span class="im-label">Impact</span>Move a slider to see what your priorities would have meant for this session.</div>
+      </div>
+      <div class="visual-caption">Bars show Parliament's actual share of all 7,825 questions per lens (top, purple) against your allocation (bottom, blue).</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Counting questions tells you where MPs looked. It tells you nothing about what they wanted once they got there — and there is a difference, a very large one, between asking whether a scheme <i>exists</i> and asking whether it <i>worked</i>. Most of the order paper is the first kind. <span class="qquote">&ldquo;Railway Schools in Telangana&rdquo;</span>, <span class="qquote">&ldquo;Rare Earth Elements Exploration in West Bengal&rdquo;</span> — status, headcounts, what-is-happening-where. The rarer, sharper kind names the outcome and dares the ministry to defend it: <span class="qquote">&ldquo;Achievement of Target under PMAY-G&rdquo;</span>, <span class="qquote">&ldquo;Independent Performance Evaluation of NCAP&rdquo;</span>. This session, Parliament asked the first kind again and again, and the second almost never.</p>
+      <p>The clearest place to see it is Education — the third-largest ministry by volume, and the case this edition was built around. Tag a question by what it is actually about rather than by whichever ministry replied, and 406 carry the tag. Nearly three in four, <span class="stat st-purple">74.6%</span>, sit in three buckets — school education, higher education, scholarships — which read together as one question: <i>who gets in, and who pays for it.</i></p>
+      <p>Now look at what is left. This was the session an exam-paper leak had turned into a national emergency, with students dead by suicide and both Houses paralysed. Student welfare and safety drew <span class="stat st-red">four questions</span> in all of it. Here they are, the entire set: <span class="qquote">&ldquo;Increasing Suicide among Students&rdquo;</span>, <span class="qquote">&ldquo;Mental Health of Students&rdquo;</span>, <span class="qquote">&ldquo;Ragging Complaints in Higher Educational Institutions&rdquo;</span>, and <span class="qquote">&ldquo;Use of AI Platforms for Mental Health Support&rdquo;</span>. The exact crisis on the street — named, in full, four times, across two Houses and nineteen days. The subjects that make news are not the subjects that make the order paper.</p>
+    </div>
+
+    <div class="pullquote">Parliament’s commonest question about a government scheme is not “did it work”. It is “does it exist”.</div>
+
+    <div class="supporting-copy">
+      <p>Widen back out to all 7,825 questions and the habit becomes a rule. <span class="stat st-purple">73.1%</span> of everything filed carries the lens "general information" — status checks, headcounts, how many of X exist in Y. Only <span class="stat st-purple">78</span> questions in the entire session, <span class="stat st-red">1.0%</span>, asked whether something had actually produced a result. Asking a government to prove a thing worked is close to the rarest demand an Indian MP makes.</p>
+      <p>But here is the layer that complicates the scolding — and it is worth being fair about. When an MP <i>does</i> ask the hard question, they fight harder to be heard. The rare "did it work" questions are starred at <span class="stat st-black">10.3%</span>, and delivery questions at <span class="stat st-black">9.8%</span> — both above the <span class="stat st-black">8.0%</span> rate for ordinary status-checks. So the instinct to demand an answer out loud, on the floor, is strongest exactly where questions are scarcest. The accountability question is not missing because MPs don't care to ask it. It is missing at volume. The appetite is there; the habit is not.</p>
+    </div>
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="art-3" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-blue">Data</span><span class="art-num">03 / 05</span></div>
+    <h1 class="headline">Two Houses, Two Agendas?</h1>
+
+    <div class="utility-row">
+      <div class="source-line">Source: 14 classified macro-topics, both Houses · <b>4,500 LS</b> / <b>3,325 RS</b> questions</div>
+      <button class="listen-btn" data-article="art-3"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <div class="visual-block">
+      <div class="visual-label">House Toggle</div>
+      <div class="visual-frame">
+        <div class="toggle-row" id="toggle-3-controls"></div>
+        <div id="chart-houses"></div>
+        <div class="chart-legend">
+          <div class="litem"><span class="lswatch sw-blue"></span>Lok Sabha</div>
+          <div class="litem"><span class="lswatch sw-purple"></span>Rajya Sabha</div>
+        </div>
+        <div class="impact-readout" id="houses-impact"><span class="im-label">Impact</span></div>
+      </div>
+      <div class="visual-caption" id="chart-houses-caption"></div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>A Lok Sabha MP answers to voters in a named place. A Rajya Sabha MP does not — they are chosen by state legislatures, and there is no single constituency anyone can point to on a map. If that difference is real, it should show up in what each House spends its questions on. It does, on two levels — and the second is more interesting than the first.</p>
+      <p>The first level is subject, and you can hear it in the questions themselves. The Rajya Sabha's defence questions read like a strategy desk — <span class="qquote">&ldquo;Third-Party Security Audits of Nuclear Power Plants&rdquo;</span>, <span class="qquote">&ldquo;Action against Cross-Border Terrorism&rdquo;</span>. The Lok Sabha's transport questions read like a constituency inbox — <span class="qquote">&ldquo;Stoppages of Express Trains at Koilakuntla and Panyam Railway Stations&rdquo;</span>, <span class="qquote">&ldquo;ABSS for Mayiladuthurai Railway Station&rdquo;</span>. In the numbers: Defence splits <span class="stat st-purple">60.5%</span> to the Rajya Sabha, Foreign affairs <span class="stat st-purple">60%</span>; Transport, the largest subject of the session at 680 questions, runs <span class="stat st-blue">58.2%</span> Lok Sabha, Education <span class="stat st-blue">60.1%</span>. Roads, schools, crops, hospitals lean to the House that has to face voters; the world beyond the constituency leans to the House that does not.</p>
+      <p>The second level is the one the topic split hides. It is not just <i>what</i> each House asks about — it is what <i>kind</i> of question it asks. Sort every question by whether it demands delivery — did the scheme reach anyone — and the Rajya Sabha, which files a quarter fewer questions overall, asked <span class="stat st-purple">371</span> delivery questions to the Lok Sabha's <span class="stat st-blue">342</span>. More in raw number, from the smaller House. The chamber that never faces an election is the one more likely to ask whether the promise actually held.</p>
+    </div>
+
+    <div class="pullquote">The House that has to face voters asks where its projects are. The House that never faces them asks whether the promises worked. Proximity and accountability pull in opposite directions.</div>
+
+    <div class="supporting-copy">
+      <p>Turn it around and the same pattern holds from the other side. <span class="stat st-black">74.9%</span> of the elected House's questions are plain status-checks — how many, how much, by when — against <span class="stat st-black">70.6%</span> in the Rajya Sabha. The Lok Sabha also leans harder on "where did the money go" questions. It is the portrait of an MP working a constituency: chase the project, count the beneficiaries, get the number to take home.</p>
+      <p>One honest complication, because the chamber is not a personality. Some of the Rajya Sabha's defence lean is simply the ruling party using its own RS members — the BJP filed 14 of the House's defence questions, more than anyone. And the opposition's fingerprints are all over the "distant" topics: INC members ask foreign-affairs questions at more than four times their overall share. So this is not two chambers with fixed temperaments. It is proximity and party strategy stacked on top of each other — but the structural pull is real, and it points the same way every time. Which of the Lok Sabha's 543 elected MPs is meant to raise foreign policy for a constituency that sent them to fix a highway? Structurally, almost none. And it shows.</p>
+    </div>
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="art-4" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-sand">Context · Research</span><span class="art-num">04 / 05</span></div>
+    <h1 class="headline">Is Your MP Using Parliament as Your Constituency Office?</h1>
+
+    <div class="utility-row">
+      <div class="source-line">Source: subject-line state tagging, 33 states &amp; UTs, <b>1,399</b> questions matched</div>
+      <button class="listen-btn" data-article="art-4"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <div class="visual-block">
+      <div class="visual-label">Where Parliament Looks</div>
+      <div class="visual-frame">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin:0 0 16px;max-width:60ch;">The darker a state, the more questions named it. Hover over any state, or tab to it, for its rank, its count and the actual questions MPs filed about it.</p>
+        <div id="state-map"></div>
+      </div>
+      <div class="visual-caption">Questions that name a state in their subject line, Monsoon Session 2026. Jammu &amp; Kashmir and Ladakh are shown together, as one shape, because the boundary file predates the 2019 split.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Here is what the official record will not tell you: which state an MP is from, which constituency, which party. None of it is a field in the data — there is a name, a ministry and a subject line, and that is all. So we read all 7,825 subject lines ourselves, looking for the place names the record was never going to hand over.</p>
+      <p><span class="stat st-black">1,399</span> questions — <span class="stat st-black">17.9%</span> of the session — name a state or union territory outright: <span class="qquote">&ldquo;Vande Bharat Express Trains in Tamil Nadu&rdquo;</span>, <span class="qquote">&ldquo;Fair Price Shops under PDS in Bihar&rdquo;</span>, <span class="qquote">&ldquo;Railway Projects for Ongole-Guntur Section in Andhra Pradesh&rdquo;</span>. Treat that as a floor, not a ceiling. A question titled <span class="qquote">&ldquo;Replacement of Railways Track in Balasore, Odisha&rdquo;</span> is just as local, and naming a district rather than the state, it slips straight past this count — as does every question anchored to a city or a route number. What the map shows is the <i>floor</i> of the constituency instinct, and the floor is already high.</p>
+      <p>The geography of that floor is the real find. The darkest states are Tamil Nadu (159), Odisha (145) and Andhra Pradesh (127) — the south and the east, not the Hindi heartland. And these are the states with the strongest regional parties, where an MP's whole political identity is the state itself. The instinct to turn a national question into a local errand runs hottest exactly where regional politics runs hottest. Uttar Pradesh, which sends more MPs than anyone, comes sixth — not because its MPs are less parochial, but because a state that famous gets named by its cities, and the state label never appears.</p>
+    </div>
+
+    <div class="pullquote">The map is not a picture of who cares most about their state. It is a picture of where naming the state is worth political points.</div>
+
+    <div class="supporting-copy">
+      <p>Party makes less difference here than you would expect — and more. On sheer volume it is arithmetic: BJP MPs account for <span class="stat st-black">46.3%</span> of party-tagged questions and INC for <span class="stat st-black">16.3%</span>, tracking seat share almost exactly. Nobody is out-asking anyone.</p>
+      <p>But <i>what</i> they ask about is not arithmetic at all. INC members ask foreign-affairs questions at over four times their overall weight; the DMK over-indexes two and a half times on environment; the ruling party leans to defence and infrastructure. Parties don't ask more or fewer questions than their numbers — they ask about different things entirely. The volume is proportional. The agenda is not.</p>
+    </div>
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="art-5" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-red">Alert</span><span class="art-num">05 / 05</span></div>
+    <h1 class="headline">Question on Who Gets to Vote</h1>
+
+    <div class="utility-row">
+      <div class="source-line">Source: 15-topic macro classification + full-text keyword search, both Houses</div>
+      <button class="listen-btn" data-article="art-5"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <div class="visual-block">
+      <div class="visual-label">Attention Ranking</div>
+      <div class="visual-frame">
+        <div id="chart-neglect"></div>
+      </div>
+      <div class="visual-caption">The 10 least-questioned ministries this session, by combined questions across both Houses. Red = the two ministries tied for dead last.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Naming what Parliament does not ask about needs one admission first: <span class="stat st-red">46.9%</span> of the session's questions do not yet fit any single topic cleanly, so everything here describes the half we can name. Call it a floor for the silence, not the whole of it — which only makes the silence worse, because the visible half is already this thin.</p>
+      <p>Inside what is classified, the bottom of the table is not close. Foreign affairs drew <span class="stat st-red">20</span> questions all session, the smallest of any topic; Defence and security drew 38. Both are dwarfed by Environment at 121 and by Science and technology at 202. At ministry level, Defence and Parliamentary Affairs tie for last across all 55 ministries: <span class="stat st-red">10 apiece</span>. But a thin count on a standing subject is one thing. The sharper failure is a subject that was moving fast, in real time, and still drew almost nothing.</p>
+    </div>
+
+    <div class="pullquote">The order paper runs on a two-week delay. The electoral roll runs live, state by state. By the time Parliament can ask, the rolls have already changed.</div>
+
+    <div class="supporting-copy">
+      <p>Electoral roll revision — the Special Intensive Revision reshaping voter lists across the country through 2026 — appears in exactly <span class="stat st-red">4</span> of the session's 7,825 questions. Here they are, all four: Gaurav Gogoi's <span class="qquote">&ldquo;SIR Electoral Roll Revision&rdquo;</span> in the Lok Sabha; Abhishek Banerjee's <span class="qquote">&ldquo;Protection of Food Security Entitlements during Electoral Roll Revisions&rdquo;</span>; and, from the Rajya Sabha, <span class="qquote">&ldquo;Missing names in electoral rolls&rdquo;</span> and <span class="qquote">&ldquo;Deletion of names in SIR&rdquo;</span>. Four questions, <span class="stat st-red">0.05%</span> of everything Parliament asked, on the process that decides who is on the roll at all.</p>
+      <p>There is an honest defence, and it matters. A question needs roughly two weeks' notice to be admitted, so the order paper always trails the news — MPs cannot ask about this morning's development this afternoon. But that <i>is</i> the finding. The instrument runs on a fortnight's delay while the SIR runs live, state by state, one roll at a time. By the time a question about one state's revision clears the notice period, the next state's rolls have already been redrawn. This is not indifference; it is a mismatch of clock speed — a slow instrument pointed at a fast process. And a mismatch of clock speed is precisely what a live terminal exists to close: not once a session, after the fact, but as the questions are filed and the silences are still forming. Which is where this edition ends, and the countdown carries on.</p>
+    </div>
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="brd-bills" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-blue">The Docket</span><span class="art-num">Also on the board</span></div>
+    <h1 class="headline">Seven bills on the floor, and who each one moves</h1>
+
+    <div class="utility-row">
+      <span class="source-line">Source: <b>PRS Legislative Research</b> · Monsoon Session 2026 legislative list</span>
+      <button class="listen-btn" data-article="brd-bills"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <figure class="article-image">
+      <img src="/assets/images/bills.png" alt="A bill document photographed in close-up" width="992" height="480" loading="lazy" decoding="async">
+      <figcaption>Seven bills reached the floor during the session.</figcaption>
+    </figure>
+
+    <div class="visual-block">
+      <div class="visual-label">The Bill Ledger</div>
+      <div class="facts"><div class="fl">Income-tax (Amendment) Bill, 2026 · Finance · replaces an ordinance</div><table>
+        <tr><td class="k">What it does</td><td>Exempts foreign institutional investors and the Bank for International Settlements from income tax on earnings from government securities.</td></tr>
+        <tr><td class="k">Impact</td><td>Cheaper for foreign capital to hold Indian sovereign debt — a tailwind for G-sec demand and the borrowing programme.</td></tr>
+        <tr><td class="k">Context</td><td>The ordinance route signals urgency. Sits inside the long tension between taxing foreign capital and attracting it.</td></tr></table></div>
+      <div class="facts"><div class="fl">MSME Development (Amendment) Bill, 2026 · MSME</div><table>
+        <tr><td class="k">What it does</td><td>Strengthens the delayed-payments mechanism, adds enforcement of arbitral awards, lets states set Facilitation Council composition.</td></tr>
+        <tr><td class="k">Context</td><td>Delayed payments are a chronic grievance with lakhs of crores stuck; earlier remedies were seen as weak on enforcement.</td></tr></table></div>
+      <div class="facts"><div class="fl">Supreme Court (Number of Judges) Amendment Bill, 2026 · Law &amp; Justice</div><table>
+        <tr><td class="k">What it does</td><td>Raises Supreme Court judges (excluding the CJI) from 33 to 37 — four additional seats.</td></tr>
+        <tr><td class="k">Context</td><td>The Court carries a heavy backlog; the perennial debate is strength vs vacancies vs the collegium's pace. First bump in several years.</td></tr></table></div>
+      <div class="facts"><div class="fl">Foreign Contribution (Regulation) Amendment Bill, 2026 · Home Affairs · pending in LS</div><table>
+        <tr><td class="k">What it does</td><td>Frames supervision and disposal of foreign contributions and assets of bodies that lose FCRA certification; cuts maximum penalty from five years' imprisonment to one.</td></tr>
+        <tr><td class="k">Context</td><td>Softer on penalty, tighter on asset control. Many NGOs have lost registration in recent years and call the regime restrictive.</td></tr></table></div>
+      <div class="facts"><div class="fl">Viksit Bharat Shiksha Adhishthan Bill, 2025 · Education · in Joint Committee</div><table>
+        <tr><td class="k">What it does</td><td>Replaces the UGC, AICTE and NCTE with a single higher-education regulator.</td></tr>
+        <tr><td class="k">Context</td><td>Traces to NEP 2020. The Joint Committee is hearing vice-chancellors and industry bodies. Federalism and autonomy concerns are live.</td></tr></table></div>
+      <div class="facts" style="margin-bottom:0"><div class="fl">Two administrative bills · Home Affairs</div><table>
+        <tr><td class="k">Births &amp; Deaths</td><td>Makes delayed-registration provisions more stringent. These records anchor identity, voter rolls and welfare access — concern centres on the documentation burden on migrants and the poor.</td></tr>
+        <tr><td class="k">National Honour</td><td>Amends the 1971 Act on insults to the flag, Constitution and anthem. One to watch on wording rather than headline.</td></tr></table></div>
+      <div class="visual-caption">Two bills listed for passing, five for introduction-and-passing in the Monsoon Session.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Seven bills reached the floor this session. Read together they are less a theme than a cross-section: who the state wants to make things easier for, and who it wants to make things harder for.</p>
+      <p>The Income-tax amendment arrived by <b>ordinance</b> — the route a government takes when it does not want to wait. It makes it cheaper for foreign institutions to hold Indian government debt. The Births and Deaths amendment, in the same session, makes it <i>harder</i> to register a birth late. One bill smooths the path for capital, which can go anywhere it likes. The other tightens the paperwork behind identity, voter rolls and welfare access, for people who cannot.</p>
+      <p>The Supreme Court bill adds four judges to a bench of 33 — the first increase in several years, against a backlog that has outgrown every increase before it. The FCRA amendment cuts the maximum penalty from five years in prison to one, while tightening control over what happens to an organisation's assets once its certification is gone. Softer on the person. Harder on the money.</p>
+    </div>
+
+    <div class="pullquote">One bill here makes it cheaper for foreign capital to lend to India. Another makes it harder for an Indian to register a birth late.</div>
+    <div class="nextnav">
+      <button onclick="openArticle('brd-cyber')"><span>Next</span>India's cyber-crime map →</button>
+      <button onclick="closeArticle()"><span>Back to</span>Front page</button>
+    </div>
+
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="brd-cyber" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-purple">Deep Dive · Crime Data</span><span class="art-num">Also on the board</span></div>
+    <h1 class="headline">India's cyber-crime map just crossed a line</h1>
+
+    <div class="utility-row">
+      <span class="source-line">Source: <b>NCRB "Crime in India 2024"</b> via MHA (PIB)</span>
+      <button class="listen-btn" data-article="brd-cyber"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <figure class="article-image">
+      <img src="/assets/images/cybercrime.jpg" alt="A hooded figure using a laptop against projected computer code" width="1200" height="628" loading="lazy" decoding="async">
+      <figcaption>Registered cybercrime passed one lakh cases in 2024.</figcaption>
+    </figure>
+
+    <div class="visual-block">
+      <div class="visual-label">Cyber-Crime Breakdown</div>
+      <div class="visual-frame">
+        <div class="kpi-row">
+          <div class="kpi k-purple"><div class="kn">1,01,928</div><div class="kl">cases in 2024 — first time past one lakh</div></div>
+          <div class="kpi k-red"><div class="kn">+104%</div><div class="kl">rise since 2020 (~50,000)</div></div>
+          <div class="kpi k-blue"><div class="kn">~48%</div><div class="kl">are fraud or cheating</div></div>
+        </div>
+        <div class="toggle-row" id="cyber-toggle">
+          <button class="toggle-btn" data-set="states" data-active="true">Top states</button>
+          <button class="toggle-btn" data-set="growth" data-active="false">Fastest-growing</button>
+          <button class="toggle-btn" data-set="heads" data-active="false">By crime type</button>
+        </div>
+        <div id="cyber-bars"></div>
+        <div class="impact-readout" id="cyber-impact"></div>
+      </div>
+      <div class="visual-caption">Registered cases only. Switch views to see where the crime is, where it is growing fastest, and what it actually consists of.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Registered cyber-crime in India crossed <span class="stat st-purple">one lakh cases</span> for the first time in 2024 — 1,01,928 of them, roughly double the 50,000-odd recorded in 2020. Two states carry almost half the national total between them: Telangana at 27,230 and Karnataka at 21,993.</p>
+      <p>But the useful finding is not where the crime is. It is what the crime <i>is</i>. Computer-related offences, fraud and cheating account for most of it. Obscene content, stalking and everything else make up a small remainder. This is a money story, not hacking in the Hollywood sense — which makes it a consumer-protection and banking-supervision problem at least as much as a policing one.</p>
+    </div>
+
+    <div class="callout">
+      <span class="co-k">Read the numbers carefully</span>
+      <p>These are <b>registered</b> cases. Differences between states partly reflect how diligently each state books a complaint, not just how much crime happens there. Between 2020 and 2024, Assam fell by roughly 88% and West Bengal by roughly 60% — a fall that says far more about registration practice than about anyone becoming safer.</p>
+    </div>
+
+    <div class="supporting-copy">
+      <p><b>If it happens to you:</b> financial fraud can be reported on helpline <b>1930</b>, or at cybercrime.gov.in. The I4C says more than <span class="stat st-blue">₹11,158 crore</span> has been saved across 32.8 lakh complaints, with coordination hubs now covering hotspots including Mewat, Jamtara, Hyderabad and Guwahati. Speed matters more than anything else here. The money can be recovered only before it is moved on.</p>
+    </div>
+    <div class="nextnav">
+      <button onclick="openArticle('brd-aravalli')"><span>Next</span>The Aravalli hearing →</button>
+      <button onclick="closeArticle()"><span>Back to</span>Front page</button>
+    </div>
+
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="brd-aravalli" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-red">Have Your Say</span><span class="art-num">Also on the board</span></div>
+    <h1 class="headline">The Aravalli hearing is open to the public</h1>
+
+    <div class="utility-row">
+      <span class="source-line">Source: <b>Supreme Court High-Powered Committee</b> · Suo Motu Writ 10/2025</span>
+      <button class="listen-btn" data-article="brd-aravalli"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <figure class="article-image">
+      <img src="/assets/images/aravalli.jpg" alt="Public campaigners calling for protection of the Aravallis" width="690" height="388" loading="lazy" decoding="async">
+      <figcaption>Campaigners calling for protection of the Aravalli range.</figcaption>
+    </figure>
+
+    <div class="visual-block">
+      <div class="visual-label">How To Make A Representation</div>
+      <div class="visual-frame">
+        <div class="deadline"><span class="dl">Committee must report by</span><span class="dv">31 August 2026</span></div>
+        <div class="facts" style="margin-bottom:16px"><div class="fl">Who the committee wants to hear from</div><table>
+          <tr><td class="k">Communities</td><td>Villagers, farmers, mine-workers and local communities whose livelihoods are tied to the range.</td></tr>
+          <tr><td class="k">Organisations</td><td>Environmentalists and non-profit organisations working on the Aravallis.</td></tr>
+          <tr><td class="k">Industry</td><td>Mining lease-holders and project proponents.</td></tr>
+          <tr><td class="k">How to send</td><td>Via the committee's form, or by email to <b>mshpcaravalli@gmail.com</b>. Submissions carry more weight when backed by documents or verifiable material.</td></tr>
+        </table></div>
+        <div class="chip-row">
+          <span class="rchip">Delhi</span><span class="rchip">Rajasthan</span><span class="rchip">Haryana</span><span class="rchip">Gujarat</span>
+        </div>
+      </div>
+      <div class="visual-caption">The four states the committee has invited representations from.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>The Supreme Court has set up a High-Powered Committee on the Aravalli Hills and Ranges, and it has to report by <b>31 August 2026</b>. Until then it is taking representations from anyone affected by mining, land use or conservation in the range.</p>
+      <p>This is a direct channel into a Supreme Court-mandated process — the sort of thing normally reached through lawyers, industry associations and well-funded intervenors. The people whose livelihoods sit closest to the range are the ones least likely to know the window exists. And the window is short: <span class="stat st-red">21 days</span> from the notice.</p>
+    </div>
+
+    <div class="callout">
+      <span class="co-k">If you know someone affected, forward this</span>
+      <p>Submissions go via the committee's form, or by email to <b>mshpcaravalli@gmail.com</b>. Confirm the exact closing date before relying on it — the notice period runs from publication, not from the reporting deadline.</p>
+    </div>
+    <div class="nextnav">
+      <button onclick="openArticle('brd-gems')"><span>Next</span>'Gems of India' →</button>
+      <button onclick="closeArticle()"><span>Back to</span>Front page</button>
+    </div>
+
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+
+  <section class="reader" id="brd-gems" style="display:none">
+    <div class="reader-topbar"><button class="back-btn" onclick="closeArticle()">← Front page</button></div>
+    <div class="category-label"><span class="cat-chip chip-sand">Creators Wanted</span><span class="art-num">Also on the board</span></div>
+    <h1 class="headline">'Gems of India' — a paid national stage for grassroots creators</h1>
+
+    <div class="utility-row">
+      <span class="source-line">Source: <b>Ministry of Information &amp; Broadcasting</b> (PIB)</span>
+      <button class="listen-btn" data-article="brd-gems"><span class="bars"><i></i><i></i><i></i></span><span class="lbl-text">Listen to this article</span></button>
+    </div>
+
+    <figure class="article-image">
+      <img src="/assets/images/gems-of-india.webp" alt="A grassroots film crew working on location in an Indian village" width="1200" height="675" loading="lazy" decoding="async">
+      <figcaption>A small film crew working on location—the kind of district-level storytelling the programme seeks.</figcaption>
+    </figure>
+
+    <div class="visual-block">
+      <div class="visual-label">The Awards Ladder</div>
+      <div class="visual-frame">
+        <div class="ladder">
+          <div class="rung"><div class="rl">District</div><div class="rv">₹50,000</div><div class="rd">Up to 20 awards at this level, per district</div></div>
+          <div class="rung"><div class="rl">State</div><div class="rv">₹2 lakh</div><div class="rd">For one standout creator from each district</div></div>
+          <div class="rung"><div class="rl">National</div><div class="rv">₹5 lakh</div><div class="rd">Each, for selected entries in the national rollout</div></div>
+        </div>
+        <div class="deadline" style="margin:16px 0 0"><span class="dl">Entries open</span><span class="dv">1–31 August 2026</span></div>
+      </div>
+      <div class="visual-caption">A 1–3 minute video, uploaded to the MyWAVES section of the WAVES OTT platform.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>The Information &amp; Broadcasting Ministry wants creators to film their own district — its culture, heritage, tourism and history — as a <b>1–3 minute video</b>, uploaded to the MyWAVES section of the WAVES OTT platform. Entries run <span class="stat st-blue">1–31 August 2026</span>. Prasar Bharati, My Bharat, YouTube and Meta are partners.</p>
+      <p>The awards are money, not exposure: up to twenty district awards of ₹50,000, ₹2 lakh for a standout creator from each district, and ₹5 lakh each at the national level.</p>
+    </div>
+
+    <div class="visual-block" style="margin-top:26px">
+      <div class="visual-label">Pilot Regions</div>
+      <div class="visual-frame">
+        <div class="chip-row">
+          <span class="rchip">Andaman &amp; Nicobar</span><span class="rchip">Arunachal Pradesh</span><span class="rchip">Chandigarh</span>
+          <span class="rchip">Dadra &amp; Nagar Haveli and Daman &amp; Diu</span><span class="rchip">Goa</span><span class="rchip">Ladakh</span>
+        </div>
+      </div>
+      <div class="visual-caption">A nationwide rollout is to follow the pilot.</div>
+    </div>
+
+    <div class="supporting-copy">
+      <p>Look at the pilot list again. Andaman &amp; Nicobar. Arunachal Pradesh. Ladakh. Dadra &amp; Nagar Haveli. These are the places that appear least often in national programming — and, as this edition's own data shows, among the least likely to come up in Parliament either.</p>
+      <p>If you are a creator in one of these regions, or you can pass this on to youth groups, colleges and cultural organisations there, it is an unusually direct route to money and to a national platform, with no gatekeeper in the middle.</p>
+    </div>
+    <div class="nextnav">
+      <button onclick="openArticle('brd-bills')"><span>Next</span>Seven bills on the floor →</button>
+      <button onclick="closeArticle()"><span>Back to</span>Front page</button>
+    </div>
+
+    <div class="sign-off"><span class="so-brand"><span class="so-pi" aria-hidden="true">π</span>NIYANTRAN</span><span>nter.pro</span></div>
+  </section>
+</div>
+  <div class="tooltip" id="tooltip"></div>
+</div>
+

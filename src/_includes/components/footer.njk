@@ -1,6 +1,19 @@
 <footer class="footer">
   <div class="site-shell footer__inner">
     <span>© {{ site.publisher }}</span>
+    <nav class="footer__socials" aria-label="Follow nter.pro">
+      <span class="footer__follow">Follow nter.pro</span>
+      <a href="{{ site.socials.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <span class="footer-social__icon" aria-hidden="true">◎</span><span>Instagram</span>
+      </a>
+      <a href="{{ site.socials.x }}" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <span class="footer-social__icon footer-social__icon--x" aria-hidden="true">X</span><span>X</span>
+      </a>
+      <a href="{{ site.socials.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <span class="footer-social__icon footer-social__icon--facebook" aria-hidden="true">f</span><span>Facebook</span>
+      </a>
+    </nav>
     <span>Independent civic intelligence</span>
   </div>
 </footer>
+

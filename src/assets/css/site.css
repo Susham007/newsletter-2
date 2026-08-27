@@ -121,7 +121,7 @@ h1, h2, h3 { overflow-wrap: break-word; }
   flex: none;
   overflow: hidden;
 }
-.wordmark__logo img { width: 64px; height: 64px; object-fit: contain; }
+.wordmark__logo img { width: 115px; max-width: none; height: auto; transform: translate(-23.5%, -17%); }
 
 .wordmark__text { display: grid; gap: 1px; }
 .wordmark__text strong { font-size: 25px; letter-spacing: -.035em; line-height: 1; }
@@ -152,6 +152,21 @@ h1, h2, h3 { overflow-wrap: break-word; }
   text-align: right;
 }
 .masthead__issue span { color: var(--ink); font-weight: 600; }
+
+.launch-strip {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+}
+.launch-strip__label { display: inline-flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: .055em; }
+.launch-strip__label i { width: 7px; height: 7px; margin-right: 2px; border-radius: 50%; background: var(--red); }
+.launch-strip__label strong { color: var(--ink); }
+.launch-strip__time { color: var(--ink); font-variant-numeric: tabular-nums; }
 
 .brand-rule { position: absolute; inset: auto 0 -1px; display: grid; grid-template-columns: repeat(5, 1fr); height: 3px; }
 .brand-rule span:nth-child(1) { background: var(--blue); }
@@ -344,6 +359,38 @@ h1, h2, h3 { overflow-wrap: break-word; }
 .optional-fields { margin-top: 16px; }
 .optional-fields summary { width: fit-content; color: var(--blue); font-size: 13px; cursor: pointer; }
 .form-grid--optional { margin-top: 16px; }
+.coupon-preview {
+  display: grid;
+  grid-template-columns: minmax(230px, auto) 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px dashed #aaa;
+  background: var(--white);
+}
+
+.why {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+.why__inner {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  gap: 48px;
+  align-items: start;
+}
+.why__inner > .eyebrow { margin-top: 9px; }
+.why__inner h2 { max-width: 780px; margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.055em; }
+.why__inner div > p { max-width: 680px; margin: 22px 0 28px; color: var(--muted); font-family: var(--serif); font-size: 19px; line-height: 1.6; }
+.why__inner div > span { margin-left: 16px; color: var(--muted); font-size: 12px; }
+.coupon-preview.is-ready { border-color: var(--blue); box-shadow: inset 3px 0 0 var(--blue); }
+.coupon-preview__code { display: grid; gap: 3px; }
+.coupon-preview__code span { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.coupon-preview__code output { color: #777; font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; letter-spacing: .055em; white-space: nowrap; }
+.coupon-preview.is-ready output { color: var(--blue); }
+.coupon-preview p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .signup-form__action { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
 .form-status { margin: 0; color: var(--muted); font-size: 13px; }
 .form-error { min-height: 20px; margin: 14px 0 -8px; color: var(--red); font-size: 13px; }
@@ -370,7 +417,15 @@ h1, h2, h3 { overflow-wrap: break-word; }
 .signup-confirmation .confirmation-note { font-size: 13px; }
 
 .footer { border-top: 1px solid var(--line); }
-.footer__inner { display: flex; min-height: 72px; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; }
+.footer__inner { display: grid; min-height: 88px; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; color: var(--muted); font-size: 12px; }
+.footer__inner > span:last-child { text-align: right; }
+.footer__socials { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.footer__follow { color: var(--ink); font-weight: 650; }
+.footer__socials a { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); }
+.footer__socials a:hover { color: var(--blue); }
+.footer-social__icon { display: inline-grid; width: 22px; height: 22px; place-items: center; border: 1px solid #c9c9c9; border-radius: 50%; font-size: 13px; font-weight: 650; line-height: 1; }
+.footer-social__icon--x { font-size: 9px; }
+.footer-social__icon--facebook { font-family: Arial, sans-serif; font-size: 14px; }
 
 .article-page { padding: 72px 0 96px; }
 .article-shell { width: min(880px, calc(100% - (var(--gutter) * 2))); margin-inline: auto; }
@@ -402,12 +457,14 @@ h1, h2, h3 { overflow-wrap: break-word; }
   .data-brief:nth-child(2n) { border-right: 0; }
   .data-brief:nth-last-child(-n + 2) { border-bottom: 0; }
   .signup__grid { grid-template-columns: 1fr; gap: 40px; }
+  .why__inner { grid-template-columns: 1fr; gap: 16px; }
 }
 
 @media (max-width: 560px) {
   .partner__meta { align-items: flex-start; flex-direction: column; gap: 2px; }
   .partner__creative img { min-height: 220px; object-fit: cover; object-position: center; }
-  .wordmark__logo, .wordmark__logo img { width: 54px; height: 54px; }
+  .wordmark__logo { width: 54px; height: 54px; }
+  .wordmark__logo img { width: 97px; height: auto; }
   .wordmark__text strong { font-size: 22px; }
   .masthead__issue time { display: none; }
   .issue-intro h1 { letter-spacing: -.045em; }
@@ -419,13 +476,19 @@ h1, h2, h3 { overflow-wrap: break-word; }
   .data-brief:nth-last-child(-n + 2) { border-bottom: 1px solid var(--line); }
   .data-brief:last-child { border-bottom: 0; }
   .form-grid { grid-template-columns: 1fr; }
+  .coupon-preview { grid-template-columns: 1fr; gap: 8px; }
   .signup-form__action { align-items: flex-start; flex-direction: column; }
   .coupon-card { align-items: flex-start; flex-direction: column; gap: 10px; }
-  .footer__inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; }
+  .footer__inner { min-height: 0; grid-template-columns: 1fr; justify-items: start; gap: 14px; padding-block: 24px; }
+  .footer__inner > span:last-child { text-align: left; }
+  .footer__socials { flex-wrap: wrap; justify-content: flex-start; }
   .article-header h1 { font-size: 46px; }
   .article-body { font-size: 18px; }
+  .launch-strip { align-items: flex-start; flex-direction: column; gap: 4px; padding-block: 12px; }
+  .why__inner div > span { display: block; margin: 12px 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
