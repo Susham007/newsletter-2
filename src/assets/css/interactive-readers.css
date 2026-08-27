@@ -98,6 +98,7 @@
   line-height: .99;
   letter-spacing: -.06em;
 }
+.interactive-reader-shell .headline:focus { outline: none; }
 
 .interactive-reader-shell .utility-row {
   display: flex;
