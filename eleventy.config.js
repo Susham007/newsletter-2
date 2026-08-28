@@ -27,15 +27,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode(
     "emailImage",
     async (src, alt = "", width = 640, baseUrl = "") => {
-      const inputPath = src.startsWith("/") ? `./src${src}` : src;
-      const metadata = await Image(inputPath, {
+      const isInlineImage = src.startsWith("data:image/");
+      const input = isInlineImage
+        ? Buffer.from(src.slice(src.indexOf(",") + 1), "base64")
+        : src.startsWith("/")
+          ? `./src${src}`
+          : src;
+      const metadata = await Image(input, {
         widths: [Number(width)],
         formats: ["jpeg"],
         outputDir: "./_site/assets/images/generated/",
         urlPath: "/assets/images/generated/",
         sharpJpegOptions: { quality: 80, progressive: true },
         filenameFormat: (id, source, outputWidth, format) => {
-          const name = path.basename(source, path.extname(source));
+          const name = isInlineImage
+            ? `inline-${id}`
+            : path.basename(source, path.extname(source));
           return `${name}-${outputWidth}w.${format}`;
         }
       });
@@ -47,7 +54,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addGlobalData(
     "absoluteUrl",
-    process.env.URL || process.env.DEPLOY_PRIME_URL || "https://niyantran-chronicle.netlify.app"
+    process.env.URL || process.env.DEPLOY_PRIME_URL || "https://nter.news"
   );
 
   const publishedByFormat = (collectionApi, format) => {
