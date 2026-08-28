@@ -2,7 +2,11 @@
 layout: layouts/base.njk
 title: Chronicle
 description: A source-led civic briefing from Niyantran.
+interactiveReaders: true
 ---
+{% set lead = collections.leads | head %}
+{% set dataBriefs = collections.dataBriefs %}
+{% set supporting = collections.storyList %}
 {% include "components/ad-slot.njk" %}
 {% include "components/masthead.njk" %}
 <main id="content" class="editorial">
@@ -23,6 +27,39 @@ description: A source-led civic briefing from Niyantran.
         {% endfor %}
       </section>
     {% endif %}
+    {% if lead %}
+      <section class="archive-section" aria-labelledby="lead-heading">
+        <div class="section-heading">
+          <h2 id="lead-heading">From Issue 01</h2>
+          <span>Monsoon Session archive</span>
+        </div>
+        {% include "components/story-lead.njk" %}
+      </section>
+    {% endif %}
+    {% if dataBriefs.length %}
+      <section class="data-section" aria-labelledby="data-heading">
+        <div class="section-heading">
+          <h2 id="data-heading">On the record · Issue 01</h2>
+          <span>Four readings from the Monsoon Session</span>
+        </div>
+        <div class="data-board">
+          {% for article in dataBriefs %}
+            {% include "components/data-brief.njk" %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    {% if supporting.length %}
+      <section class="latest" aria-labelledby="latest-heading">
+        <div class="section-heading">
+          <h2 id="latest-heading">Also from Issue 01</h2>
+          <span>{{ supporting.length }} archived stories</span>
+        </div>
+        {% for article in supporting %}
+          {% include "components/story-row.njk" %}
+        {% endfor %}
+      </section>
+    {% endif %}
   </div>
 </main>
 <section class="why" aria-labelledby="why-title">
@@ -36,6 +73,7 @@ description: A source-led civic briefing from Niyantran.
 </section>
 {% include "components/signup.njk" %}
 {% include "components/footer.njk" %}
+{% include "components/interactive-readers.njk" %}
 
 
 
