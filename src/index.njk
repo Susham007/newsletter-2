@@ -1,4 +1,11 @@
 ---
+layout: layouts/base.njk
+title: Chronicle
+description: A source-led civic briefing from Niyantran.
+interactiveReaders: true
+---
+{% set lead = collections.leads | head %}
+{% set dataBriefs = collections.dataBriefs %}
 {% set supporting = collections.storyList %}
 {% include "components/ad-slot.njk" %}
 {% include "components/masthead.njk" %}
