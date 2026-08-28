@@ -2,6 +2,9 @@ node_modules/
 _site/
 .npm-cache/
 .agent-browser/
+.firecrawl/
+.image-data/
+.netlify/
 .DS_Store
 Thumbs.db
 
