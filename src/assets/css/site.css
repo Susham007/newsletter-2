@@ -516,3 +516,64 @@ h1, h2, h3 { overflow-wrap: break-word; }
     aspect-ratio: auto;
   }
 }
+
+
+/* Clean, deliberate masthead and a proper Instagram glyph. */
+.wordmark__socials .social-link:first-child span {
+  position: relative;
+  display: block;
+  width: 11px;
+  height: 11px;
+  border: 1.4px solid currentColor;
+  border-radius: 3px;
+  font-size: 0;
+}
+
+.wordmark__socials .social-link:first-child span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border: 1.2px solid currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wordmark__socials .social-link:first-child span::after {
+  content: "";
+  position: absolute;
+  top: 1.4px;
+  right: 1.4px;
+  width: 1.5px;
+  height: 1.5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@media (max-width: 560px) {
+  .partner { padding: 12px 0 18px; }
+  .partner__meta { display: none; }
+  .partner__creative { border: 0; }
+
+  .masthead__inner {
+    min-height: 82px;
+    padding-block: 12px;
+    gap: 12px;
+  }
+
+  .wordmark { gap: 10px; }
+  .wordmark__text strong { font-size: 24px; }
+  .wordmark__text small { display: none; }
+  .wordmark__socials { gap: 6px; margin-top: 5px; }
+  .social-link { width: 24px; height: 24px; }
+  .masthead__issue { font-size: 11px; white-space: nowrap; }
+  .launch-strip { display: none; }
+}
+
+
+/* Proper Instagram glyph. */
+.wordmark__socials .social-link:first-child span{position:relative;display:block;width:11px;height:11px;border:1.4px solid currentColor;border-radius:3px;font-size:0}
+.wordmark__socials .social-link:first-child span::before{content:"";position:absolute;top:50%;left:50%;width:4px;height:4px;border:1.2px solid currentColor;border-radius:50%;transform:translate(-50%,-50%)}
+.wordmark__socials .social-link:first-child span::after{content:"";position:absolute;top:1.4px;right:1.4px;width:1.5px;height:1.5px;border-radius:50%;background:currentColor}
