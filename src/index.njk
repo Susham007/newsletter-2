@@ -11,16 +11,27 @@ interactiveReaders: true
 {% include "components/masthead.njk" %}
 <main id="content" class="editorial">
   <div class="site-shell">
+    {% if newArticles.length %}
+      <section class="latest latest--new" aria-labelledby="new-heading">
+        <div class="section-heading">
+          <h2 id="new-heading">New in {{ site.issue }}</h2>
+          <span>{{ newArticles.length }} interactive reads</span>
+        </div>
+        {% for article in newArticles %}
+          {% include "components/story-row.njk" %}
+        {% endfor %}
+      </section>
+    {% endif %}
     <header class="issue-intro">
       <p class="issue-intro__kicker">{{ site.tagline }}</p>
-      <h1>Debunking the Monsoon Session 2026</h1>
-      <p>The session never properly began. So we read the one record it did leave behind — <strong>7,825 Parliamentary Questions</strong>, filed over 19 sitting days, across both Houses. This is what Parliament asked. And what it never got round to asking at all.</p>
+      <h1>Dissent &amp; Delimitation</h1>
+      <p>One number decides how loud each Indian gets to be in Parliament — and in April 2026, the attempt to change that number <strong>failed on the floor of the Lok Sabha by 54 votes</strong>. This issue reads delimitation as a fight over representation itself: who gains a voice, who loses one, and why the arithmetic was rejected.</p>
     </header>
     {% if lead %}
-      <section aria-labelledby="lead-heading">
+      <section class="archive-section" aria-labelledby="lead-heading">
         <div class="section-heading">
-          <h2 id="lead-heading">The lead</h2>
-          <span>{{ site.issue }}</span>
+          <h2 id="lead-heading">From Issue 01</h2>
+          <span>Monsoon Session archive</span>
         </div>
         {% include "components/story-lead.njk" %}
       </section>
@@ -28,8 +39,8 @@ interactiveReaders: true
     {% if dataBriefs.length %}
       <section class="data-section" aria-labelledby="data-heading">
         <div class="section-heading">
-          <h2 id="data-heading">On the record</h2>
-          <span>Four readings from the session</span>
+          <h2 id="data-heading">On the record · Issue 01</h2>
+          <span>Four readings from the Monsoon Session</span>
         </div>
         <div class="data-board">
           {% for article in dataBriefs %}
@@ -41,8 +52,8 @@ interactiveReaders: true
     {% if supporting.length %}
       <section class="latest" aria-labelledby="latest-heading">
         <div class="section-heading">
-          <h2 id="latest-heading">Also in the issue</h2>
-          <span>{{ supporting.length }} stories</span>
+          <h2 id="latest-heading">Also from Issue 01</h2>
+          <span>{{ supporting.length }} archived stories</span>
         </div>
         {% for article in supporting %}
           {% include "components/story-row.njk" %}
