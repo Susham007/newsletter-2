@@ -1,6 +1,6 @@
 <article class="story-row{% if not article.data.image %} story-row--text-only{% endif %}">
   <div class="story-row__copy">
-    <p class="eyebrow eyebrow--{{ article.data.theme or 'blue' }}">{{ article.data.category }}</p>
+    <p class="eyebrow eyebrow--{{ article.data.theme or 'blue' }}">{% if article.data.isNew %}<span class="story-row__new">New</span>{% endif %}{{ article.data.category }}</p>
     <h3><a href="{{ article.url }}">{{ article.data.title }}</a></h3>
     <p>{{ article.data.dek }}</p>
     <a class="text-link" href="{{ article.url }}">Read briefing</a>
