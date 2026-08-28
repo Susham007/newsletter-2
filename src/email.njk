@@ -2,9 +2,6 @@
 permalink: email/index.html
 eleventyExcludeFromCollections: true
 ---
-{% set lead = collections.leads | head %}
-{% set dataBriefs = collections.dataBriefs %}
-{% set supporting = collections.storyList %}
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -13,150 +10,28 @@ eleventyExcludeFromCollections: true
     <meta name="x-apple-disable-message-reformatting">
     <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
     <title>{{ site.name }} · {{ site.issue }}</title>
-    <!--[if mso]><noscript><xml><o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office"><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
     <style>
-      table, td, div, h1, h2, h3, p { font-family: Arial, Helvetica, sans-serif; }
-      table { border-collapse: collapse; border-spacing: 0; }
-      img { border: 0; line-height: 100%; }
-      a { color: inherit; }
-      @media screen and (max-width: 680px) {
-        .email-shell { width: 100% !important; }
-        .mobile-pad { padding-left: 20px !important; padding-right: 20px !important; }
-        .stack { display: block !important; width: 100% !important; }
-        .stack-pad { padding-left: 0 !important; padding-top: 18px !important; }
-        .headline { font-size: 38px !important; line-height: 40px !important; }
-        .section-title { font-size: 28px !important; line-height: 31px !important; }
-      }
+      table,td,div,h1,h2,p{font-family:Arial,Helvetica,sans-serif} table{border-collapse:collapse;border-spacing:0} img{border:0;line-height:100%;max-width:100%;height:auto} a{color:inherit}
+      @media screen and (max-width:680px){.email-shell{width:100%!important}.mobile-pad{padding-left:20px!important;padding-right:20px!important}.headline{font-size:38px!important;line-height:40px!important}.story-title{font-size:29px!important;line-height:32px!important}}
     </style>
   </head>
   <body style="margin:0;padding:0;background:#f2f2f0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">{{ lead.data.dek }}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background:#f2f2f0;">
-      <tr>
-        <td align="center" style="padding:20px 12px 40px;">
-          <table role="presentation" class="email-shell" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#ffffff;">
-            <tr>
-              <td style="height:4px;font-size:0;line-height:0;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                  <td width="20%" height="4" bgcolor="#1f44a3"></td><td width="20%" bgcolor="#252525"></td><td width="20%" bgcolor="#e7d2b7"></td><td width="20%" bgcolor="#d32638"></td><td width="20%" bgcolor="#5c3298"></td>
-                </tr></table>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:14px 32px;border-bottom:1px solid #e7e7e7;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                  <td style="color:#626262;font-size:11px;line-height:16px;text-transform:uppercase;letter-spacing:.6px;">{{ ad.label }}</td>
-                  <td align="right" style="font-size:11px;line-height:16px;"><a href="{{ absoluteUrl }}/" style="color:#1f44a3;text-decoration:none;">View in browser</a></td>
-                </tr></table>
-              </td>
-            </tr>
-            {% if ad.active %}
-            <tr>
-              <td style="padding:0;background:#fbf8f4;">
-                <a href="{{ ad.href }}" target="_blank" style="display:block;text-decoration:none;">{% emailImage ad.image, ad.alt, 640, absoluteUrl %}</a>
-              </td>
-            </tr>
-            {% endif %}
-            <tr>
-              <td class="mobile-pad" style="padding:28px 32px 26px;border-top:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                  <td width="68" valign="middle"><img src="{{ absoluteUrl }}{{ site.logo }}" width="58" height="58" alt="Nter.pro" style="display:block;width:58px;height:58px;border:0;outline:none;text-decoration:none;"></td>
-                  <td valign="middle">
-                    <div style="color:#252525;font-size:21px;line-height:23px;font-weight:700;letter-spacing:-.5px;">Chronicle</div>
-                    <div style="color:#626262;font-size:11px;line-height:16px;">by {{ site.publisher }}</div>
-                    <div style="padding-top:6px;font-size:11px;line-height:16px;">
-                      <a href="{{ site.socials.instagram }}" aria-label="Instagram" title="Instagram" style="display:inline-block;width:18px;height:18px;border:1px solid #c9c9c9;border-radius:50%;color:#252525;line-height:18px;text-align:center;text-decoration:none;">◎</a>&nbsp;
-                      <a href="{{ site.socials.x }}" aria-label="X" title="X" style="display:inline-block;width:18px;height:18px;border:1px solid #c9c9c9;border-radius:50%;color:#252525;font-size:9px;line-height:18px;text-align:center;text-decoration:none;">X</a>&nbsp;
-                      <a href="{{ site.socials.facebook }}" aria-label="Facebook" title="Facebook" style="display:inline-block;width:18px;height:18px;border:1px solid #c9c9c9;border-radius:50%;color:#252525;font-family:Arial,sans-serif;font-size:12px;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;">f</a>
-                    </div>
-                  </td>
-                  <td align="right" valign="middle" style="color:#626262;font-size:11px;line-height:16px;">{{ site.issue }}<br>{{ site.date | displayDate }}</td>
-                </tr></table>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:46px 48px 40px;">
-                <div style="margin:0 0 12px;color:#1f44a3;font-size:12px;line-height:18px;font-weight:700;">{{ site.tagline }}</div>
-                <h1 class="headline" style="margin:0;color:#252525;font-size:48px;line-height:49px;font-weight:700;letter-spacing:-2.2px;">{{ site.description }}</h1>
-                <p style="margin:18px 0 0;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:26px;">Reporting and analysis grounded in parliamentary questions, public filings, and primary records.</p>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:0 32px;">
-                <div style="padding:10px 0;border-top:1px solid #252525;color:#252525;font-size:11px;line-height:16px;font-weight:700;">THE LEAD</div>
-              </td>
-            </tr>
-            <tr>
-              <td style="border-top:4px solid #252525;">{% emailImage lead.data.image, lead.data.imageAlt, 640, absoluteUrl %}</td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:34px 48px 44px;border-bottom:1px solid #e7e7e7;">
-                <div style="margin:0 0 12px;color:#5c3298;font-size:11px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;">{{ lead.data.category }}</div>
-                <h2 class="section-title" style="margin:0;color:#252525;font-size:38px;line-height:40px;font-weight:700;letter-spacing:-1.5px;"><a href="{{ absoluteUrl }}{{ lead.url }}" style="color:#252525;text-decoration:none;">{{ lead.data.title }}</a></h2>
-                <p style="margin:16px 0 0;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:26px;">{{ lead.data.dek }}</p>
-                <p style="margin:20px 0 24px;color:#626262;font-size:12px;line-height:18px;"><strong style="color:#5c3298;font-size:24px;line-height:26px;">{{ lead.data.stat }}</strong>&nbsp; {{ lead.data.statLabel }}</p>
-                <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#1f44a3" style="border-radius:4px;"><a href="{{ absoluteUrl }}{{ lead.url }}" style="display:inline-block;padding:11px 18px;color:#ffffff;font-size:13px;line-height:18px;font-weight:700;text-decoration:none;">Read the analysis</a></td></tr></table>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:42px 32px 12px;">
-                <div style="padding:10px 0;border-top:1px solid #252525;color:#252525;font-size:11px;line-height:16px;font-weight:700;">ON THE RECORD</div>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:0 32px 34px;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                  {% for article in dataBriefs %}
-                    {% if loop.index0 % 2 == 0 %}<tr>{% endif %}
-                    <td class="stack" width="50%" valign="top" style="width:50%;padding:24px 20px 26px 0;border-top:1px solid #e7e7e7;">
-                      <div style="margin:0 0 9px;color:{% if article.data.theme == 'red' %}#d32638{% elseif article.data.theme == 'purple' %}#5c3298{% else %}#1f44a3{% endif %};font-size:10px;line-height:14px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;">{{ article.data.category }}</div>
-                      <h3 style="margin:0;color:#252525;font-size:18px;line-height:21px;font-weight:700;letter-spacing:-.5px;"><a href="{{ absoluteUrl }}{{ article.url }}" style="color:#252525;text-decoration:none;">{{ article.data.title }}</a></h3>
-                      <div style="margin:18px 0 10px;color:#252525;font-size:31px;line-height:32px;font-weight:700;letter-spacing:-1px;">{{ article.data.stat }}</div>
-                      <p style="margin:0 0 14px;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:21px;">{{ article.data.dek }}</p>
-                      <a href="{{ absoluteUrl }}{{ article.url }}" style="color:#1f44a3;font-size:12px;line-height:18px;font-weight:700;text-decoration:none;">Open briefing</a>
-                    </td>
-                    {% if loop.index0 % 2 == 1 or loop.last %}</tr>{% endif %}
-                  {% endfor %}
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:16px 32px 0;">
-                <div style="padding:10px 0;border-top:1px solid #252525;color:#252525;font-size:11px;line-height:16px;font-weight:700;">ALSO IN THE ISSUE</div>
-              </td>
-            </tr>
-            {% for article in supporting %}
-            <tr>
-              <td class="mobile-pad" style="padding:24px 32px;border-bottom:1px solid #e7e7e7;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                  <td class="stack" width="210" valign="top" style="width:210px;"><a href="{{ absoluteUrl }}{{ article.url }}" style="display:block;text-decoration:none;">{% emailImage article.data.image, article.data.imageAlt, 240, absoluteUrl %}</a></td>
-                  <td class="stack stack-pad" valign="middle" style="padding-left:24px;">
-                    <div style="margin:0 0 8px;color:{% if article.data.theme == 'red' %}#d32638{% elseif article.data.theme == 'purple' %}#5c3298{% else %}#1f44a3{% endif %};font-size:10px;line-height:14px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;">{{ article.data.category }}</div>
-                    <h3 style="margin:0;color:#252525;font-size:21px;line-height:24px;font-weight:700;letter-spacing:-.7px;"><a href="{{ absoluteUrl }}{{ article.url }}" style="color:#252525;text-decoration:none;">{{ article.data.title }}</a></h3>
-                    <p style="margin:10px 0 12px;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:21px;">{{ article.data.dek }}</p>
-                    <a href="{{ absoluteUrl }}{{ article.url }}" style="color:#1f44a3;font-size:12px;line-height:18px;font-weight:700;text-decoration:none;">Read briefing</a>
-                  </td>
-                </tr></table>
-              </td>
-            </tr>
-            {% endfor %}
-            <tr>
-              <td class="mobile-pad" bgcolor="#f7f7f5" style="padding:40px 48px;border-top:1px solid #e7e7e7;">
-                <div style="margin:0 0 10px;color:#1f44a3;font-size:11px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;">Share Chronicle</div>
-                <h2 style="margin:0;color:#252525;font-size:30px;line-height:33px;font-weight:700;letter-spacing:-1px;">Know someone who should read this?</h2>
-                <p style="margin:13px 0 22px;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:23px;">Send them to the web edition, where they can read the full archive and join the list.</p>
-                <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#1f44a3" style="border-radius:4px;"><a href="{{ absoluteUrl }}/#signup-title" style="display:inline-block;padding:11px 18px;color:#ffffff;font-size:13px;line-height:18px;font-weight:700;text-decoration:none;">Open Chronicle</a></td></tr></table>
-              </td>
-            </tr>
-            <tr>
-              <td class="mobile-pad" style="padding:24px 32px;color:#626262;font-size:11px;line-height:17px;text-align:center;">
-                © {{ site.publisher }} · Independent civic intelligence<br>
-                You are receiving this because you joined the Chronicle list.
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">{{ newArticles[0].data.dek }}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background:#f2f2f0;"><tr><td align="center" style="padding:20px 12px 40px;">
+      <table role="presentation" class="email-shell" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#fff;">
+        <tr><td style="height:4px;font-size:0;line-height:0;"><table role="presentation" width="100%"><tr><td width="20%" height="4" bgcolor="#1f44a3"></td><td width="20%" bgcolor="#252525"></td><td width="20%" bgcolor="#e7d2b7"></td><td width="20%" bgcolor="#d32638"></td><td width="20%" bgcolor="#5c3298"></td></tr></table></td></tr>
+        <tr><td class="mobile-pad" style="padding:14px 32px;border-bottom:1px solid #e7e7e7;"><table role="presentation" width="100%"><tr><td style="color:#626262;font-size:11px;line-height:16px;text-transform:uppercase;letter-spacing:.6px;">{{ ad.label }}</td><td align="right" style="font-size:11px;line-height:16px;"><a href="{{ absoluteUrl }}/" style="color:#1f44a3;text-decoration:none;">View in browser</a></td></tr></table></td></tr>
+        {% if ad.active %}<tr><td style="padding:0;background:#fbf8f4;"><a href="{{ ad.href }}" target="_blank" style="display:block;text-decoration:none;">{% emailImage ad.image, ad.alt, 640, absoluteUrl %}</a></td></tr>{% endif %}
+        <tr><td class="mobile-pad" style="padding:26px 32px;border-top:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;"><table role="presentation" width="100%"><tr><td width="68" valign="middle"><img src="{{ absoluteUrl }}{{ site.logo }}" width="58" height="58" alt="" style="display:block;width:58px;height:58px;object-fit:contain;"></td><td valign="middle"><div style="color:#252525;font-size:22px;line-height:24px;font-weight:700;letter-spacing:-.6px;">Chronicle</div><div style="color:#626262;font-size:11px;line-height:16px;">by {{ site.publisher }}</div></td><td align="right" valign="middle" style="color:#626262;font-size:11px;line-height:17px;"><strong style="color:#252525;">{{ site.issue }}</strong><br>{{ site.date | displayDate }}</td></tr></table></td></tr>
+        <tr><td class="mobile-pad" style="padding:44px 48px 38px;"><div style="margin:0 0 12px;color:#1f44a3;font-size:12px;line-height:18px;font-weight:700;">{{ site.tagline }}</div><h1 class="headline" style="margin:0;color:#252525;font-size:48px;line-height:49px;font-weight:700;letter-spacing:-2.2px;">Dissent &amp; Delimitation</h1><p style="margin:18px 0 0;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:26px;">One number decides how loud each Indian gets to be in Parliament. Issue 02 examines who gains a voice, who loses one, and why the arithmetic was rejected.</p></td></tr>
+        <tr><td class="mobile-pad" style="padding:0 32px 8px;"><div style="padding:10px 0;border-top:1px solid #252525;color:#252525;font-size:11px;line-height:16px;font-weight:700;">NEW IN {{ site.issue | upper }}</div></td></tr>
+        {% for article in newArticles %}
+        <tr><td style="border-top:1px solid #e7e7e7;"><a href="{{ absoluteUrl }}{{ article.url }}" style="display:block;text-decoration:none;">{% emailImage article.data.image, article.data.imageAlt, 640, absoluteUrl %}</a></td></tr>
+        <tr><td class="mobile-pad" style="padding:30px 48px 42px;border-bottom:1px solid #e7e7e7;"><div style="margin:0 0 12px;font-size:10px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;"><span style="display:inline-block;margin-right:8px;padding:3px 7px;border-radius:99px;background:#252525;color:#fff;font-size:9px;line-height:12px;">NEW</span><span style="color:{% if article.data.theme == 'red' %}#d32638{% elseif article.data.theme == 'purple' %}#5c3298{% else %}#1f44a3{% endif %};">{{ article.data.category }}</span></div><h2 class="story-title" style="margin:0;color:#252525;font-size:36px;line-height:39px;font-weight:700;letter-spacing:-1.4px;"><a href="{{ absoluteUrl }}{{ article.url }}" style="color:#252525;text-decoration:none;">{{ article.data.title }}</a></h2><p style="margin:15px 0 22px;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:25px;">{{ article.data.dek }}</p><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#1f44a3" style="border-radius:4px;"><a href="{{ absoluteUrl }}{{ article.url }}" style="display:inline-block;padding:11px 18px;color:#fff;font-size:13px;line-height:18px;font-weight:700;text-decoration:none;">Read the full article</a></td></tr></table></td></tr>
+        {% endfor %}
+        <tr><td class="mobile-pad" bgcolor="#f7f7f5" style="padding:38px 48px;border-top:1px solid #e7e7e7;"><div style="margin:0 0 9px;color:#1f44a3;font-size:11px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;">Chronicle waitlist</div><h2 style="margin:0;color:#252525;font-size:29px;line-height:32px;font-weight:700;letter-spacing:-1px;">Get the next briefing in your inbox.</h2><p style="margin:13px 0 21px;color:#626262;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:23px;">Join the list for concise, source-led reporting and your personal launch code.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#1f44a3" style="border-radius:4px;"><a href="{{ absoluteUrl }}/#signup-title" style="display:inline-block;padding:11px 18px;color:#fff;font-size:13px;line-height:18px;font-weight:700;text-decoration:none;">Join the waitlist</a></td></tr></table></td></tr>
+        <tr><td class="mobile-pad" style="padding:24px 32px;color:#626262;font-size:11px;line-height:18px;text-align:center;"><a href="{{ site.socials.instagram }}" style="color:#252525;text-decoration:none;">Instagram</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{{ site.socials.x }}" style="color:#252525;text-decoration:none;">X</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{{ site.socials.facebook }}" style="color:#252525;text-decoration:none;">Facebook</a><br>© {{ site.publisher }} · nter.news · Independent civic intelligence</td></tr>
+      </table>
+    </td></tr></table>
   </body>
 </html>
