@@ -323,6 +323,8 @@ h1, h2, h3 { overflow-wrap: break-word; }
   border-bottom: 1px solid var(--line);
 }
 .story-row__copy { max-width: 760px; }
+.story-row--text-only { grid-template-columns: 1fr; }
+.story-row--text-only .story-row__copy { max-width: 920px; }
 .story-row h3 { margin: 0; font-size: clamp(25px, 3vw, 36px); line-height: 1.12; letter-spacing: -.035em; }
 .story-row h3 a:hover { color: var(--blue); }
 .story-row__copy > p:not(.eyebrow) { max-width: 680px; margin: 12px 0 18px; color: var(--muted); font-family: var(--serif); font-size: 18px; }
@@ -330,6 +332,9 @@ h1, h2, h3 { overflow-wrap: break-word; }
 .story-row__media img { width: 100%; height: 100%; object-fit: cover; }
 .text-link { color: var(--blue); font-size: 14px; font-weight: 600; }
 .text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.latest--new { margin-top: 0; }
+.latest--new + .issue-intro { padding-top: 72px; }
 
 .signup {
   padding: 72px 0;
