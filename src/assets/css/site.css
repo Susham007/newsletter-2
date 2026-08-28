@@ -492,3 +492,27 @@ h1, h2, h3 { overflow-wrap: break-word; }
   html { scroll-behavior: auto; }
 }
 
+
+
+/* Preserve full image compositions on narrow screens. */
+@media (max-width: 560px) {
+  .partner__creative img,
+  .lead-story__media img,
+  .story-row__media img,
+  .article-figure img,
+  .interactive-reader-shell .article-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .lead-story__media,
+  .story-row__media {
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}
