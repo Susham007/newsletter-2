@@ -2,15 +2,16 @@
 layout: layouts/base.njk
 title: Chronicle
 description: A source-led civic briefing from Niyantran.
-interactiveReaders: true
 ---
-{% set lead = collections.leads | head %}
-{% set dataBriefs = collections.dataBriefs %}
-{% set supporting = collections.storyList %}
 {% include "components/ad-slot.njk" %}
 {% include "components/masthead.njk" %}
 <main id="content" class="editorial">
   <div class="site-shell">
+    <header class="issue-intro">
+      <p class="issue-intro__kicker">{{ site.tagline }}</p>
+      <h1>Dissent &amp; Delimitation</h1>
+      <p>One number decides how loud each Indian gets to be in Parliament — and in April 2026, the attempt to change that number <strong>failed on the floor of the Lok Sabha by 54 votes</strong>. This issue reads delimitation as a fight over representation itself: who gains a voice, who loses one, and why the arithmetic was rejected.</p>
+    </header>
     {% if newArticles.length %}
       <section class="latest latest--new" aria-labelledby="new-heading">
         <div class="section-heading">
@@ -18,44 +19,6 @@ interactiveReaders: true
           <span>{{ newArticles.length }} interactive reads</span>
         </div>
         {% for article in newArticles %}
-          {% include "components/story-row.njk" %}
-        {% endfor %}
-      </section>
-    {% endif %}
-    <header class="issue-intro">
-      <p class="issue-intro__kicker">{{ site.tagline }}</p>
-      <h1>Dissent &amp; Delimitation</h1>
-      <p>One number decides how loud each Indian gets to be in Parliament — and in April 2026, the attempt to change that number <strong>failed on the floor of the Lok Sabha by 54 votes</strong>. This issue reads delimitation as a fight over representation itself: who gains a voice, who loses one, and why the arithmetic was rejected.</p>
-    </header>
-    {% if lead %}
-      <section class="archive-section" aria-labelledby="lead-heading">
-        <div class="section-heading">
-          <h2 id="lead-heading">From Issue 01</h2>
-          <span>Monsoon Session archive</span>
-        </div>
-        {% include "components/story-lead.njk" %}
-      </section>
-    {% endif %}
-    {% if dataBriefs.length %}
-      <section class="data-section" aria-labelledby="data-heading">
-        <div class="section-heading">
-          <h2 id="data-heading">On the record · Issue 01</h2>
-          <span>Four readings from the Monsoon Session</span>
-        </div>
-        <div class="data-board">
-          {% for article in dataBriefs %}
-            {% include "components/data-brief.njk" %}
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
-    {% if supporting.length %}
-      <section class="latest" aria-labelledby="latest-heading">
-        <div class="section-heading">
-          <h2 id="latest-heading">Also from Issue 01</h2>
-          <span>{{ supporting.length }} archived stories</span>
-        </div>
-        {% for article in supporting %}
           {% include "components/story-row.njk" %}
         {% endfor %}
       </section>
@@ -73,7 +36,6 @@ interactiveReaders: true
 </section>
 {% include "components/signup.njk" %}
 {% include "components/footer.njk" %}
-{% include "components/interactive-readers.njk" %}
 
 
 
