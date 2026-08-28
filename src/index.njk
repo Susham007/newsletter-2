@@ -1,11 +1,4 @@
 ---
-layout: layouts/base.njk
-title: Chronicle
-description: A source-led civic briefing from Niyantran.
-interactiveReaders: true
----
-{% set lead = collections.leads | head %}
-{% set dataBriefs = collections.dataBriefs %}
 {% set supporting = collections.storyList %}
 {% include "components/ad-slot.njk" %}
 {% include "components/masthead.njk" %}
@@ -57,12 +50,12 @@ interactiveReaders: true
     <div>
       <h2 id="why-title">Every story here came off one screen.</h2>
       <p>Chronicle is the public face of <strong>Niyantran</strong> — a terminal that watches India's Parliament, courts, markets and public money on one board, from the union cabinet down to the ward. Each edition opens up one more of its screens. When the countdown reaches zero, you get all of them.</p>
-      <a class="button button--primary" href="#signup-title">Join the waitlist</a>
-      <span>Early sign-ups get 30% off at launch</span>
     </div>
   </div>
 </section>
 {% include "components/signup.njk" %}
 {% include "components/footer.njk" %}
 {% include "components/interactive-readers.njk" %}
+
+
 
