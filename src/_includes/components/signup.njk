@@ -6,58 +6,65 @@
       <p>{{ signup.description }}</p>
     </div>
     <div class="signup__form-wrap">
-    <form class="signup-form" data-signup-form data-endpoint="{{ signup.endpoint }}" novalidate>
-      <div class="form-grid">
-        <label>
-          <span>Name</span>
-          <input type="text" name="entry.2093848879" autocomplete="name" data-signup-name required>
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" name="entry.1447777989" autocomplete="email" data-signup-email required>
-        </label>
-      </div>
-      <details class="optional-fields">
-        <summary>Add optional details</summary>
-        <div class="form-grid form-grid--optional">
-          <label>
-            <span>Contact</span>
-            <input type="tel" name="entry.1498876745" autocomplete="tel">
-          </label>
-          <label>
-            <span>What brings you here?</span>
-            <input type="text" name="entry.1742279738">
-          </label>
+      <details class="signup-disclosure">
+        <summary class="button button--primary signup-disclosure__trigger">
+          <span class="signup-disclosure__closed">Join the waitlist</span>
+          <span class="signup-disclosure__open">Hide the form</span>
+        </summary>
+        <div class="signup-disclosure__panel">
+          <form class="signup-form" data-signup-form data-endpoint="{{ signup.endpoint }}" novalidate>
+            <div class="form-grid">
+              <label>
+                <span>Name</span>
+                <input type="text" name="entry.2093848879" autocomplete="name" data-signup-name required>
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" name="entry.1447777989" autocomplete="email" data-signup-email required>
+              </label>
+            </div>
+            <details class="optional-fields">
+              <summary>Add optional details</summary>
+              <div class="form-grid form-grid--optional">
+                <label>
+                  <span>Contact</span>
+                  <input type="tel" name="entry.1498876745" autocomplete="tel">
+                </label>
+                <label>
+                  <span>What brings you here?</span>
+                  <input type="text" name="entry.1742279738">
+                </label>
+              </div>
+            </details>
+            <input type="hidden" name="entry.256720589" data-coupon-field>
+            <div class="coupon-preview" data-coupon-preview aria-live="polite">
+              <div class="coupon-preview__code">
+                <span>Your 30% launch code</span>
+                <output data-coupon-preview-code>NTER-30-&bull;&bull;&bull;&bull;&bull;&bull;</output>
+              </div>
+              <p>Enter your email to generate it. The same code is saved with your Google Forms signup.</p>
+            </div>
+            <p class="form-error" data-form-error role="alert"></p>
+            <div class="signup-form__action">
+              <button class="button button--primary" type="submit">Generate code &amp; join</button>
+              <p class="form-status" data-form-status aria-live="polite">Your code becomes active when the signup is submitted.</p>
+            </div>
+          </form>
+          <div class="signup-confirmation" data-signup-confirmation hidden tabindex="-1">
+            <p class="eyebrow eyebrow--blue">Early access confirmed</p>
+            <h3>You&rsquo;re on the list.</h3>
+            <p>We&rsquo;ll email <strong data-confirmation-email></strong> when the terminal opens. Keep this code for checkout.</p>
+            <div class="coupon-card">
+              <div>
+                <span>Your early-access code</span>
+                <output data-coupon-output></output>
+              </div>
+              <button class="coupon-copy" type="button" data-copy-code>Copy code</button>
+            </div>
+            <p class="confirmation-note">30% off, locked for as long as your subscription stays active.</p>
+          </div>
         </div>
       </details>
-      <input type="hidden" name="entry.256720589" data-coupon-field>
-      <div class="coupon-preview" data-coupon-preview aria-live="polite">
-        <div class="coupon-preview__code">
-          <span>Your 30% launch code</span>
-          <output data-coupon-preview-code>NTER-30-&bull;&bull;&bull;&bull;&bull;&bull;</output>
-        </div>
-        <p>Enter your email to generate it. The same code is saved with your Google Forms signup.</p>
-      </div>
-      <p class="form-error" data-form-error role="alert"></p>
-      <div class="signup-form__action">
-        <button class="button button--primary" type="submit">Generate code &amp; join</button>
-        <p class="form-status" data-form-status aria-live="polite">Your code becomes active when the signup is submitted.</p>
-      </div>
-    </form>
-    <div class="signup-confirmation" data-signup-confirmation hidden tabindex="-1">
-      <p class="eyebrow eyebrow--blue">Early access confirmed</p>
-      <h3>You&rsquo;re on the list.</h3>
-      <p>We&rsquo;ll email <strong data-confirmation-email></strong> when the terminal opens. Keep this code for checkout.</p>
-      <div class="coupon-card">
-        <div>
-          <span>Your early-access code</span>
-          <output data-coupon-output></output>
-        </div>
-        <button class="coupon-copy" type="button" data-copy-code>Copy code</button>
-      </div>
-      <p class="confirmation-note">30% off, locked for as long as your subscription stays active.</p>
-    </div>
     </div>
   </div>
 </section>
-
