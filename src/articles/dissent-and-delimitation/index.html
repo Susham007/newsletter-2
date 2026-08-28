@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dissent &amp; Delimitation — Chronicle by Niyantran</title>
+<style>
+  :root{
+    /* nter.pro brand: near-white canvas, ink, five facets (blue/ink/sand/red/purple) */
+    --canvas:#FBFAF8; --paper:#FFFFFF; --wash:#F4F2ED;
+    --ink:#17181B; --ink2:#3A3D44; --muted:#6B7079; --faint:#9AA0A8;
+    --line:#E6E2DA; --line2:#D8D3C8;
+    --blue:#2647C0; --purple:#5A2E9E; --red:#D8342A; --sand:#E3C98A; --sandDk:#C8A85E;
+    --green:#2E7D53;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --serif:'Fraunces','Zilla Slab',Georgia,serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 90px;}
+  a{color:inherit;text-decoration:none;}
+  .facetbar{height:6px;display:flex;}
+  .facetbar i{flex:1;} .facetbar i:nth-child(1){background:var(--blue);}
+  .facetbar i:nth-child(2){background:var(--ink);flex:1.3;} .facetbar i:nth-child(3){background:var(--sand);flex:.7;}
+  .facetbar i:nth-child(4){background:var(--red);} .facetbar i:nth-child(5){background:var(--purple);flex:1.2;}
+
+  /* masthead */
+  header.mast{display:flex;justify-content:space-between;align-items:center;padding:20px 0 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:12px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .pi{width:34px;height:34px;flex:none;}
+  .brand .bt{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:-.01em;}
+  .brand .bt small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;font-weight:500;margin-top:1px;}
+  .coming{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line2);border-radius:100px;padding:6px 13px;display:flex;align-items:center;gap:7px;}
+  .coming .dot{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  @media (prefers-reduced-motion:reduce){.coming .dot{animation:none;}}
+
+  /* countdown */
+  .countstrip{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0 2px;flex-wrap:wrap;}
+  .countstrip .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .count{display:flex;gap:10px;}
+  .count .unit{text-align:center;}
+  .count .n{font-family:var(--mono);font-weight:600;font-size:26px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .count .u{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:5px;}
+
+  /* hero */
+  .edition{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:40px;display:flex;gap:10px;align-items:center;}
+  .edition b{color:var(--red);font-weight:600;}
+  h1.hero{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-.025em;margin:14px 0 0;}
+  h1.hero .amp{font-style:italic;font-weight:400;color:var(--purple);}
+  .herodek{font-size:18px;line-height:1.55;color:var(--ink2);max-width:60ch;margin:20px 0 0;}
+  .herodek b{font-weight:600;}
+  .kpi{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:18px;display:flex;gap:22px;flex-wrap:wrap;}
+  .kpi b{color:var(--ink);font-weight:600;}
+
+  /* section label */
+  .seclabel{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:56px 0 2px;display:flex;align-items:center;gap:10px;}
+  .seclabel .n{color:var(--purple);font-weight:600;}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--line);}
+  .secsub{font-size:14px;color:var(--muted);margin:0 0 22px;}
+
+  /* article cards */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:800px){.cards{grid-template-columns:1fr;}}
+  .acard{background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s;display:flex;flex-direction:column;}
+  .acard:hover{box-shadow:10px 10px 0 var(--wash);border-color:var(--line2);transform:translate(-2px,-2px);}
+  .acard .facet{height:5px;display:flex;} .acard .facet i{flex:1;}
+  .acard.a1 .facet i:nth-child(1){background:var(--blue);}.acard.a1 .facet i:nth-child(2){background:var(--purple);}.acard.a1 .facet i:nth-child(3){background:var(--sand);}
+  .acard.a2 .facet i:nth-child(1){background:var(--purple);}.acard.a2 .facet i:nth-child(2){background:var(--red);}.acard.a2 .facet i:nth-child(3){background:var(--ink);}
+  .acard.a3 .facet i:nth-child(1){background:var(--red);}.acard.a3 .facet i:nth-child(2){background:var(--sandDk);}.acard.a3 .facet i:nth-child(3){background:var(--blue);}
+  .acard .body{padding:22px 22px 20px;flex:1;display:flex;flex-direction:column;}
+  .acard .cat{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .acard .cat b{color:var(--purple);font-weight:600;}
+  .acard h3{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.08;letter-spacing:-.015em;margin:12px 0 0;}
+  .acard .dek{font-size:14.5px;color:var(--ink2);margin:12px 0 0;flex:1;}
+  .acard .stat{display:flex;align-items:baseline;gap:9px;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);}
+  .acard .stat .big{font-family:var(--mono);font-weight:600;font-size:30px;color:var(--ink);letter-spacing:-.02em;}
+  .acard .stat .sl{font-size:12.5px;color:var(--muted);line-height:1.3;}
+  .acard .go{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--purple);margin-top:16px;font-weight:600;}
+  .acard.soon{cursor:default;opacity:.9;}
+  .acard.soon:hover{box-shadow:none;transform:none;border-color:var(--line);}
+  .acard.soon .go{color:var(--faint);}
+  .acard .byline{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:3px;letter-spacing:.04em;}
+  /* editorial "voice" feature card — full width, distinct */
+  .cards:has(.acard.voice){grid-template-columns:1fr;}
+  .acard.voice{background:linear-gradient(180deg,#fff,var(--wash));}
+  .acard.voice .body{padding:26px 26px 24px;}
+  .acard.voice h3{font-size:32px;font-style:italic;font-weight:500;}
+  .acard.voice .cat b{color:var(--red);}
+  .acard.voice .dek{max-width:64ch;font-size:15.5px;}
+  .acard.voice .stat .big{color:var(--red);}
+
+  /* why panel */
+  .why{margin-top:56px;background:var(--ink);color:var(--canvas);border-radius:4px;padding:34px 32px;}
+  .why .wl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);}
+  .why h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.015em;margin:10px 0 0;max-width:22ch;}
+  .why p{color:#C9CDD4;font-size:15px;max-width:64ch;margin:14px 0 0;}
+
+  footer.pg{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.04em;line-height:1.9;}
+
+  /* ===== READER VIEW ===== */
+  .reader{display:none;}
+  body.reading .front{display:none;}
+  body.reading .reader.open{display:block;}
+  .rback{position:sticky;top:0;z-index:40;background:rgba(251,250,248,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:13px 0;margin:0 0 0;}
+  .rback .inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;}
+  .rback button{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);background:none;border:none;cursor:pointer;padding:4px 0;display:flex;align-items:center;gap:8px;}
+  .rback button:hover{color:var(--purple);}
+  .rback .rc{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .article{max-width:800px;margin:0 auto;padding:0 24px;}
+  .art-cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:600;margin-top:34px;display:flex;justify-content:space-between;}
+  .art-cat .cnt{color:var(--faint);}
+  h1.art{font-family:var(--serif);font-weight:600;font-size:clamp(32px,5.2vw,52px);line-height:1.02;letter-spacing:-.02em;margin:14px 0 0;}
+  .art-src{font-family:var(--mono);font-size:12px;color:var(--muted);margin:18px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .art-src b{color:var(--ink);font-weight:600;}
+  .article p{font-size:17px;line-height:1.62;color:var(--ink);margin:22px 0;max-width:68ch;}
+  .article p.dek{font-size:19px;color:var(--ink2);}
+  .article h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.015em;margin:40px 0 0;}
+  .article strong{font-weight:600;}
+  .pullq{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.32;color:var(--purple);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:18px 0;margin:32px 0;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 7px;border:1px solid var(--line2);border-radius:2px;text-transform:uppercase;color:var(--muted);margin-right:3px;vertical-align:middle;}
+  .t-ok{color:var(--green);border-color:var(--green);}
+  .signoff{display:flex;align-items:center;gap:10px;justify-content:center;margin:44px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;}
+  .signoff .pi2{width:16px;height:16px;}
+  .art-foot{font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.8;margin:30px 0 0;padding-top:16px;border-top:1px solid var(--line);}
+  .art-foot b{color:var(--muted);}
+  /* ===== LAB: map + controls ===== */
+  .lab{margin:26px 0;}
+  .labgrid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;}
+  @media (max-width:820px){.labgrid{grid-template-columns:1fr;}}
+  .mapwrap{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:8px;position:relative;}
+  .mapwrap svg{width:100%;height:auto;display:block;}
+  .mapstate{stroke:#fff;stroke-width:0.8;cursor:pointer;transition:opacity .12s,stroke .12s;}
+  .mapstate:hover{stroke:var(--ink);stroke-width:1.4;}
+  .mapstate.sel{stroke:var(--ink);stroke-width:1.8;}
+  .maptip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-family:var(--mono);font-size:11px;padding:8px 10px;border-radius:3px;opacity:0;transition:opacity .12s;max-width:210px;z-index:10;line-height:1.5;}
+  .maptip .tn{font-weight:600;font-size:12px;} .maptip .tq{color:#B9C0CE;margin-top:4px;font-style:italic;}
+  .legend{display:flex;align-items:center;gap:3px;margin-top:8px;font-family:var(--mono);font-size:9.5px;color:var(--muted);flex-wrap:wrap;}
+  .legend .sw{display:flex;height:9px;flex:1;min-width:120px;border-radius:2px;overflow:hidden;}
+  .legend .sw i{flex:1;}
+  .panel{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:16px;}
+  .panel + .panel{margin-top:14px;}
+  .panel h4{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;}
+  .lever{margin:0 0 15px;}
+  .lever .lt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;}
+  .lever .ln{font-size:13px;font-weight:600;}
+  .lever .lv{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--purple);}
+  .lever .lh{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:7px;}
+  input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:3px;background:var(--line2);outline:none;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:var(--purple);border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.28);cursor:grab;}
+  input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--purple);border:3px solid #fff;cursor:grab;}
+  .presets{display:flex;flex-wrap:wrap;gap:7px;}
+  .presets button{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;padding:8px 11px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:3px;cursor:pointer;transition:.14s;}
+  .presets button:hover{border-color:var(--muted);}
+  .presets button.on{background:var(--purple);color:#fff;border-color:var(--purple);}
+  .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:14px 0;}
+  .statgrid .s{background:var(--paper);padding:13px 15px;}
+  .statgrid .sl{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .statgrid .sv{font-family:var(--mono);font-size:20px;font-weight:600;margin-top:5px;}
+  .statgrid .ss{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .selcard{background:var(--wash);border:1px solid var(--line2);border-radius:4px;padding:15px;margin-top:14px;}
+  .selcard .st{font-family:var(--serif);font-weight:600;font-size:18px;}
+  .selcard .sr{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+  .selcard .row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-top:1px solid var(--line);margin-top:8px;}
+  .selcard .row:first-of-type{border-top:none;margin-top:10px;}
+  .selcard .row b{font-family:var(--mono);}
+  .delta.pos{color:var(--green);} .delta.neg{color:var(--red);} .delta.zero{color:var(--muted);}
+
+  /* ===== PASSAGE: calculator + journey ===== */
+  .calc{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:20px;margin:26px 0;}
+  .calc h4{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px;}
+  .calc .sub{font-size:13px;color:var(--muted);margin:0 0 16px;}
+  .house{border:1px solid var(--line);border-radius:4px;padding:15px;margin-bottom:14px;}
+  .house .hn{font-family:var(--serif);font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:baseline;}
+  .house .hn .tot{font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .votebar{height:34px;border-radius:3px;overflow:hidden;display:flex;margin:12px 0 4px;position:relative;border:1px solid var(--line2);}
+  .votebar .for{background:var(--green);} .votebar .against{background:var(--red);} .votebar .abs{background:var(--line2);}
+  .votebar span{display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;transition:width .4s;}
+  .votebar .abs span, .votebar .abs{color:var(--muted);}
+  .thresh{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);z-index:3;}
+  .thresh::after{content:attr(data-l);position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8.5px;color:var(--ink);white-space:nowrap;}
+  .vresult{font-family:var(--mono);font-size:12px;font-weight:600;margin-top:10px;padding:8px 10px;border-radius:3px;text-align:center;}
+  .vresult.pass{background:rgba(46,125,83,.12);color:var(--green);}
+  .vresult.fail{background:rgba(216,52,42,.1);color:var(--red);}
+  .clevers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+  @media(max-width:600px){.clevers{grid-template-columns:1fr;}}
+  .verdict-final{border:2px solid var(--ink);border-radius:4px;padding:16px;text-align:center;margin-top:16px;}
+  .verdict-final .vf{font-family:var(--serif);font-weight:600;font-size:22px;}
+  .verdict-final .vfs{font-size:13px;color:var(--muted);margin-top:6px;}
+
+  .journey{margin:26px 0;}
+  .jstep{display:flex;gap:16px;padding:0 0 4px;}
+  .jstep .rail{display:flex;flex-direction:column;align-items:center;flex:none;width:32px;}
+  .jstep .dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--line2);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);flex:none;}
+  .jstep.done .dot{background:var(--green);border-color:var(--green);color:#fff;}
+  .jstep.fail .dot{background:var(--red);border-color:var(--red);color:#fff;}
+  .jstep.pending .dot{border-color:var(--line2);color:var(--faint);}
+  .jstep .line{width:2px;flex:1;background:var(--line);min-height:22px;margin:2px 0;}
+  .jstep:last-child .line{display:none;}
+  .jstep .jc{padding:1px 0 22px;}
+  .jstep .jt{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.2;}
+  .jstep .jd{font-size:13.5px;color:var(--ink2);margin-top:4px;max-width:60ch;}
+  .jstep .jm{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;letter-spacing:.03em;}
+  .jstep.fail .jt{color:var(--red);}
+  .jstep.live .dot{border-color:var(--purple);color:var(--purple);background:#F3EEFB;}
+  .jstep.live .jt{color:var(--purple);}
+
+  /* ===== ED001-STYLE WHIPCOUNT MODEL (light theme) ===== */
+  .wpanel{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px;margin:24px 0;}
+  .plabel{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+  .plabel .live{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite;flex:none;}
+  .prob-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .ring{position:relative;width:126px;height:126px;flex:none;}
+  .ring svg{transform:rotate(-90deg);}
+  .ptext{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .pnum{font-family:var(--mono);font-weight:600;font-size:32px;line-height:1;color:var(--ink);}
+  .plbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:5px;text-align:center;line-height:1.4;}
+  .prob-say{flex:1;min-width:200px;}
+  .verdict2{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:6px;}
+  .sub2{font-size:13px;color:var(--muted);line-height:1.55;}
+  .sub2 b{color:var(--ink);}
+  .houses{margin-top:20px;display:flex;flex-direction:column;gap:15px;}
+  .wh-hh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;flex-wrap:wrap;gap:6px;}
+  .wh-hn{font-family:var(--mono);font-size:12px;color:var(--ink);font-weight:600;}
+  .wh-hs{font-family:var(--mono);font-size:10.5px;color:var(--faint);}
+  .wh-hs .short{color:var(--red);font-weight:600;}
+  .wh-hs .clear{color:var(--green);font-weight:600;}
+  .wgauge{position:relative;height:22px;background:var(--wash);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .wgauge .wfill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#8FA9CE,var(--blue));transition:width .5s ease;}
+  .wgauge .wthresh{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);transition:left .4s;z-index:2;}
+  .wgauge .wthresh::after{content:attr(data-l);position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8px;color:var(--ink);white-space:nowrap;}
+  .gnote{font-family:var(--mono);font-size:9px;color:var(--faint);margin-top:5px;}
+  .wstep{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--purple);font-weight:600;margin-bottom:4px;}
+  .wcap{font-size:12.5px;color:var(--muted);line-height:1.6;margin:0 0 12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{font-family:var(--mono);font-size:11px;background:var(--wash);border:1px solid var(--line2);color:var(--ink2);padding:7px 11px;border-radius:16px;cursor:pointer;transition:.15s;user-select:none;display:flex;align-items:center;gap:7px;}
+  .chip .seats{color:var(--faint);font-size:9.5px;}
+  .chip:hover{border-color:var(--purple);color:var(--ink);}
+  .chip.on{background:var(--purple);border-color:var(--purple);color:#fff;}
+  .chip.on .seats{color:#E3D6F5;}
+  .wsliders{display:flex;flex-direction:column;gap:13px;}
+  .wsl label{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:5px;}
+  .wsl label b{color:var(--purple);float:right;}
+  .wsl input[type=range]{width:100%;accent-color:var(--purple);}
+  .wreset{margin-top:14px;font-family:var(--mono);font-size:10.5px;background:transparent;border:1px solid var(--line2);color:var(--muted);padding:7px 13px;border-radius:5px;cursor:pointer;}
+  .wreset:hover{color:var(--ink);border-color:var(--purple);}
+  .rat{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:0 6px 6px 0;padding:14px 16px;margin-top:11px;}
+  .rt{font-family:var(--serif);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:4px;}
+  .rpos{font-family:var(--mono);font-size:9px;letter-spacing:.06em;padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:9px;}
+  .rpos.opp{background:#FBEAE8;color:#B23124;border:1px solid #F0C9C4;}
+  .rpos.ally{background:#E7F1EA;color:var(--green);border:1px solid #C9E2D3;}
+  .rpos.swing{background:#FAF1D8;color:#8A6A15;border:1px solid #ECD9A6;}
+  .rat h6{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:11px 0 4px;font-weight:600;}
+  .rat p{font-size:12.5px;color:var(--ink2);margin:0;line-height:1.6;}
+  .rflag{margin-top:11px;padding-top:9px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);font-style:italic;}
+  .wcallout{border:1px solid var(--line2);background:var(--wash);border-radius:6px;padding:15px 17px;margin:18px 0;font-size:14px;line-height:1.6;color:var(--ink2);}
+  .wcallout b.k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;font-weight:600;}
+  .wcallout b{color:var(--ink);}
+</style>
+</head>
+<body>
+<!-- faceted pi mark, reused -->
+<svg style="display:none"><symbol id="pimark" viewBox="0 0 100 100">
+  <path d="M18 30 H82 V44 H62 V82 H46 V44 H34 Q32 66 24 82 L10 76 Q20 60 20 44 H14 Z" fill="#17181B"/>
+  <path d="M18 30 H50 V44 H34 Q33 55 30 64 L18 60 Q20 50 20 44 H14 Z" fill="#2647C0" opacity=".9"/>
+  <path d="M50 30 H82 V44 H62 V60 L50 56 Z" fill="#5A2E9E" opacity=".9"/>
+  <path d="M46 60 H62 V82 H46 Z" fill="#D8342A" opacity=".85"/>
+  <path d="M24 68 L34 60 Q32 74 24 82 Z" fill="#C8A85E"/>
+</symbol></svg>
+
+<div class="facetbar"><i></i><i></i><i></i><i></i><i></i></div>
+
+<!-- ============ FRONT PAGE ============ -->
+<div class="front">
+<div class="wrap">
+  <header class="mast">
+    <a class="brand" href="#">
+      <svg class="pi"><use href="#pimark"/></svg>
+      <div class="bt">Chronicle <span style="font-weight:400;color:var(--muted)">by Niyantran</span><small>nter.pro</small></div>
+    </a>
+    <div class="coming"><span class="dot"></span> Coming soon</div>
+  </header>
+
+  <div class="countstrip">
+    <div class="lbl">nter.pro goes live</div>
+    <div class="count" id="count">
+      <div class="unit"><div class="n" id="cd">—</div><div class="u">days</div></div>
+      <div class="unit"><div class="n" id="ch">—</div><div class="u">hrs</div></div>
+      <div class="unit"><div class="n" id="cm">—</div><div class="u">min</div></div>
+      <div class="unit"><div class="n" id="cs">—</div><div class="u">sec</div></div>
+    </div>
+  </div>
+
+  <div class="edition"><b>Issue 02</b> · 29 August 2026 · Evidence before opinion</div>
+  <h1 class="hero">Dissent <span class="amp">&amp;</span> Delimitation</h1>
+  <p class="herodek">One number decides how loud each Indian gets to be in Parliament — and in April 2026, the attempt to change that number <b>failed on the floor of the Lok Sabha by 54 votes</b>. This edition reads delimitation as a fight over representation itself: who gains a voice, who loses one, and why the arithmetic was rejected. The dissent it provoked runs from the southern statehouses to the street.</p>
+  <div class="kpi">
+    <span><b>543 → 850</b> seats proposed</span>
+    <span><b>298–230</b> the vote that fell short</span>
+    <span><b>−7 / −5</b> Tamil Nadu / Kerala at constant House</span>
+  </div>
+
+  <div class="seclabel"><span class="n">01</span> The delimitation strand · two readings</div>
+  <div class="secsub">Click either to open the full analysis. A scenario lab you can drive, and the arithmetic of whether it could ever pass.</div>
+
+  <div class="cards">
+    <div class="acard a1" data-open="lab">
+      <div class="facet"><i></i><i></i><i></i></div>
+      <div class="body">
+        <div class="cat"><b>Interactive</b> · The lab</div>
+        <h3>The Delimitation Lab</h3>
+        <div class="dek">Pull the levers on India's 543 seats. Choose a House size, choose how hard to protect existing states, and watch the map redraw — every state shaded by what it gains or loses.</div>
+        <div class="stat"><span class="big">36</span><span class="sl">states &amp; UTs on a live map,<br>2011 Census, real apportionment</span></div>
+        <div class="go">Open the lab →</div>
+      </div>
+    </div>
+
+    <div class="acard a2" data-open="passage">
+      <div class="facet"><i></i><i></i><i></i></div>
+      <div class="body">
+        <div class="cat"><b>Analysis</b> · The arithmetic</div>
+        <h3>Passage Probability</h3>
+        <div class="dek">A constitutional amendment needs two-thirds. In April it got 56%. Rebuild the vote yourself, then walk the seven gates a delimitation bill must pass — and see where this one died.</div>
+        <div class="stat"><span class="big">352</span><span class="sl">votes needed. It got 298.<br>The 54-vote gap, made playable.</span></div>
+        <div class="go">Open the analysis →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seclabel"><span class="n">02</span> The dissent strand</div>
+  <div class="secsub">Where the arithmetic of representation meets the sound of refusal.</div>
+  <div class="cards">
+    <div class="acard a3 voice" data-open="voice">
+      <div class="facet"><i></i><i></i><i></i></div>
+      <div class="body">
+        <div class="cat"><b>Chronicle's Voice</b> · Editorial · Culture</div>
+        <h3>Revolution's Sound of Music</h3>
+        <div class="byline">— by the editorial board</div>
+        <div class="dek">Not the placard, not the barricade — the song. Across Bangladesh, Nepal and India, Gen-Z has learned what the state cannot arrest: a chorus. From <em>Kotha Ko</em> to a Panchayat-era anthem to Michael Jackson at Jantar Mantar, how sound carries dissent when every other channel closes.</div>
+        <div class="stat"><span class="big">3</span><span class="sl">countries, one chorus —<br>the arithmetic's companion in song</span></div>
+        <div class="go">Read the editorial →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why">
+    <div class="wl">Why this exists</div>
+    <h2>Representation is the first fight. Everything else is downstream.</h2>
+    <p>Chronicle is the public face of Niyantran — a terminal that watches India's Parliament, courts, markets and public money on one board. Delimitation is where the whole system is decided in a single number: how many people one vote has to speak for. This edition opens the screen that models it. When the countdown reaches zero, you get the rest.</p>
+  </div>
+
+  <footer class="pg">
+    SOURCES: CENSUS OF INDIA 2011 · PRS LEGISLATIVE RESEARCH (131ST AMENDMENT &amp; DELIMITATION BILLS, 2026) · LOK SABHA VOTE RECORD, 17 APRIL 2026 · ELECTION COMMISSION OF INDIA<br>
+    CHRONICLE BY NIYANTRAN · nter.news · AN ANALYTICAL TOOL, NOT LEGAL OR ELECTORAL ADVICE · STATE GEOMETRY SIMPLIFIED FROM OPEN 2011 DISTRICT BOUNDARIES
+  </footer>
+</div>
+</div>
+<!-- ============ READER: LAB ============ -->
+<div class="reader" id="reader-lab">
+  <div class="rback"><div class="inner">
+    <button data-back><span style="font-size:15px">←</span> Front page</button>
+    <span class="rc">The lab · 01 / 02</span>
+  </div></div>
+  <div class="article">
+    <div class="art-cat"><span>Interactive · Delimitation</span><span class="cnt">01 / 02</span></div>
+    <h1 class="art">The Delimitation Lab</h1>
+    <div class="art-src">Source: <b>Census of India 2011</b>, actual state populations · apportionment computed live by the largest-remainder (Hamilton) method · 36 states &amp; UTs</div>
+
+    <p class="dek">Delimitation is usually argued in the abstract — "the south loses, the north gains." Here you can do it yourself. Set how big the Lok Sabha should be, set how fiercely to protect the seats states already hold, and the map of India redraws in front of you, every state shaded by what the rule would cost or grant it. The politics stops being a slogan and becomes a dial.</p>
+
+    <p>The rule underneath is the same one the Constitution reaches for: seats in proportion to population. At the extreme — pure population, no protection — a seat means the same number of people everywhere, and states that grew fastest gain most while states that stabilised their population lose share. That is not a bug the reformers introduced; it is what "one person, one vote, one value" produces when some populations tripled and others held steady. The protection lever is the whole political argument in one slider: how much do we soften that pure logic to keep faith with the states that did what the nation asked and slowed their growth?</p>
+
+    <div class="lab">
+      <div class="presets" id="labPresets" style="margin-bottom:16px">
+        <button data-p="status" class="on">Status quo · 543</button>
+        <button data-p="balanced">Balanced additions · 848</button>
+        <button data-p="purepop">Pure population · 848</button>
+        <button data-p="middle">Middle path · 700</button>
+        <button data-p="shield">Southern shield · 700</button>
+      </div>
+      <div class="labgrid">
+        <div class="mapwrap">
+          <svg id="indiaMap" viewBox="0 0 760 820" role="img" aria-label="Map of India, states shaded by seat change"></svg>
+          <div class="maptip" id="mapTip"></div>
+          <div class="legend">
+            <span>loses share</span>
+            <div class="sw" id="legendSw"></div>
+            <span>gains share</span>
+          </div>
+        </div>
+        <div>
+          <div class="panel">
+            <h4>The two levers</h4>
+            <div class="lever">
+              <div class="lt"><span class="ln">House size</span><span class="lv" id="vHouse">543</span></div>
+              <div class="lh">Total Lok Sabha seats. The 131st Amendment proposed 850. Raising this past 550 needs a constitutional amendment.</div>
+              <input type="range" id="house" min="543" max="888" value="543" step="1">
+            </div>
+            <div class="lever">
+              <div class="lt"><span class="ln">Protect current seats</span><span class="lv" id="vProt">100%</span></div>
+              <div class="lh">At 0%, seats go purely by population — states can lose seats. At 100%, every current seat is kept and only new seats are shared by population.</div>
+              <input type="range" id="prot" min="0" max="100" value="100" step="1">
+            </div>
+          </div>
+
+          <div class="statgrid">
+            <div class="s"><div class="sl">Total seats</div><div class="sv" id="stTotal">543</div><div class="ss" id="stTotalSub">today's House</div></div>
+            <div class="s"><div class="sl">States gaining</div><div class="sv" id="stGain">0</div><div class="ss">seats added</div></div>
+            <div class="s"><div class="sl">States losing</div><div class="sv" id="stLoss">0</div><div class="ss">seats removed</div></div>
+            <div class="s"><div class="sl">South's seat share</div><div class="sv" id="stSouth">23.8%</div><div class="ss" id="stSouthSub">5 southern states</div></div>
+          </div>
+
+          <div class="selcard" id="selCard">
+            <div class="st">Click a state</div>
+            <div class="sr">on the map or list</div>
+            <div style="font-size:12.5px;color:var(--muted);margin-top:10px">The map shades every state by how its <b>seat share</b> changes under the current rule — the true measure of representation, since a state can gain seats yet still lose voice if others gain more.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>Watch the south as you drag. At today's 543 seats with full protection, nothing moves — that is the status quo, and it is why the freeze has held since 1976: standing still is the only outcome that hurts no one. Now switch to pure population. Tamil Nadu, Kerala and the others do not merely fail to gain; several <em>lose seats outright</em>, because a House of 543 redistributed by 2011 population takes from the states that grew slowly to give to those that grew fast. This is the exact projection that drove the southern revolt: at a constant House, Tamil Nadu falls from 39 seats to 32 and Kerala from 20 to 15.</p>
+
+    <div class="pullq">A seat is not a reward for growing. But under pure population, holding your population steady is punished exactly as if it were a failure.</div>
+
+    <p>The reformers' answer is the "balanced additions" preset: expand the House to 848, keep every existing seat, and hand out only the new seats by population. Now no state loses a seat in absolute terms — but watch the share column, because share is what decides who can block a bill and who can pass one. Even when Tamil Nadu keeps all 39 seats, its <em>share</em> of a bigger House still falls, because the north's additions are larger. This is the trap at the heart of the debate: there is no expansion large enough to hold every state's share constant while also making seats proportional to population. Protecting seats and protecting share are different promises, and the arithmetic will not let you keep both.</p>
+
+    <p>That is the lab's real lesson, and it is uncomfortable for every side. The status quo is unfair to the populous north, whose voters are under-represented today. Pure population is a shock to the south, which is asked to lose voice for having succeeded at population policy. And the middle paths — protect seats, expand the House — soften the blow to seats while still shifting the balance of power northward, because power lives in share, not in seat count. Drag the levers to any honest setting and the same shadow appears: someone's relative voice must fall for someone else's to rise. Delimitation is not a technical readjustment. It is a transfer of power with a formula for a face.</p>
+
+    <div class="signoff"><svg class="pi2"><use href="#pimark"/></svg> NIYANTRAN · nter.news</div>
+    <div class="art-foot"><b>Method &amp; limits.</b> Apportionment is computed live by the largest-remainder (Hamilton) method on actual 2011 Census populations; the status-quo preset reproduces the current 543 allocation exactly, and pure-population and additions presets reproduce the standard projections. "Seat share" is a state's seats as a fraction of the scenario House. 888 is an illustrative upper bound (the new chamber's capacity), not a figure from any Bill. This models seat allocation between states only — not constituency boundaries within a state, reservation, or the social composition of seats. A scenario tool, not a prediction of any Delimitation Commission's map.</div>
+  </div>
+</div>
+<!-- ============ READER: PASSAGE ============ -->
+<div class="reader" id="reader-passage">
+  <div class="rback"><div class="inner">
+    <button data-back><span style="font-size:15px">←</span> Front page</button>
+    <span class="rc">The arithmetic · 02 / 02</span>
+  </div></div>
+  <div class="article">
+    <div class="art-cat"><span>Analysis · Delimitation</span><span class="cnt">02 / 02</span></div>
+    <h1 class="art">Passage Probability</h1>
+    <div class="art-src">Source: <b>Lok Sabha vote record, 17 April 2026</b> · Constitution (131st Amendment) Bill, 2026 · PRS Legislative Research · Article 368</div>
+
+    <p class="dek">On 17 April 2026, the government tried to expand the Lok Sabha to 850 seats and unfreeze delimitation. It had a clear majority in the room. It lost anyway — because expanding representation is one of the few things a simple majority cannot do. This is the arithmetic of why, made playable.</p>
+
+    <p>Most bills need more people to say yes than no. A constitutional amendment needs something much harder: under <strong>Article 368</strong>, two-thirds of the members present and voting in <em>each</em> House, and — because delimitation changes the representation of states — ratification by the legislatures of at least half the states. The government of the day commands a majority. It does not command two-thirds. That single gap is the story of 17 April, and it is the reason the freeze that everyone calls unfair has survived every government that called it unfair.</p>
+
+    <h2>The vote, rebuilt</h2>
+    <p>The government walked in with a majority and lost anyway — so the interesting question is not "did it pass" but "what would it have taken." Below is the model. Start from the committed numbers, then work the two levers a real whip works: swing a bloc into the government's column and read <em>why</em> it might move, or leave the blocs alone and simply thin the benches. Watch which lever actually moves the needle.</p>
+
+    <div class="wpanel" id="wpanel">
+      <div class="plabel"><span class="live"></span> Niyantran · Bill Passage Model · Constitution (131st Amendment) Bill, 2026</div>
+      <div class="prob-wrap">
+        <div class="ring">
+          <svg width="126" height="126" viewBox="0 0 132 132">
+            <circle cx="66" cy="66" r="56" fill="none" stroke="#EAE6DD" stroke-width="12"/>
+            <circle id="ringfill" cx="66" cy="66" r="56" fill="none" stroke="#D8342A" stroke-width="12" stroke-linecap="round" stroke-dasharray="351.9" stroke-dashoffset="351.9"/>
+          </svg>
+          <div class="ptext"><div class="pnum" id="pnum">14%</div><div class="plbl">to pass<br>this session</div></div>
+        </div>
+        <div class="prob-say">
+          <div class="verdict2" id="verdict2">Short on the floor.</div>
+          <div class="sub2" id="probsub">On committed numbers the government cannot clear two-thirds in either House. On delimitation the swing blocs are fewer than usual — the states that could defect are the ones the map costs most.</div>
+        </div>
+      </div>
+
+      <div class="houses">
+        <div>
+          <div class="wh-hh"><span class="wh-hn">Lok Sabha</span><span class="wh-hs"><span id="ls-committed">293</span> committed · <span id="ls-need">352</span> needed · <span class="short" id="ls-gap">59 short</span></span></div>
+          <div class="wgauge"><div class="wfill" id="ls-fill"></div><div class="wthresh" id="ls-th" data-l="⅔"></div></div>
+          <div class="gnote" id="ls-note">Two-thirds of 528 present · absolute floor 272</div>
+        </div>
+        <div>
+          <div class="wh-hh"><span class="wh-hn">Rajya Sabha</span><span class="wh-hs"><span id="rs-committed">139</span> committed · <span id="rs-need">164</span> needed · <span class="short" id="rs-gap">25 short</span></span></div>
+          <div class="wgauge"><div class="wfill" id="rs-fill"></div><div class="wthresh" id="rs-th" data-l="⅔"></div></div>
+          <div class="gnote" id="rs-note">Two-thirds of 245 present · absolute floor 123</div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;border-top:1px solid var(--line);padding-top:16px;">
+        <div class="wstep">1 · Swing a bloc</div>
+        <div class="wcap">Tap to move a bloc into the government column. Each opens its rationale — why it might vote yes on delimitation, what it actually wants, and what it costs at home. Note how few blocs are even swingable here: on a bill about seat share, the regional parties are the wall, not the swing.</div>
+        <div class="chips" id="chips">
+          <span class="chip" data-key="bjd" data-house="both" data-ls="0" data-rs="6">BJD <span class="seats">+6 RS</span></span>
+          <span class="chip" data-key="ysrcp" data-house="both" data-ls="4" data-rs="7">YSRCP <span class="seats">+4 LS / +7 RS</span></span>
+          <span class="chip" data-key="aap" data-house="both" data-ls="3" data-rs="10">AAP <span class="seats">+3 LS / +10 RS</span></span>
+          <span class="chip" data-key="nom" data-house="rs" data-seats="8">Nominated + Ind. <span class="seats">+8 RS</span></span>
+          <span class="chip" data-key="nonalign" data-house="ls" data-seats="12">Non-aligned (LS) <span class="seats">+12 LS</span></span>
+        </div>
+        <div class="wstep" style="margin-top:20px;">2 · Or empty the benches</div>
+        <div class="wcap">Article 368 counts two-thirds of members <i>present and voting</i> — so every opposition absence lowers the bar without adding a single vote to the government's column.</div>
+        <div class="wsliders">
+          <div class="wsl"><label>Opposition absences · Lok Sabha <b id="lsabs-v">0</b></label><input type="range" id="lsabs" min="0" max="130" value="0"></div>
+          <div class="wsl"><label>Opposition absences · Rajya Sabha <b id="rsabs-v">0</b></label><input type="range" id="rsabs" min="0" max="70" value="0"></div>
+        </div>
+        <button class="wreset" id="wreset">Reset to 17 April</button>
+      </div>
+      <div id="rationales"></div>
+    </div>
+
+    <div class="wcallout"><b class="k">The finding most coverage missed</b>
+      Toggle every swingable bloc and the government is <b>still short in both Houses</b> — because on delimitation the biggest opposition blocs are the southern and regional parties that lose seat share, and no amount of persuasion moves a party against its own survival. Now leave the blocs alone and drag the absence sliders. The bar falls without a single vote changing sides, because two-thirds counts only those <i>present and voting</i>. An opposition MP who stays home helps the bill pass exactly as much as one who crosses the floor — and can still tell their state they never voted for it. On 17 April the opposition understood this precisely: it did the opposite, packing the benches to <b>raise</b> the denominator. Defection is the story everyone writes. <b>Attendance is the one that decided it.</b></div>
+
+    <div class="pullq">A government can win the room and still lose the vote. On delimitation, the votes it needs belong to the states it would take the votes from.</div>
+
+    <h2>The seven gates</h2>
+    <p>Even a bill that clears both Houses is not law, and even a law is not a redrawn map. A delimitation package has to pass through seven gates in sequence, and in April 2026 it died at the second. Here is the full route, with this bill's actual fate marked at each stage.</p>
+
+    <div class="journey" id="journey"></div>
+
+    <p>The pattern the gates reveal is that India's founders built delimitation to be <em>hard on purpose</em>. A change this fundamental — reweighting every citizen's share of national power — was placed behind the highest bar the Constitution has, and then behind the states as well. The freeze everyone calls a distortion is not an accident of neglect; it is the predictable resting state of a system that requires near-consensus to move and offers none of the parties enough reason to supply it. The north cannot get the two-thirds without the south, and the south will not give the two-thirds for a formula that costs it share. So the arithmetic sits, frozen, until someone finds a number that lets both sides keep a promise — and, as the lab next door shows, that number may not exist.</p>
+
+    <p>Which is the quiet finding under all of it. Passage probability today is not low because the politics is heated. It is low because the mathematics is closed: the same proportional logic that makes reform <em>just</em> is what makes it <em>unpassable</em>, because it cannot deliver a majority its two-thirds without taking from the very states whose ratification it also needs. The 54-vote gap on 17 April was not a failure of whipping. It was the structure, working as designed.</p>
+
+    <div class="signoff"><svg class="pi2"><use href="#pimark"/></svg> NIYANTRAN · nter.news</div>
+    <div class="art-foot"><b>Sources &amp; method.</b> Real vote: 298 for, 230 against, 528 present, threshold 352 (two-thirds of present), Lok Sabha, 17 April 2026 — Constitution (131st Amendment) Bill, 2026 <span class="tag t-ok">Documented</span>. Thresholds per Article 368: special majority (majority of total membership <em>and</em> two-thirds of members present and voting in each House) plus ratification by legislatures of not less than one-half of the states for changes to state representation. Rajya Sabha figures in the calculator are illustrative defaults for exploration, not a recorded vote — the Bill fell in the Lok Sabha before reaching the Upper House. State count uses 28 states (UT assemblies excluded from the Article 368 ratification count). This is an analytical model of the passage rules, not legal advice.</div>
+  </div>
+</div>
+
+
+
+<!-- ============ READER: CHRONICLE'S VOICE ============ -->
+<div class="reader" id="reader-voice">
+  <div class="rback"><div class="inner">
+    <button data-back><span style="font-size:15px">&larr;</span> Front page</button>
+    <span class="rc">Chronicle's Voice · Editorial</span>
+  </div></div>
+  <div class="article">
+    <div class="art-cat"><span>Chronicle's Voice · Editorial</span><span class="cnt">Culture</span></div>
+    <h1 class="art" style="font-style:italic;font-weight:500">Revolution's Sound of Music</h1>
+    <div class="art-src">A view from the <b>editorial board</b> · companion to this edition's delimitation reporting · opinion, offered as opinion</div>
+
+    <p class="dek">A vote can be frozen. A seat can be withheld. A parliament can be paralysed for nineteen sitting days and asked four questions about the crisis on its own streets. But there is one thing no whip, no notice period and no two-thirds threshold has ever been able to stop, and it is the oldest instrument of dissent there is: people, together, singing the same thing at once.</p>
+
+    <p>This edition has spent its length on arithmetic — the cold machinery by which India decides how loud each citizen gets to be. The delimitation fight is representation reduced to a formula, and the formula, as our lab shows, is close to unsolvable: someone's voice must fall for another's to rise, and the Constitution's own two-thirds lock ensures that almost nothing moves at all. That is representation as the state administers it: slow, mathematical, and for most people, silent. This piece is about the other channel — the one that opens precisely when the official one jams. When you cannot be heard in the House, you sing outside it.</p>
+
+    <p>We write this as an editorial because it is a judgement, not a data run, and the board wants to own it plainly: <strong>the most important political sound in South Asia right now is not a speech. It is a chorus.</strong></p>
+
+    <h2>The regional chord</h2>
+    <p>Look across the neighbourhood and the pattern is unmistakable. In Bangladesh, the student movement that ended a fifteen-year government moved to music, its playlists and rap tracks outrunning every attempt to censor them. In Nepal, a Gen-Z revolt against a social-media ban and dynastic politics filled Kathmandu with song before it filled it with anything else. And in India, the summer's youth protests — over a leaked exam, over jobs, over the right to be counted as more than a statistic — arrived with a soundtrack rather than a manifesto. Three countries, three grievances, one method: a generation that grew up sharing audio has discovered that a song is the one piece of political speech that crosses a border, survives a takedown, and cannot be answered with a press release.</p>
+
+    <div class="pullq">A speech can be skipped, a question can go unanswered, a bill can be frozen. A chorus a hundred thousand people already know by heart has none of those weaknesses.</div>
+
+    <p>What unites these movements is not a genre but a discovery about power. Authoritarian confidence rests on the aesthetics of strength and the monopoly of the sacred — the flag, the anthem, the language of the nation. The most destabilising thing a movement can do is not to attack those symbols but to <em>take them back</em>: to sing the national songs against the government that claimed to own them, to be visibly joyful in the face of a power that demands fear. You cannot photograph a crowd singing an old patriotic film song and caption it a foreign-funded mob. The music strips the state of its favourite alibi.</p>
+
+    <h2>The Indian songbook</h2>
+    <p>India's protest sound this year was strikingly, deliberately nostalgic. At the barricades the anthems were not the season's nationalist blockbusters but the early-2000s conscience of Hindi cinema — <em>Rang De Basanti</em> and <em>Swades</em>, films in which the truest patriot was the young person who turned on a corrupt state, and love of country meant fixing the village rather than saluting the flag. Choosing that songbook was an argument in itself: it reached back to a shared cultural memory in which dissent <em>was</em> the patriotic act, and let the music say what a placard could not without risking a sedition case. When a crowd sings those songs at a police line, it is repossessing the nation from the people who claimed a monopoly on it.</p>
+
+    <p>And where the film songbook ran out, the movement improvised — reclaiming a slur into a chant, setting police footage to lyrics, turning a meme into a melody. The register was play, not rage, and that was the point. Humour and song lower the price of entry to politics: they let the person who will never risk a baton still risk a repost, a hum, a share. A movement that is cheap and joyful to join is far harder to frighten into silence than one built on martyrdom. The state has a well-practised answer to anger. It has never found one for a generation that refuses to stop enjoying itself while it resists.</p>
+
+    <h2>Why sound, and why now</h2>
+    <p>There is a structural reason music is doing this work, and it is the same reason our reporting keeps circling back to blocked channels. When the formal instruments of voice seize up — when a parliament asks four questions in nineteen days about the emergency on its streets, when the one number that governs representation is locked behind a super-majority nobody can assemble — the political energy does not evaporate. It moves to whatever channel is still open. Song is the channel that is always open. It needs no notice period, no ministry, no majority. It requires only that enough people already know the words.</p>
+
+    <p>That is the connective tissue of this whole edition, and the reason the board pairs delimitation with dissent rather than treating them as separate stories. They are the same story told from opposite ends. Delimitation is the question of representation as the state <em>grants</em> it — parcelled out in seats, rationed by a formula, frozen by design. Protest music is representation as a people <em>takes</em> it — unrationed, unfrozen, and impossible to apportion. One is voice measured in constituencies. The other is voice measured in decibels. When the first is stuck, the second gets louder. That is not a coincidence. It is a law.</p>
+
+    <div class="pullq">Representation you must be granted can be withheld. Representation you sing cannot.</div>
+
+    <p>We do not claim the song wins on its own. Bangladesh's chorus toppled a government; India's has not moved a single seat, and the delimitation freeze will outlast this summer's playlists. Music is not a substitute for the vote, the seat, or the two-thirds — and a movement that mistakes a viral anthem for structural power will be disappointed. But it is the proof that the demand survives the denial. Every frozen formula in this edition is a measure of how hard the system makes it to be heard through official means. Every chorus outside is a measure of how completely people have decided to be heard anyway. The board's view is simple: watch the arithmetic to understand what the state will concede, and listen to the music to understand what the country actually wants. This edition asks you to do both.</p>
+
+    <div class="signoff"><svg class="pi2"><use href="#pimark"/></svg> THE EDITORIAL BOARD · NIYANTRAN · nter.news</div>
+    <div class="art-foot"><b>A note on this piece.</b> This is a signed editorial — the board's argument, offered as opinion, not a source-led briefing like the rest of the edition. It reads the year's protest cultures across Bangladesh, Nepal and India through the lens of representation, the theme this edition's delimitation reporting sets up. Factual references to the movements and to the <em>Rang De Basanti</em> / <em>Swades</em> soundtrack are drawn from our summer reporting; the readings of what the music <em>means</em> are interpretation, and readers are free to disagree. Where a specific movement or figure is named, we describe what is on the public record and stop there.</div>
+  </div>
+</div>
+
+
+<script>
+const PATHS = {"Mizoram":"M617.7,407.7L615.5,388.7L612.2,383.6L612.7,380.5L611.6,375.8L612.9,375.0L609.4,360.8L611.1,358.2L610.4,349.6L613.4,349.5L613.7,352.0L616.1,351.4L618.3,347.3L619.9,346.8L621.6,342.6L622.5,345.1L627.6,345.2L627.9,349.9L626.8,353.0L632.3,354.7L636.9,357.9L637.6,368.3L636.0,373.4L636.8,376.2L635.9,380.0L634.6,381.8L632.1,380.5L630.3,381.8L630.9,383.8L629.6,389.6L630.5,395.7L631.9,396.9L631.2,403.3L628.6,402.7L627.3,406.6L625.9,407.5L620.2,404.0L619.8,406.9L617.7,407.7Z","Tamil Nadu":"M247.8,758.8L248.0,756.9L245.6,752.6L247.6,749.1L245.1,745.7L247.9,742.0L248.3,738.2L251.2,732.3L249.1,730.3L248.0,731.1L245.5,730.0L247.4,725.2L246.6,723.1L248.4,713.9L245.8,710.6L241.0,714.2L238.9,713.2L237.0,708.9L239.2,699.6L237.4,697.3L233.2,695.5L235.5,691.9L234.1,689.6L234.4,687.7L232.5,688.9L228.0,688.7L230.6,684.6L223.0,680.2L229.7,675.6L230.9,677.8L237.8,678.5L239.3,673.3L248.5,672.9L251.8,674.0L253.4,669.4L257.8,669.2L260.2,665.0L259.5,663.9L253.6,662.8L252.8,661.6L256.3,658.4L256.0,650.6L259.3,650.5L261.5,645.4L263.9,644.8L265.1,646.2L267.0,645.8L275.5,651.6L279.9,647.6L280.6,642.2L287.1,639.5L293.6,641.4L295.2,637.8L296.5,638.7L300.3,637.1L299.5,633.2L302.7,633.1L302.6,634.8L306.2,634.2L306.6,636.2L308.9,635.7L309.2,633.7L312.5,632.5L314.7,627.9L315.7,629.2L319.0,629.2L320.3,627.3L322.1,634.8L317.2,657.3L310.4,666.7L310.0,669.1L306.2,671.0L309.2,672.0L308.0,677.7L310.4,689.3L310.2,694.3L307.8,694.0L307.2,695.8L310.2,698.4L310.4,712.6L299.0,711.7L296.1,714.0L295.2,716.4L295.8,718.6L289.2,728.0L287.3,733.7L291.3,738.2L297.8,737.8L297.0,739.6L294.6,738.7L286.6,739.2L274.9,743.5L269.7,749.0L270.3,752.4L268.9,754.2L269.0,758.9L267.0,762.1L261.8,765.4L260.6,767.7L255.7,768.3L254.9,769.9L247.1,767.2L243.8,764.3L247.8,758.8Z","Madhya Pradesh":"M229.2,429.0L226.6,432.0L221.4,431.9L221.2,427.3L219.6,424.3L198.3,423.3L195.8,421.9L194.5,419.2L183.2,416.7L181.3,415.1L181.8,410.3L179.6,407.2L175.9,409.7L172.7,409.2L171.4,407.5L172.1,402.5L170.4,400.2L170.8,398.7L173.7,399.6L174.3,396.5L172.0,397.1L170.5,393.7L172.7,394.4L175.5,391.2L178.3,391.5L180.3,386.7L180.2,384.4L178.6,384.7L176.8,380.4L178.4,379.0L181.3,379.8L186.8,376.2L181.9,373.6L182.9,371.0L189.5,367.6L191.4,364.6L190.9,359.2L192.6,354.9L190.3,351.5L191.0,350.5L187.3,349.7L189.7,345.0L185.9,343.4L188.1,340.7L188.5,336.8L190.5,339.5L193.1,337.9L192.7,336.1L189.9,335.2L189.0,332.6L190.9,331.8L192.2,333.7L194.2,334.0L196.0,333.2L196.0,330.8L197.8,329.0L201.7,329.5L197.7,336.5L207.9,338.2L212.2,336.2L215.4,341.8L215.0,344.5L212.2,344.2L210.8,345.7L212.9,349.6L211.3,352.2L213.4,354.5L210.2,356.9L205.8,355.3L204.4,358.1L209.9,362.5L212.4,359.4L215.8,358.6L218.4,354.2L220.4,353.7L220.2,350.9L225.1,349.6L231.1,350.5L232.9,349.0L233.7,351.0L236.7,352.9L238.6,352.6L239.6,350.5L237.4,346.7L237.1,342.1L238.1,341.7L240.9,344.0L243.1,341.5L242.3,337.6L240.2,336.2L238.0,336.6L236.8,335.0L240.3,333.4L238.1,331.0L238.5,328.9L243.5,328.5L245.7,327.1L249.0,327.9L251.0,326.9L251.4,324.2L250.3,319.3L249.0,318.8L246.9,321.7L243.5,321.2L240.1,322.6L233.5,320.9L229.8,316.3L230.5,308.2L236.4,305.4L239.1,301.6L248.0,297.0L252.0,293.5L261.3,289.7L263.3,286.8L267.7,286.4L268.3,283.3L274.2,281.4L278.7,284.1L284.4,284.0L289.9,286.5L289.5,288.9L293.0,292.5L293.0,295.2L289.6,298.8L290.0,301.8L284.0,311.2L285.1,313.9L281.5,315.4L276.5,315.1L275.1,318.4L273.8,318.7L276.4,326.8L273.7,327.8L273.9,329.7L269.7,333.2L272.2,338.7L272.1,344.3L274.5,346.2L273.5,347.5L275.0,349.1L277.7,345.8L285.0,351.3L289.0,346.9L289.3,344.5L287.7,344.0L288.6,341.7L286.9,339.3L283.7,340.4L284.1,333.6L280.8,331.1L281.0,328.1L278.0,322.8L281.5,320.0L284.3,320.8L283.2,318.1L286.9,316.6L288.3,317.2L286.8,319.9L288.8,321.0L286.8,325.9L291.2,324.2L292.9,327.1L295.6,327.0L297.5,326.1L296.5,321.5L298.2,321.4L300.2,323.4L299.5,327.2L301.6,327.9L303.4,325.5L310.0,327.4L310.3,324.9L314.6,321.1L321.4,319.9L321.3,322.5L323.6,323.7L324.2,325.4L320.2,329.3L322.1,329.6L323.5,328.2L325.3,330.6L325.9,328.9L328.1,327.6L331.1,328.3L331.3,326.9L334.2,325.1L334.6,331.8L336.6,330.8L340.8,332.5L344.3,328.6L344.6,325.7L347.4,326.5L351.0,325.1L353.0,325.8L354.0,328.4L359.5,330.3L360.7,334.0L367.3,335.3L369.2,340.2L372.1,340.5L372.1,339.0L378.2,337.8L379.1,339.4L380.7,339.3L381.3,341.0L379.3,346.1L380.6,346.3L380.0,351.7L378.1,352.6L381.7,357.0L378.8,358.1L377.4,360.2L374.1,361.6L367.1,359.8L364.0,360.7L360.2,359.3L357.5,361.0L354.0,357.9L352.5,359.0L354.7,363.2L352.7,364.7L352.7,368.6L360.0,368.1L361.7,371.2L364.5,371.6L366.9,373.8L365.0,379.3L360.7,379.9L360.9,382.4L358.7,384.8L356.7,385.2L357.1,388.1L352.9,394.0L349.4,395.2L345.8,394.3L343.9,396.0L342.6,395.2L340.6,396.6L340.8,400.4L339.0,401.7L338.0,406.4L335.7,405.1L333.5,414.1L332.1,414.1L331.1,416.8L331.6,421.7L329.8,425.3L324.0,422.5L320.3,417.9L316.7,418.1L315.4,419.5L311.8,420.3L307.5,418.3L302.7,419.9L301.7,416.4L295.4,415.3L295.1,417.1L287.7,418.6L287.3,420.9L279.7,421.3L277.9,420.2L276.0,421.0L275.7,419.1L273.9,418.6L262.8,424.0L253.2,424.2L252.4,419.6L255.3,420.3L254.6,415.6L253.0,413.9L248.2,414.3L246.5,416.0L243.0,415.4L239.1,418.4L238.0,418.0L236.2,419.4L236.2,421.9L232.3,425.3L233.3,426.7L232.4,429.2L229.2,429.0Z","Maharashtra":"M176.7,549.5L176.8,555.5L178.1,557.1L180.7,557.5L180.7,560.1L178.1,561.9L180.3,562.9L177.5,570.1L174.9,570.6L174.2,569.7L172.1,571.2L172.0,573.0L168.9,574.0L167.6,570.7L161.5,571.0L159.2,566.3L157.3,565.6L153.9,554.5L151.7,540.8L152.0,534.9L150.4,531.1L150.9,529.6L149.4,527.9L149.3,522.8L144.3,508.7L144.3,505.6L145.7,505.1L142.9,502.7L142.5,499.9L143.4,497.9L140.2,488.4L141.1,484.7L139.8,482.6L140.1,478.0L136.7,464.2L136.9,461.7L138.5,460.7L138.0,458.0L141.9,454.1L144.1,454.5L144.1,456.6L148.3,457.7L151.0,456.8L152.2,454.5L155.0,454.6L154.7,449.9L156.4,444.8L154.8,443.7L156.4,441.2L160.7,445.3L163.0,445.3L165.2,443.8L166.1,441.0L167.1,441.1L167.7,438.1L166.4,435.7L161.1,429.9L164.7,429.4L164.8,426.9L167.7,426.2L168.1,423.7L170.2,422.4L176.9,421.0L175.8,419.4L173.1,419.2L165.1,420.4L164.6,417.2L166.2,415.4L164.7,412.1L172.7,409.2L175.9,409.7L179.6,407.2L181.8,410.3L181.3,415.1L183.2,416.7L194.5,419.2L195.8,421.9L198.3,423.3L219.6,424.3L221.2,427.3L221.4,431.9L226.6,432.0L229.2,429.0L232.4,429.2L233.3,426.7L232.3,425.3L236.2,421.9L236.2,419.4L238.0,418.0L239.1,418.4L241.4,416.0L246.5,416.0L248.2,414.3L253.0,413.9L254.6,415.6L255.3,420.3L252.4,419.6L253.2,424.2L262.8,424.0L273.9,418.6L275.7,419.1L276.0,421.0L277.9,420.2L279.7,421.3L287.3,420.9L287.7,418.6L295.1,417.1L295.4,415.3L301.7,416.4L302.7,419.9L307.5,418.3L311.8,420.3L315.4,419.5L316.7,418.1L320.3,417.9L324.0,422.5L329.8,425.3L328.6,428.1L325.0,429.4L324.4,431.4L325.0,435.8L327.0,435.7L327.8,442.5L326.4,444.9L328.7,444.7L328.1,449.7L328.9,451.3L323.4,453.6L324.2,456.4L327.0,457.4L325.1,464.5L327.0,464.7L331.1,469.9L335.4,472.4L334.4,476.5L331.9,478.5L328.6,477.9L327.7,475.6L321.8,482.2L320.4,487.4L322.2,489.9L320.5,493.2L316.7,494.3L311.7,490.5L312.9,489.5L312.4,485.1L310.4,483.3L312.1,481.8L313.3,475.6L309.2,470.9L307.6,470.1L301.1,472.9L295.8,470.5L294.3,474.0L292.0,472.1L288.2,471.7L288.6,468.9L286.3,468.0L285.9,466.1L276.0,464.8L273.0,462.3L274.4,465.6L273.9,467.4L272.2,468.0L273.0,473.4L270.7,474.8L269.8,479.8L264.2,477.0L262.3,478.0L262.2,481.3L260.7,484.1L261.8,488.3L264.3,490.0L261.7,491.0L260.5,494.2L259.1,494.6L259.3,497.5L255.9,497.7L254.1,502.3L254.8,504.4L252.7,505.1L251.3,504.1L251.4,501.7L249.1,500.5L243.0,508.0L240.3,507.1L239.5,514.1L235.2,514.6L236.4,516.5L234.6,517.6L233.9,520.2L230.0,518.2L229.2,520.8L225.4,522.4L226.6,529.8L222.9,528.4L215.7,529.6L214.8,527.5L212.9,528.3L208.5,525.5L207.1,528.0L209.0,530.8L208.3,533.4L209.5,534.9L209.3,538.5L200.0,539.1L199.6,541.5L197.6,542.0L195.4,539.2L190.9,541.5L191.3,543.8L185.9,545.3L184.3,548.8L182.9,549.5L182.2,547.4L176.7,549.5Z","Chhattisgarh":"M353.8,502.9L350.7,505.7L349.6,512.5L347.6,514.7L347.5,516.7L341.9,515.6L338.3,517.3L337.4,507.6L334.7,508.3L334.4,506.6L332.1,507.5L330.8,500.5L329.2,498.3L324.8,495.6L322.8,496.1L320.5,493.2L322.2,489.9L320.4,487.4L321.8,482.2L327.7,475.6L328.6,477.9L331.9,478.5L334.4,476.5L335.4,472.4L331.1,469.9L327.0,464.7L325.1,464.5L327.0,457.4L324.2,456.4L323.4,453.6L328.9,451.3L328.1,449.7L328.7,444.7L326.4,444.9L327.8,442.5L327.0,435.7L325.0,435.8L324.4,431.4L325.0,429.4L328.6,428.1L331.6,421.7L331.1,416.8L332.1,414.1L333.5,414.1L335.7,405.1L338.0,406.4L339.0,401.7L340.8,400.4L340.6,396.6L342.6,395.2L343.9,396.0L345.8,394.3L349.4,395.2L352.9,394.0L357.1,388.1L356.7,385.2L358.7,384.8L360.9,382.4L360.7,379.9L365.0,379.3L366.9,373.8L364.5,371.6L361.7,371.2L360.0,368.1L352.7,368.6L352.7,364.7L354.7,363.2L352.5,359.0L354.0,357.9L357.5,361.0L360.2,359.3L364.0,360.7L367.1,359.8L374.1,361.6L381.7,357.0L384.9,359.3L388.4,359.3L391.2,358.0L394.1,353.3L396.6,353.7L400.0,359.5L403.2,360.6L404.9,366.1L408.8,367.2L410.7,365.5L409.4,371.9L412.1,373.3L411.8,379.0L414.6,382.5L419.3,382.5L419.9,383.8L416.0,390.0L410.5,393.1L411.4,395.8L410.5,398.3L407.0,399.0L401.3,402.7L399.1,406.8L400.4,412.5L397.3,415.8L397.9,417.2L395.4,417.8L394.3,420.9L395.6,425.0L392.7,424.2L390.8,430.3L388.0,431.1L385.3,429.4L377.5,429.9L377.5,431.7L373.1,438.5L370.2,437.2L371.1,443.5L370.1,445.3L372.6,448.7L371.7,458.5L379.4,460.3L378.9,464.4L376.4,465.8L374.9,463.1L372.8,462.3L370.4,464.2L368.5,460.6L360.7,457.2L359.1,458.6L358.9,462.5L363.6,465.4L362.7,472.8L364.5,472.5L365.1,474.8L366.6,474.8L365.9,480.7L368.0,488.1L366.3,488.5L365.9,491.5L364.3,492.8L359.6,494.8L359.9,497.1L356.0,502.7L353.8,502.9Z","Gujarat":"M92.6,442.0L83.4,437.9L74.8,431.0L57.5,412.4L58.1,410.9L57.0,412.1L53.8,409.1L47.0,399.9L48.7,396.5L52.5,398.9L52.8,402.4L56.7,399.8L69.4,395.9L72.0,393.8L75.7,393.6L78.0,390.8L77.9,389.3L82.3,384.4L83.5,386.0L90.0,377.0L80.2,376.4L74.6,384.1L64.2,387.3L51.7,385.2L39.7,377.5L37.2,374.7L37.7,372.7L34.1,371.0L34.4,369.3L32.3,369.1L31.9,366.9L27.8,366.3L26.8,364.3L28.6,363.9L29.4,359.2L32.6,356.9L42.6,356.7L42.8,348.3L44.9,349.7L47.2,348.1L48.6,350.2L50.8,348.8L53.2,349.8L62.9,348.3L66.2,351.5L73.3,351.5L75.3,348.3L86.5,345.0L86.4,349.4L92.1,350.2L96.4,346.5L97.9,346.7L99.2,344.6L96.7,344.4L96.4,340.5L99.4,338.4L103.7,339.9L108.3,338.3L112.6,339.3L122.3,337.4L124.9,339.8L129.3,339.6L129.4,341.3L132.9,345.1L133.9,342.5L137.4,343.9L138.4,346.4L144.0,346.6L145.0,343.5L147.1,343.0L146.8,345.7L148.6,346.7L146.6,350.9L150.9,355.9L152.6,354.6L154.8,354.9L153.9,360.8L157.6,366.2L158.8,365.0L160.8,365.8L160.1,370.3L163.2,370.1L166.5,373.3L168.1,372.1L172.5,375.0L172.2,377.4L175.1,377.2L178.6,384.7L180.2,384.4L180.3,386.7L178.3,391.5L175.5,391.2L172.7,394.4L170.5,393.7L172.0,397.1L174.3,396.5L173.7,399.6L170.8,398.7L170.4,400.2L172.1,402.5L171.4,407.5L172.7,409.2L164.7,412.1L166.2,415.4L164.6,417.2L165.1,420.4L173.1,419.2L175.8,419.4L176.9,421.0L170.2,422.4L168.1,423.7L167.7,426.2L164.8,426.9L164.7,429.4L161.1,429.9L166.4,435.7L167.7,438.1L167.1,441.1L166.1,441.0L165.2,443.8L163.0,445.3L160.7,445.3L156.4,441.2L154.8,443.7L156.4,444.8L154.7,449.9L155.0,454.6L152.2,454.5L150.1,456.8L148.2,454.8L149.0,452.5L146.0,451.5L143.4,452.3L144.1,454.5L141.9,454.1L139.6,456.5L138.7,453.6L142.3,448.0L142.7,445.0L138.3,432.7L139.0,432.3L135.9,431.4L135.3,425.7L138.6,421.6L135.6,418.9L137.8,417.2L134.0,414.9L135.9,412.9L133.2,409.4L134.6,403.2L136.5,402.4L139.0,403.5L143.7,400.4L136.8,400.7L133.3,399.6L132.0,401.3L129.9,399.8L125.8,410.8L126.7,412.5L125.6,414.5L128.3,417.7L123.5,426.1L123.6,428.8L109.1,435.4L107.3,437.4L92.6,442.0Z","Odisha":"M370.5,507.5L369.7,510.8L368.1,512.1L362.8,510.1L352.8,516.5L347.5,516.7L347.6,514.7L349.6,512.5L350.7,505.7L353.8,502.9L356.0,502.7L359.9,497.1L359.6,494.8L364.3,492.8L365.9,491.5L366.3,488.5L368.0,488.1L365.9,480.7L366.6,474.8L365.1,474.8L364.5,472.5L362.7,472.8L363.6,465.4L358.9,462.5L359.1,458.6L360.7,457.2L368.5,460.6L370.4,464.2L372.8,462.3L374.9,463.1L376.4,465.8L378.9,464.4L379.4,460.3L371.7,458.5L372.6,448.7L370.1,445.3L371.1,443.5L370.2,437.2L373.1,438.5L377.5,431.7L377.5,429.9L385.3,429.4L388.0,431.1L390.8,430.3L392.7,424.2L395.6,425.0L394.3,420.9L395.4,417.8L397.9,417.2L397.3,415.8L400.4,412.5L399.1,406.8L401.3,402.7L407.0,399.0L410.5,398.3L411.4,395.8L410.6,394.2L417.3,399.1L420.6,398.8L423.2,396.8L428.4,397.1L436.1,395.2L436.3,401.3L435.1,404.8L440.2,407.7L444.0,403.7L450.9,406.5L452.5,406.0L453.3,408.4L456.0,408.4L459.3,403.0L457.9,401.5L459.2,399.3L457.6,395.3L460.1,393.5L461.4,395.3L465.3,396.3L467.2,398.9L468.9,399.7L470.5,399.0L476.1,402.4L478.7,405.4L481.8,405.7L483.3,407.0L482.7,410.2L485.1,411.5L485.3,409.9L488.5,408.9L489.5,413.1L493.3,414.0L494.3,418.0L492.5,419.8L486.2,420.7L481.4,424.7L479.2,428.4L479.1,431.5L482.1,437.6L481.9,439.4L479.4,439.6L478.0,440.8L479.3,439.8L483.2,439.9L484.0,441.4L477.5,446.1L476.3,448.0L477.3,451.2L471.4,455.2L467.4,460.4L442.9,470.7L434.0,477.7L428.8,483.9L427.2,482.9L424.6,485.3L422.7,484.7L418.0,491.5L412.5,492.2L411.2,490.7L407.7,490.7L405.3,485.5L404.2,486.1L404.4,488.3L402.2,483.4L397.8,485.1L397.3,487.1L394.6,485.5L393.8,486.6L396.1,489.2L391.1,492.4L389.4,491.5L386.2,496.1L387.2,497.8L386.6,500.1L388.0,501.5L385.4,502.6L381.5,500.2L380.7,503.1L376.2,504.7L376.7,502.4L373.8,498.2L370.8,501.0L371.3,502.4L369.6,507.1L370.5,507.5Z","Andhra Pradesh":"M293.6,641.4L287.1,639.5L283.7,640.5L280.6,642.2L279.9,647.6L275.5,651.6L272.9,650.6L271.2,648.2L271.7,645.6L276.8,642.6L279.7,634.8L274.4,632.5L275.3,626.7L270.3,627.2L270.5,625.6L268.5,623.3L268.4,619.5L265.6,619.3L264.9,617.0L261.1,618.2L260.3,620.7L252.5,624.2L251.9,620.0L245.8,619.3L243.0,622.6L240.9,620.4L242.5,617.7L239.8,615.1L240.2,613.5L238.9,611.6L241.6,610.8L242.1,614.3L245.6,615.6L249.2,615.1L251.1,618.4L252.0,617.3L250.9,615.5L251.0,611.4L253.6,611.9L253.0,608.4L251.3,607.2L250.3,608.8L244.8,607.2L244.3,610.1L241.6,609.8L238.7,606.9L239.1,603.2L235.8,600.3L238.3,590.7L235.7,590.2L236.6,587.5L241.1,589.6L244.2,589.1L245.2,586.3L245.1,582.3L243.0,581.4L242.3,578.6L242.2,573.4L243.5,572.8L242.1,568.2L243.2,566.3L247.5,564.9L257.4,566.9L262.9,566.4L267.6,568.1L269.8,567.7L271.8,563.7L275.5,562.0L278.9,562.8L280.1,561.8L283.4,563.7L287.8,560.8L287.4,559.2L290.4,557.7L294.9,558.1L295.0,550.6L295.9,549.2L299.8,548.9L308.8,545.1L312.6,547.4L315.2,544.6L315.2,538.7L318.3,537.4L321.2,538.6L321.6,541.1L327.6,544.0L328.3,540.1L322.6,538.6L327.8,534.0L334.2,536.9L336.5,532.3L337.8,533.0L342.1,531.9L342.5,529.5L344.6,529.7L345.4,527.3L338.4,524.4L335.8,521.4L335.2,518.8L337.3,517.7L339.4,518.9L341.9,515.6L344.3,516.9L352.8,516.5L362.8,510.1L368.1,512.1L369.7,510.8L370.8,501.0L373.8,498.2L376.7,502.4L376.2,504.7L380.7,503.1L381.5,500.2L385.4,502.6L388.0,501.5L386.6,500.1L387.2,497.8L386.2,496.1L389.4,491.5L391.1,492.4L396.1,489.2L393.8,486.6L394.6,485.5L397.3,487.1L397.8,485.1L402.2,483.4L404.4,488.3L404.2,486.1L405.3,485.5L407.7,490.7L411.2,490.7L412.5,492.2L418.0,491.5L422.7,484.7L424.6,485.3L427.2,482.9L428.7,484.0L413.4,503.8L402.2,509.9L390.1,523.4L375.1,531.5L369.7,536.4L368.1,539.6L368.1,541.2L370.8,541.7L369.6,549.4L355.2,555.9L347.4,555.0L344.3,556.7L341.5,564.6L338.3,567.8L338.1,570.3L336.4,571.3L333.9,571.6L332.5,567.4L330.2,566.9L321.4,571.2L316.8,580.4L314.8,589.7L318.6,600.7L317.0,610.0L317.3,614.9L320.0,621.6L320.3,627.3L319.0,629.2L315.7,629.2L314.7,627.9L312.5,632.5L309.2,633.7L308.9,635.7L306.6,636.2L306.2,634.2L302.6,634.8L302.7,633.1L299.5,633.2L300.3,637.1L296.5,638.7L295.2,637.8L293.6,641.4Z","Karnataka":"M215.8,669.5L207.1,663.9L204.9,660.4L203.2,660.4L203.4,658.3L202.1,657.2L203.3,655.0L200.0,654.3L195.9,650.2L190.1,648.2L189.0,645.9L183.2,617.9L181.5,616.3L175.5,597.2L172.0,595.5L171.2,592.5L174.0,591.9L176.3,588.9L175.7,587.4L176.8,585.1L175.4,583.7L177.0,582.6L174.8,572.6L172.0,573.0L172.1,571.2L174.2,569.7L174.9,570.6L177.5,570.1L180.3,562.9L178.1,561.9L180.7,560.1L180.7,557.5L178.1,557.1L176.8,555.5L176.7,549.5L182.2,547.4L182.9,549.5L184.3,548.8L185.9,545.3L191.3,543.8L190.9,541.5L195.4,539.2L197.6,542.0L199.6,541.5L200.0,539.1L209.3,538.5L209.5,534.9L208.3,533.4L209.0,530.8L207.1,528.0L208.5,525.5L212.9,528.3L214.8,527.5L215.7,529.6L222.9,528.4L226.6,529.8L225.4,522.4L229.2,520.8L230.0,518.2L233.9,520.2L234.6,517.6L236.4,516.5L235.2,514.6L239.5,514.1L240.3,507.1L243.0,508.0L249.1,500.5L251.4,501.7L251.3,504.1L252.7,505.1L256.0,504.8L255.0,506.9L255.9,509.5L254.7,510.5L257.3,512.8L252.4,519.9L252.2,522.8L258.0,524.7L253.8,526.8L250.6,532.2L250.3,533.8L253.5,536.8L252.9,543.5L251.7,545.2L252.4,547.9L251.5,550.5L247.3,551.6L248.4,553.3L255.8,555.0L253.5,558.2L253.9,565.8L247.5,564.9L243.2,566.3L242.1,568.2L243.5,572.8L242.2,573.4L242.3,578.6L243.0,581.4L245.1,582.3L245.2,586.3L244.2,589.1L241.1,589.6L236.6,587.5L235.7,590.2L238.3,590.7L235.8,600.3L239.1,603.2L238.7,606.9L241.6,609.8L244.3,610.1L244.8,607.2L250.3,608.8L251.3,607.2L253.0,608.4L253.6,611.9L251.0,611.4L250.9,615.5L252.0,617.3L251.1,618.4L249.2,615.1L245.6,615.6L242.1,614.3L241.6,610.8L238.9,611.6L240.2,613.5L239.8,615.1L242.5,617.7L240.9,620.4L243.0,622.6L245.8,619.3L251.9,620.0L252.5,624.2L260.3,620.7L261.1,618.2L264.9,617.0L265.6,619.3L268.4,619.5L268.5,623.3L270.5,625.6L270.3,627.2L275.3,626.7L274.4,632.5L279.7,634.8L276.8,642.6L271.7,645.6L271.2,648.2L267.0,645.8L265.1,646.2L263.9,644.8L261.5,645.4L259.3,650.5L256.0,650.6L256.3,658.4L252.8,661.6L260.2,665.0L257.8,669.2L253.4,669.4L251.8,674.0L248.5,672.9L244.1,673.8L241.8,672.8L239.3,673.3L237.8,678.5L230.9,677.8L229.7,675.6L227.4,676.5L227.3,674.2L225.0,674.4L222.3,671.5L220.1,671.6L220.1,668.5L215.8,669.5Z","Goa":"M175.8,579.8L176.9,580.4L177.0,582.6L175.4,583.7L176.8,585.1L175.7,587.4L176.3,588.9L174.0,591.9L171.2,592.5L168.7,588.5L166.3,580.7L167.5,578.7L163.5,577.1L161.5,571.0L167.6,570.7L168.9,574.0L174.8,572.6L175.8,579.8Z","Kerala":"M239.0,713.4L241.0,714.2L245.8,710.6L248.4,713.9L246.6,723.1L247.4,725.2L245.5,730.0L248.0,731.1L249.1,730.3L251.2,732.3L248.3,738.2L247.9,742.0L245.1,745.7L247.6,749.1L245.6,752.6L248.0,756.9L247.8,758.8L243.8,764.3L230.6,748.5L225.1,733.4L221.4,715.2L222.5,714.9L221.3,715.1L210.1,682.9L208.1,681.5L206.6,675.7L199.3,667.7L198.1,667.8L190.1,648.2L195.9,650.2L200.0,654.3L203.3,655.0L202.1,657.2L203.4,658.3L203.2,660.4L204.9,660.4L207.1,663.9L212.4,666.5L214.2,669.2L217.4,669.7L220.1,668.5L220.1,671.6L222.3,671.5L225.0,674.4L227.3,674.2L226.5,678.3L223.0,680.2L230.6,684.6L228.0,688.7L232.5,688.9L234.4,687.7L234.1,689.6L235.5,691.9L233.2,695.5L237.4,697.3L239.2,699.6L237.0,708.9L239.0,713.4Z","Telangana":"M248.4,553.3L247.3,551.6L251.5,550.5L252.4,547.9L251.7,545.2L252.9,543.5L253.5,536.8L250.3,533.8L250.6,532.2L253.8,526.8L258.0,524.7L252.2,522.8L252.4,519.9L257.3,512.8L254.7,510.5L255.9,509.5L255.0,506.9L256.0,504.8L254.1,502.3L255.9,497.7L259.3,497.5L259.1,494.6L260.5,494.2L261.7,491.0L264.3,490.0L261.8,488.3L260.7,484.1L262.2,481.3L262.3,478.0L264.2,477.0L269.8,479.8L270.7,474.8L273.0,473.4L272.2,468.0L273.9,467.4L274.4,465.6L273.0,462.3L276.0,464.8L285.9,466.1L286.3,468.0L288.6,468.9L288.2,471.7L292.0,472.1L294.3,474.0L295.8,470.5L301.1,472.9L307.6,470.1L312.5,473.7L313.3,475.6L312.1,481.8L310.4,483.3L312.4,485.1L312.9,489.5L311.7,490.5L316.7,494.3L320.5,493.2L322.8,496.1L324.8,495.6L329.2,498.3L330.8,500.5L332.1,507.5L334.4,506.6L334.7,508.3L337.4,507.6L338.3,517.3L340.0,517.2L339.4,518.9L337.3,517.7L335.2,518.8L335.8,521.4L338.4,524.4L345.4,527.3L344.6,529.7L342.5,529.5L342.1,531.9L337.8,533.0L336.5,532.3L334.2,536.9L327.8,534.0L322.6,538.6L328.3,540.1L327.6,544.0L321.6,541.1L321.2,538.6L318.3,537.4L315.2,538.7L315.2,544.6L312.6,547.4L308.8,545.1L299.8,548.9L295.9,549.2L295.0,550.6L294.9,558.1L290.4,557.7L287.4,559.2L287.8,560.8L283.4,563.7L280.1,561.8L278.9,562.8L275.5,562.0L271.8,563.7L269.8,567.7L253.9,565.8L253.5,558.2L255.8,555.0L248.4,553.3Z","West Bengal":"M511.3,405.2L501.7,415.8L494.3,418.0L493.3,414.0L489.5,413.1L488.5,408.9L485.3,409.9L485.1,411.5L482.7,410.2L483.3,407.0L478.7,405.4L476.1,402.4L478.9,397.6L477.0,396.9L477.8,395.3L477.0,393.0L474.4,393.0L474.0,390.9L468.6,387.4L469.0,383.9L470.6,382.1L464.3,382.1L459.6,378.2L455.8,377.6L454.2,375.0L455.7,372.9L455.8,369.4L459.5,369.0L460.5,367.3L462.4,367.4L462.8,369.8L466.0,371.3L467.3,368.1L470.2,365.4L477.8,363.8L477.8,360.3L480.6,359.0L484.7,360.9L488.3,359.7L489.8,358.5L488.3,355.3L490.8,355.1L493.3,356.4L497.9,351.7L498.1,349.3L499.7,349.2L502.0,346.0L501.8,340.8L504.1,341.3L504.5,337.2L502.9,336.6L505.8,332.0L505.7,330.7L501.8,327.7L501.4,323.5L499.8,323.3L501.0,323.1L502.4,323.7L503.1,322.2L501.2,319.1L503.6,317.0L505.8,316.0L508.4,317.4L507.3,314.5L508.0,311.8L506.0,311.1L502.5,305.6L503.1,303.0L513.5,295.4L512.5,292.1L509.4,289.7L511.3,283.9L509.7,279.3L506.6,275.2L507.7,272.3L510.5,275.1L513.5,274.5L517.0,276.1L521.2,273.1L527.6,275.2L527.7,278.9L529.0,278.1L533.0,280.9L534.0,283.0L539.9,281.8L541.8,283.2L544.1,282.8L549.3,285.8L551.4,285.8L551.9,288.0L551.2,294.0L547.8,298.3L548.5,299.5L546.2,298.0L545.6,300.0L546.6,302.3L543.9,303.8L539.3,303.7L534.6,300.3L533.2,293.8L530.5,292.3L528.7,294.1L530.5,294.9L529.1,296.6L525.1,295.4L516.9,289.3L516.4,287.2L514.8,291.1L518.4,292.0L519.2,294.5L516.5,295.4L515.2,298.2L511.1,300.1L509.0,305.8L510.2,309.3L513.2,309.6L517.7,312.7L517.5,314.5L522.4,317.5L526.3,316.4L527.0,320.5L530.6,322.9L528.7,325.3L517.3,324.8L517.7,327.9L516.3,330.8L513.5,332.8L512.2,331.0L510.2,332.2L511.0,333.6L507.4,338.0L510.0,342.7L520.3,348.0L523.2,347.5L524.6,349.3L524.8,352.1L523.6,353.5L524.7,355.1L524.4,358.3L521.4,359.6L520.4,363.4L521.1,365.9L525.2,370.4L523.9,375.9L526.3,375.3L529.5,376.6L527.4,382.8L530.1,386.0L528.8,388.3L530.0,389.9L529.1,391.1L530.9,396.8L530.8,400.5L532.5,402.6L532.5,409.3L531.1,410.5L529.3,409.5L527.3,410.0L525.2,409.1L525.2,407.6L519.6,411.8L517.5,410.1L516.2,410.6L513.2,415.0L514.1,416.5L513.0,419.5L510.3,409.1L512.0,405.3L508.8,401.2L506.7,401.6L507.1,402.7L510.0,403.1L511.3,405.2Z","Dadra & Nagar Haveli and Daman & Diu":"M146.0,451.5L149.0,452.5L148.2,454.8L150.1,456.8L148.3,457.7L144.1,456.6L143.4,452.3L146.0,451.5Z","Puducherry":"","Lakshadweep":"M146.0,765.1L145.4,764.8L146.3,764.8L146.0,765.1Z","Arunachal Pradesh":"M619.5,277.2L616.8,279.1L606.0,280.8L605.7,277.8L604.0,276.3L604.9,270.8L603.6,265.3L594.9,265.4L592.6,261.5L594.2,259.6L594.3,257.1L599.0,256.9L600.4,259.2L609.4,255.6L610.7,257.7L616.8,256.6L620.9,252.6L619.2,250.2L619.8,248.7L627.9,244.1L632.7,243.1L631.7,240.7L634.1,238.9L635.5,235.3L650.6,233.4L651.4,230.1L655.3,227.2L658.5,222.1L661.9,220.1L665.0,220.0L667.9,217.5L672.5,221.2L681.7,223.2L682.1,224.7L686.6,225.1L688.6,220.5L701.9,214.0L705.6,219.9L709.2,219.4L708.1,221.6L705.0,222.5L703.3,224.7L705.7,227.5L708.1,225.2L710.2,225.1L714.4,231.3L713.8,233.3L711.1,234.2L711.6,235.5L707.6,238.7L708.7,239.4L707.3,242.0L715.7,240.0L718.5,242.5L721.3,242.1L723.7,243.9L726.0,242.6L732.8,246.3L731.7,250.5L733.2,251.9L732.9,254.4L729.9,254.6L721.5,262.0L720.5,261.6L722.3,264.8L721.5,266.2L727.8,274.3L725.3,275.6L720.4,273.0L721.0,271.2L718.9,269.0L714.3,268.5L712.0,270.2L707.1,270.3L701.9,272.2L698.4,276.7L694.9,277.6L693.6,280.7L692.1,280.5L690.2,282.8L687.5,282.7L685.9,285.8L682.9,287.1L681.2,286.2L680.3,277.1L686.4,274.5L687.3,271.7L688.5,271.1L690.9,272.0L696.3,270.9L700.1,268.4L696.9,266.6L696.7,263.8L694.4,261.8L694.3,258.9L699.0,253.0L695.3,252.7L690.2,253.1L684.7,256.2L683.0,255.4L678.9,256.8L662.6,263.5L657.2,261.5L656.6,262.2L657.9,264.5L651.3,269.4L646.8,274.1L647.3,276.2L643.4,278.8L627.9,280.2L624.6,278.0L619.5,277.2Z","Assam":"M616.1,351.4L613.7,352.0L613.4,349.5L608.5,348.5L609.5,346.6L608.4,342.7L610.4,336.8L608.9,332.6L610.4,332.2L612.5,333.8L615.7,333.1L613.5,329.2L614.8,327.2L618.2,327.0L622.3,322.6L617.0,317.9L619.2,315.1L617.3,315.6L613.9,311.2L608.7,311.4L606.9,312.5L606.9,308.7L608.1,306.4L607.2,304.7L609.8,302.3L600.0,302.9L599.0,300.9L596.6,303.1L596.5,304.9L593.1,303.1L589.9,308.1L587.2,308.1L584.5,311.2L582.7,307.9L579.3,308.5L579.7,306.9L577.9,305.3L570.2,306.1L565.5,304.2L557.9,305.0L552.6,311.1L555.5,314.2L552.0,315.7L551.4,317.9L552.2,313.9L550.8,310.9L552.3,305.4L547.8,298.3L551.2,294.0L551.6,284.9L559.7,283.9L560.6,281.7L565.1,280.4L572.3,284.0L580.4,283.7L581.5,282.6L587.2,283.7L589.0,282.1L591.1,283.4L596.1,282.8L600.7,280.1L604.6,282.0L606.0,280.8L616.8,279.1L619.5,277.2L624.6,278.0L627.9,280.2L643.4,278.8L647.3,276.2L646.8,274.1L651.3,269.4L657.9,264.5L656.6,262.2L657.2,261.5L662.6,263.5L678.9,256.8L688.0,255.1L690.2,253.1L699.0,253.0L694.3,258.9L694.4,261.8L696.7,263.8L696.9,266.6L700.1,268.4L696.3,270.9L687.3,271.7L686.4,274.5L675.2,280.2L673.8,279.3L669.2,284.5L665.6,285.1L661.2,288.1L661.1,290.1L659.0,292.0L658.3,289.4L651.5,299.5L651.0,306.1L648.6,308.0L646.1,307.9L646.1,304.8L643.8,306.5L644.3,307.8L635.3,315.9L638.3,318.7L638.7,322.0L636.5,323.7L631.6,335.2L630.0,334.9L629.5,341.1L627.6,345.2L622.5,345.1L621.6,342.6L619.9,346.8L618.3,347.3L616.1,351.4Z","Nagaland":"M635.3,315.9L644.3,307.8L643.8,306.5L646.1,304.8L646.1,307.9L648.6,308.0L651.0,306.1L651.5,299.5L658.3,289.4L659.0,292.0L661.1,290.1L661.2,288.1L665.6,285.1L669.2,284.5L673.8,279.3L675.2,280.2L680.3,277.1L681.2,286.2L677.1,292.3L678.5,294.9L678.4,301.2L680.1,302.1L675.9,306.8L676.6,310.7L671.0,317.1L667.7,318.4L664.8,316.9L664.8,314.9L663.2,314.3L659.2,316.9L651.6,315.2L645.8,316.0L646.8,317.9L642.0,324.8L639.5,323.7L638.3,318.7L635.3,315.9Z","Meghalaya":"M587.7,323.9L565.7,326.2L554.4,322.2L551.0,322.3L550.5,319.9L552.0,315.7L555.5,314.2L552.6,311.1L557.9,305.0L565.5,304.2L570.2,306.1L577.9,305.3L579.7,306.9L579.3,308.5L582.7,307.9L584.5,311.2L587.2,308.1L589.9,308.1L593.1,303.1L596.5,304.9L596.6,303.1L599.0,300.9L600.0,302.9L609.8,302.3L607.2,304.7L608.1,306.4L606.9,308.7L606.9,312.5L608.7,311.4L613.9,311.2L617.3,315.6L619.2,315.1L617.0,317.9L622.3,322.6L618.2,327.0L614.8,327.2L613.5,329.2L605.2,325.2L597.1,325.5L594.6,326.7L593.6,325.4L591.0,326.5L588.3,325.4L587.7,323.9Z","Manipur":"M639.5,357.5L636.5,353.7L633.4,355.4L626.8,353.0L630.0,334.9L631.6,335.2L636.5,323.7L638.7,322.0L642.0,324.8L646.8,317.9L645.8,316.0L651.6,315.2L654.1,316.4L656.1,315.7L656.5,317.1L661.5,316.0L663.2,314.3L664.8,314.9L664.8,316.9L667.7,318.4L665.3,324.4L667.2,327.0L669.2,327.0L669.4,329.0L666.6,336.3L660.5,343.1L661.3,344.6L655.2,359.9L651.9,357.9L646.8,357.9L645.2,355.8L642.4,355.7L639.5,357.5Z","Tripura":"M597.4,375.0L598.6,380.3L596.5,382.3L593.0,382.9L590.1,375.2L586.8,374.8L585.3,369.3L583.0,366.5L582.9,362.7L584.6,362.9L584.4,359.1L586.3,356.0L594.3,353.3L594.9,351.1L597.3,352.3L597.1,349.6L601.4,353.1L601.4,347.2L606.6,344.9L607.0,342.3L608.4,342.7L609.5,346.6L608.5,348.5L611.2,351.2L611.1,358.2L609.4,360.8L609.6,363.1L606.1,362.9L604.7,365.3L601.7,364.0L602.6,369.5L601.8,370.9L598.5,368.6L599.3,372.3L597.4,375.0Z","Andaman & Nicobar Islands":"M613.7,705.6L612.3,699.6L615.8,696.6L617.6,702.2L616.0,706.4L613.7,705.6ZM620.3,668.6L622.3,670.9L621.4,675.7L619.2,676.9L621.3,678.1L619.3,680.8L616.5,675.2L616.1,670.2L617.7,671.9L619.2,662.4L621.5,663.3L620.9,665.8L622.1,666.7L620.3,668.6ZM646.6,804.0L642.9,794.6L643.6,793.0L647.5,791.7L649.4,799.2L648.5,803.3L646.6,804.0ZM620.6,660.1L620.8,646.2L622.4,645.5L623.5,631.8L627.1,627.0L628.4,628.2L628.2,639.8L626.4,641.5L625.2,640.5L623.9,644.5L625.5,645.0L626.7,653.8L624.3,659.3L620.6,660.1Z","Uttar Pradesh":"M283.7,340.4L286.9,339.3L288.6,341.7L287.7,344.0L289.5,345.1L285.0,351.3L277.7,345.8L275.0,349.1L273.5,347.5L274.5,346.2L272.1,344.3L272.2,338.7L269.7,333.2L273.9,329.7L273.7,327.8L276.4,326.8L273.8,318.7L275.1,318.4L276.5,315.1L281.5,315.4L285.1,313.9L284.0,311.2L290.0,301.8L289.6,298.8L293.0,295.2L293.0,292.5L289.5,288.9L289.9,286.5L284.4,284.0L278.7,284.1L274.2,281.4L270.9,282.3L272.1,280.0L269.2,279.3L268.3,280.7L265.3,280.9L259.8,279.7L252.4,284.7L251.1,282.4L257.4,278.7L254.8,275.1L257.3,273.5L257.0,271.7L249.7,264.3L250.0,261.0L248.3,257.2L254.2,253.9L254.5,252.2L252.9,249.8L253.6,242.3L248.6,237.2L249.7,236.1L246.5,231.4L247.1,228.1L244.9,221.6L244.0,209.5L245.1,208.1L244.4,206.4L246.9,201.6L255.5,192.0L255.3,189.6L257.3,189.6L258.9,191.4L264.6,193.7L260.8,197.5L258.7,203.0L261.2,208.5L263.8,207.4L266.1,210.9L273.7,205.2L277.9,207.1L280.5,211.5L287.9,214.6L283.9,219.1L286.7,220.6L287.9,222.9L290.6,221.6L293.4,223.0L293.1,224.2L295.9,226.2L299.5,227.2L299.9,228.7L303.8,230.0L309.5,228.9L312.7,233.2L314.5,232.5L315.4,230.2L316.7,230.5L320.5,233.5L321.4,235.6L324.9,235.7L327.2,234.0L329.9,235.3L331.1,237.2L343.1,242.7L345.7,246.8L348.2,247.5L349.5,249.8L359.3,255.7L361.1,254.0L363.7,254.0L372.9,260.3L379.1,259.7L380.2,262.7L379.7,265.3L390.7,266.2L393.2,269.3L396.0,267.2L395.7,265.5L401.0,265.8L406.2,268.4L410.1,273.4L409.4,275.8L411.5,276.8L411.8,280.9L416.5,283.1L418.2,286.2L420.4,287.6L417.1,288.4L413.0,287.6L411.5,289.6L408.3,290.9L408.1,292.3L414.1,294.2L414.6,297.1L412.4,298.3L411.6,301.4L425.4,309.4L424.8,310.9L423.7,312.3L418.4,310.6L418.0,312.6L415.3,312.6L413.7,311.0L406.6,318.7L394.6,325.2L395.7,335.7L398.0,336.8L398.8,341.7L395.8,343.0L396.0,349.0L394.1,353.3L391.2,358.0L388.4,359.3L384.9,359.3L378.1,352.6L380.0,351.7L380.6,346.3L379.3,346.1L381.3,341.0L380.7,339.3L379.1,339.4L378.2,337.8L372.1,339.0L372.1,340.5L369.2,340.2L367.3,335.3L360.7,334.0L359.5,330.3L354.0,328.4L353.0,325.8L351.0,325.1L347.4,326.5L344.6,325.7L344.3,328.6L340.8,332.5L336.6,330.8L334.6,331.8L334.2,325.1L331.3,326.9L331.1,328.3L328.1,327.6L325.9,328.9L325.3,330.6L323.5,328.2L322.1,329.6L320.2,329.3L324.2,325.4L323.6,323.7L321.3,322.5L321.4,319.9L314.6,321.1L310.3,324.9L310.0,327.4L303.4,325.5L301.6,327.9L299.5,327.2L300.2,323.4L298.2,321.4L296.5,321.5L297.5,326.1L292.9,327.1L291.2,324.2L286.8,325.9L288.8,321.0L286.8,319.9L288.3,317.2L286.9,316.6L283.2,318.1L284.3,320.8L281.5,320.0L278.0,322.8L281.0,328.1L280.8,331.1L284.1,333.6L283.7,340.4Z","Rajasthan":"M181.3,379.8L178.4,379.0L176.8,380.4L175.1,377.2L172.2,377.4L172.5,375.0L168.1,372.1L166.5,373.3L165.0,370.9L160.1,370.3L160.8,365.8L158.8,365.0L157.6,366.2L153.9,360.8L154.8,354.9L152.6,354.6L150.9,355.9L146.6,350.9L148.6,346.7L146.8,345.7L147.1,343.0L145.0,343.5L144.0,346.6L138.4,346.4L137.4,343.9L133.4,343.0L132.9,345.1L129.0,339.5L124.9,339.8L122.3,337.4L112.6,339.3L108.3,338.3L103.7,339.9L99.4,338.4L95.2,331.6L94.1,326.1L88.7,319.6L88.9,312.4L87.3,311.4L82.0,312.5L79.1,311.4L75.0,305.6L74.7,301.8L76.8,297.5L76.8,289.6L74.0,288.4L67.6,288.4L60.8,284.7L60.2,283.1L62.7,273.2L73.3,263.4L75.8,257.0L81.6,251.7L86.8,251.7L89.0,254.0L90.9,259.2L94.5,259.5L101.7,256.2L112.8,255.1L117.9,253.1L118.0,254.2L119.1,248.8L125.9,241.7L128.1,234.6L130.6,231.6L143.7,225.3L151.8,211.1L154.6,201.4L164.4,198.2L168.3,195.0L168.5,196.9L166.6,200.7L181.8,201.5L182.7,203.4L180.8,204.8L180.7,206.6L184.0,206.4L183.0,211.3L184.1,212.2L183.6,216.5L188.1,216.6L189.6,215.5L191.7,216.6L192.3,218.7L194.5,218.5L195.2,220.0L203.0,219.2L202.7,224.4L206.0,226.7L204.7,227.9L206.8,236.1L214.8,241.8L218.7,246.2L216.7,253.7L215.7,253.9L216.7,255.8L221.6,257.2L222.8,256.3L221.2,252.0L223.6,250.2L225.0,251.6L226.0,248.7L224.9,247.3L230.4,251.1L230.3,252.6L233.5,251.6L233.9,249.7L237.9,246.2L240.7,248.4L238.9,258.9L240.9,261.0L242.5,256.6L248.3,257.2L250.0,261.0L249.7,264.3L257.0,271.7L257.3,273.5L254.8,275.1L257.4,278.7L251.1,282.4L252.4,284.7L259.8,279.7L265.3,280.9L268.3,280.7L269.2,279.3L272.1,280.0L270.9,282.3L268.3,283.3L267.7,286.4L263.3,286.8L261.3,289.7L252.0,293.5L248.0,297.0L239.1,301.6L236.4,305.4L230.5,308.2L229.8,316.3L233.5,320.9L240.1,322.6L243.5,321.2L246.9,321.7L249.0,318.8L250.3,319.3L251.4,324.2L251.0,326.9L249.0,327.9L245.7,327.1L243.5,328.5L238.5,328.9L238.1,331.0L240.3,333.4L236.8,335.0L238.0,336.6L240.2,336.2L242.3,337.6L243.1,341.5L240.9,344.0L238.1,341.7L237.1,342.1L237.4,346.7L239.6,350.5L238.6,352.6L236.7,352.9L233.7,351.0L232.9,349.0L231.1,350.5L225.1,349.6L220.2,350.9L220.4,353.7L218.4,354.2L215.8,358.6L212.4,359.4L209.9,362.5L204.4,358.1L205.8,355.3L210.2,356.9L213.4,354.5L211.3,352.2L212.9,349.6L210.8,345.7L212.2,344.2L215.0,344.5L215.4,341.8L212.2,336.2L207.9,338.2L197.7,336.5L201.7,329.5L197.8,329.0L196.0,330.8L196.0,333.2L194.2,334.0L192.2,333.7L190.9,331.8L189.0,332.6L189.9,335.2L192.7,336.1L193.1,337.9L190.5,339.5L188.5,336.8L188.1,340.7L185.9,343.4L189.7,345.0L187.3,349.7L191.0,350.5L190.3,351.5L192.6,354.9L190.9,359.2L191.8,362.1L189.5,367.6L182.9,371.0L181.9,373.6L186.8,376.2L181.3,379.8Z","NCT Delhi":"M246.5,231.4L249.7,236.1L248.6,237.2L249.8,238.4L245.7,241.4L243.8,238.7L241.6,237.9L238.7,238.9L237.8,237.7L240.8,233.8L240.7,230.9L246.7,229.8L246.5,231.4Z","Haryana":"M218.7,246.2L214.8,241.8L206.8,236.1L204.7,227.9L206.0,226.7L202.7,224.4L203.0,219.2L195.2,220.0L194.5,218.5L192.3,218.7L191.7,216.6L189.6,215.5L188.1,216.6L183.6,216.5L184.1,212.2L183.0,211.3L184.0,206.4L180.7,206.6L180.8,204.8L182.7,203.4L181.8,201.5L184.7,202.3L186.1,200.6L188.7,200.2L193.2,203.4L197.8,204.0L199.1,206.5L197.3,208.6L200.5,211.4L201.6,207.9L204.3,205.0L207.2,206.7L212.0,204.6L216.1,207.0L218.5,206.6L219.7,204.9L222.5,204.1L221.5,201.9L223.5,197.7L227.2,196.2L228.6,197.4L231.3,197.3L232.8,196.1L230.9,193.7L234.5,191.5L235.4,188.8L239.3,188.9L239.7,184.1L237.3,182.3L237.8,178.3L236.1,176.5L239.4,176.6L242.1,180.5L245.5,182.2L245.6,184.3L244.4,185.3L246.5,187.3L251.3,188.9L254.1,188.4L255.5,190.1L255.5,192.0L246.9,201.6L244.4,206.4L244.9,221.6L247.1,228.1L246.7,229.8L240.1,231.2L240.8,233.8L237.8,237.7L238.7,238.9L241.6,237.9L243.8,238.7L245.7,241.4L249.8,238.4L253.6,242.3L252.9,249.8L254.5,252.2L254.2,253.9L248.3,257.2L242.5,256.6L240.9,261.0L238.9,258.9L240.7,248.4L237.9,246.2L233.9,249.7L233.5,251.6L230.3,252.6L230.4,251.1L224.9,247.3L226.0,248.7L225.0,251.6L223.6,250.2L221.2,252.0L222.8,256.3L221.6,257.2L216.7,255.8L215.7,253.9L216.7,253.7L218.7,246.2Z","Sikkim":"M528.9,269.6L524.2,274.4L519.6,273.4L517.0,276.1L513.5,274.5L509.1,274.5L507.7,272.3L507.8,265.5L511.5,257.5L511.7,253.5L521.7,249.4L525.0,250.0L527.1,252.2L528.2,255.7L527.2,260.6L525.2,263.3L525.9,267.1L528.9,269.6Z","Bihar":"M435.1,345.2L432.1,346.3L431.7,343.9L429.6,342.2L424.4,345.6L422.3,348.5L418.5,345.7L418.2,343.2L412.5,342.1L410.5,339.3L407.2,342.1L398.3,342.3L399.0,339.2L398.0,336.8L395.7,335.7L394.6,325.2L406.6,318.7L413.7,311.0L415.3,312.6L418.0,312.6L418.4,310.6L423.7,312.3L425.4,309.4L411.6,301.4L412.4,298.3L414.6,297.1L414.1,294.2L408.1,292.3L408.3,290.9L411.5,289.6L413.0,287.6L417.1,288.4L420.4,287.6L418.2,286.2L416.5,283.1L411.8,280.9L411.5,276.8L409.4,275.8L410.1,273.4L406.2,266.9L410.7,266.6L412.6,264.5L416.5,266.3L417.0,267.7L425.3,269.1L426.9,272.2L425.8,276.7L433.5,279.0L435.1,281.2L439.0,281.4L438.7,283.2L440.6,284.4L442.5,284.7L449.9,281.8L452.0,282.9L451.8,286.4L455.1,289.2L459.2,286.7L471.6,290.0L476.0,292.9L479.0,292.5L483.7,289.4L486.5,293.5L493.8,292.5L496.8,294.1L503.1,292.6L507.6,293.8L509.2,292.1L509.4,289.7L512.5,292.1L513.5,295.4L503.1,303.0L502.5,305.6L506.0,311.1L508.0,311.8L507.3,314.5L508.4,317.4L505.8,316.0L501.2,319.1L503.1,322.2L502.4,323.7L496.0,321.4L494.2,324.9L490.5,324.2L489.8,327.7L486.1,329.5L486.4,333.1L485.3,333.8L483.9,339.7L481.5,339.6L480.5,341.7L476.7,339.9L474.3,341.1L473.3,340.2L470.6,342.7L469.4,346.3L465.2,343.8L465.8,341.4L461.7,340.3L461.6,337.8L459.8,335.7L456.9,336.8L452.2,334.7L450.7,340.6L447.5,342.1L441.4,342.4L436.5,346.3L435.1,345.2Z","Jharkhand":"M459.3,403.0L456.0,408.4L453.3,408.4L452.5,406.0L450.9,406.5L444.0,403.7L440.2,407.7L435.1,404.8L436.3,401.3L436.1,395.2L428.4,397.1L423.2,396.8L420.6,398.8L417.3,399.1L410.6,394.2L412.3,391.4L416.0,390.0L419.9,383.8L419.3,382.5L414.6,382.5L411.8,379.0L412.1,373.3L409.4,371.9L410.7,365.5L408.8,367.2L404.9,366.1L403.2,360.6L400.0,359.5L396.6,353.7L394.1,353.3L396.0,349.0L395.8,343.0L407.2,342.1L410.5,339.3L412.5,342.1L418.2,343.2L418.5,345.7L422.3,348.5L424.4,345.6L429.6,342.2L431.7,343.9L432.1,346.3L435.1,345.2L436.5,346.3L443.4,341.6L447.5,342.1L450.7,340.6L452.2,334.7L456.9,336.8L459.8,335.7L461.6,337.8L461.7,340.3L465.8,341.4L465.2,343.8L469.4,346.3L470.6,342.7L473.3,340.2L474.3,341.1L476.7,339.9L480.5,341.7L481.5,339.6L483.9,339.7L485.3,333.8L486.4,333.1L486.1,329.5L489.8,327.7L490.5,324.2L494.2,324.9L496.0,321.4L499.3,321.9L499.8,323.3L501.4,323.5L501.8,327.7L505.7,330.7L505.8,332.0L502.9,336.6L504.5,337.2L504.1,341.3L501.8,340.8L502.0,346.0L499.7,349.2L498.1,349.3L497.9,351.7L493.3,356.4L490.8,355.1L488.3,355.3L489.8,358.5L488.3,359.7L484.7,360.9L480.6,359.0L477.8,360.3L477.8,363.8L470.2,365.4L467.3,368.1L466.0,371.3L462.8,369.8L462.4,367.4L455.8,369.4L455.7,372.9L454.2,375.0L455.8,377.6L459.6,378.2L464.3,382.1L470.6,382.1L469.0,383.9L468.6,387.4L474.0,390.9L474.4,393.0L477.0,393.0L477.8,395.3L477.0,396.9L478.9,397.6L476.1,402.4L470.5,399.0L468.9,399.7L467.2,398.9L465.3,396.3L461.4,395.3L460.1,393.5L457.6,395.3L459.2,399.3L457.9,401.5L459.3,403.0Z","Ladakh":"M245.1,122.6L239.9,121.3L229.5,108.6L224.8,107.1L223.7,102.7L221.5,101.3L217.9,96.1L214.1,96.6L209.8,91.8L203.2,88.6L200.9,84.7L201.8,82.2L199.0,79.7L186.8,78.5L182.7,76.0L176.8,75.5L182.8,73.3L183.3,69.8L180.8,67.1L175.2,69.0L164.2,63.6L162.6,64.4L161.9,60.7L164.1,58.0L163.9,56.4L160.3,55.1L154.8,55.3L148.3,51.3L148.7,48.1L147.1,47.1L137.5,48.3L133.7,46.2L135.2,43.3L133.7,42.1L135.2,37.2L139.6,35.9L142.2,33.9L142.1,32.5L144.8,32.1L148.0,26.2L155.6,24.6L161.9,26.2L164.5,25.4L165.8,23.5L162.4,22.3L161.6,20.3L166.2,20.8L170.4,23.0L172.5,22.2L173.2,20.5L175.4,21.0L186.2,16.0L186.8,17.5L189.4,17.4L191.3,20.5L193.6,18.6L195.5,19.5L198.3,17.1L201.5,16.6L204.6,22.9L208.1,24.2L211.3,28.7L219.2,31.7L223.5,35.0L225.8,34.7L228.9,38.5L232.8,39.2L236.6,42.8L234.8,45.2L236.9,48.1L239.9,49.6L244.2,49.3L245.5,50.9L251.8,53.0L252.7,55.1L252.0,56.6L256.2,57.8L261.2,56.7L263.2,57.9L264.7,55.1L268.9,56.0L270.4,52.6L275.8,49.6L278.1,50.2L281.6,47.7L288.7,46.8L292.9,48.3L294.9,44.6L298.8,44.1L299.9,46.7L310.7,49.7L313.8,48.2L316.4,52.3L320.8,54.2L321.7,57.8L318.2,65.7L318.0,69.9L315.5,74.5L315.5,77.4L310.4,78.1L308.4,79.7L308.8,83.4L301.9,83.7L304.0,88.7L301.6,92.5L298.2,95.1L290.2,94.7L287.4,96.6L292.3,106.0L287.6,107.1L289.4,113.3L300.6,115.3L298.8,119.8L299.9,123.0L304.8,128.8L300.5,134.2L297.4,132.6L293.0,135.6L292.4,138.0L289.2,139.2L286.2,136.6L283.9,131.0L281.5,131.0L275.2,134.3L273.1,133.1L275.4,131.9L274.9,128.3L266.0,131.9L263.6,130.0L264.0,129.1L259.3,122.8L252.8,125.7L251.2,125.0L249.6,126.8L245.1,122.6Z","Jammu & Kashmir":"M190.1,135.3L185.5,135.2L184.5,132.0L185.0,127.5L178.3,128.3L168.1,122.3L160.1,119.6L160.8,116.6L158.6,113.1L160.0,107.1L158.5,105.9L159.2,99.0L157.6,96.4L156.9,90.3L154.4,86.3L155.8,81.1L159.9,80.8L163.1,75.5L168.2,74.1L170.9,71.6L170.7,68.8L172.7,67.5L175.2,69.0L180.8,67.1L183.3,69.8L182.8,73.3L176.8,75.5L182.7,76.0L186.8,78.5L199.0,79.7L201.8,82.2L200.9,84.7L203.2,88.6L209.8,91.8L214.1,96.6L217.9,96.1L221.5,101.3L223.7,102.7L224.8,107.1L229.5,108.6L236.0,115.5L235.4,117.3L227.2,117.1L216.3,125.3L213.7,123.8L212.6,125.0L215.5,128.5L215.4,131.5L209.8,137.8L205.6,140.0L195.8,136.0L191.9,136.4L190.5,134.4L190.1,135.3Z","Himachal Pradesh":"M239.4,176.6L238.3,177.3L232.4,174.0L232.9,168.5L231.5,166.9L229.3,167.0L226.8,163.2L224.3,166.0L222.2,166.1L217.8,157.6L215.2,149.3L207.7,145.8L209.2,144.4L208.6,141.4L215.7,137.7L213.4,134.7L215.4,131.5L215.5,128.5L212.6,125.0L213.7,123.8L216.3,125.3L227.2,117.1L235.4,117.3L236.0,115.5L239.9,121.3L245.1,122.6L249.6,126.8L251.2,125.0L252.8,125.7L259.3,122.8L264.0,129.1L263.6,130.0L266.0,131.9L274.9,128.3L275.4,131.9L273.1,133.1L278.5,137.2L277.2,140.7L280.3,142.4L279.8,144.0L284.4,148.2L282.6,153.8L286.0,158.2L283.3,160.0L284.8,162.5L283.7,164.5L284.7,166.1L286.8,166.6L289.9,171.1L287.0,171.4L285.1,168.8L280.3,168.0L277.3,168.8L274.5,166.5L264.8,169.5L262.3,171.1L260.9,177.8L258.4,180.1L261.1,186.8L255.5,190.1L254.1,188.4L251.3,188.9L246.5,187.3L244.4,185.3L245.6,184.3L245.5,182.2L242.1,180.5L239.4,176.6Z","Punjab":"M204.3,205.0L201.6,207.9L200.5,211.4L197.3,208.6L199.1,206.5L197.8,204.0L193.2,203.4L188.7,200.2L186.1,200.6L184.7,202.3L166.6,200.7L168.5,196.9L168.2,192.9L166.2,190.6L177.9,176.8L186.2,172.1L185.7,170.6L181.4,170.5L182.4,164.5L184.8,162.1L181.3,154.7L182.6,154.3L182.9,152.2L191.1,146.8L197.4,146.2L202.4,143.2L201.5,139.0L205.6,140.0L213.4,134.7L215.7,137.7L208.6,141.4L209.2,144.4L207.7,145.8L215.2,149.3L217.8,157.6L222.2,166.1L224.3,166.0L226.8,163.2L229.3,167.0L231.5,166.9L232.9,168.5L232.4,174.0L237.8,178.3L237.6,180.4L234.5,180.2L235.2,182.0L239.7,184.1L239.3,188.9L235.4,188.8L234.5,191.5L230.9,193.7L232.8,196.1L231.3,197.3L228.6,197.4L227.2,196.2L223.5,197.7L221.5,201.9L222.5,204.1L219.7,204.9L218.5,206.6L216.1,207.0L212.0,204.6L207.2,206.7L204.3,205.0Z","Uttarakhand":"M280.5,211.5L277.9,207.1L273.7,205.2L266.1,210.9L263.8,207.4L261.2,208.5L258.7,203.0L260.8,197.5L264.6,193.7L258.9,191.4L257.3,189.6L255.3,189.6L261.1,186.8L258.4,180.1L260.9,177.8L262.3,171.1L273.1,166.6L277.3,168.8L280.3,168.0L285.1,168.8L287.0,171.4L289.9,171.1L286.8,166.6L291.4,162.1L293.0,162.7L297.4,170.5L304.2,175.7L310.6,174.7L316.3,179.5L318.0,179.0L319.8,180.6L319.0,184.8L326.9,188.3L328.5,187.7L339.0,194.5L336.2,195.5L330.1,201.1L328.3,201.1L327.2,203.9L322.7,206.7L323.7,210.5L319.7,214.4L321.5,218.1L320.1,221.1L317.3,223.3L314.5,232.5L312.7,233.2L309.5,228.9L303.8,230.0L295.9,226.2L293.1,224.2L293.4,223.0L290.6,221.6L287.9,222.9L286.7,220.6L283.9,219.1L287.9,214.6L280.5,211.5Z","Chandigarh":"M235.2,182.0L234.5,180.2L237.6,180.4L237.3,182.3L235.2,182.0Z"};
+const STATES = [{"name": "Andhra Pradesh", "region": "South", "pop": 49577103, "cur": 25}, {"name": "Arunachal Pradesh", "region": "Northeast", "pop": 1383727, "cur": 2}, {"name": "Assam", "region": "Northeast", "pop": 31205576, "cur": 14}, {"name": "Bihar", "region": "North", "pop": 104099452, "cur": 40}, {"name": "Chhattisgarh", "region": "Central", "pop": 25545198, "cur": 11}, {"name": "Goa", "region": "West", "pop": 1458545, "cur": 2}, {"name": "Gujarat", "region": "West", "pop": 60439692, "cur": 26}, {"name": "Haryana", "region": "North", "pop": 25351462, "cur": 10}, {"name": "Himachal Pradesh", "region": "North", "pop": 6864602, "cur": 4}, {"name": "Jharkhand", "region": "East", "pop": 32988134, "cur": 14}, {"name": "Karnataka", "region": "South", "pop": 61095297, "cur": 28}, {"name": "Kerala", "region": "South", "pop": 33406061, "cur": 20}, {"name": "Madhya Pradesh", "region": "Central", "pop": 72626809, "cur": 29}, {"name": "Maharashtra", "region": "West", "pop": 112374333, "cur": 48}, {"name": "Manipur", "region": "Northeast", "pop": 2855794, "cur": 2}, {"name": "Meghalaya", "region": "Northeast", "pop": 2966889, "cur": 2}, {"name": "Mizoram", "region": "Northeast", "pop": 1097206, "cur": 1}, {"name": "Nagaland", "region": "Northeast", "pop": 1978502, "cur": 1}, {"name": "Odisha", "region": "East", "pop": 41974218, "cur": 21}, {"name": "Punjab", "region": "North", "pop": 27743338, "cur": 13}, {"name": "Rajasthan", "region": "North", "pop": 68548437, "cur": 25}, {"name": "Sikkim", "region": "UT/Other", "pop": 610577, "cur": 1}, {"name": "Tamil Nadu", "region": "South", "pop": 72147030, "cur": 39}, {"name": "Telangana", "region": "South", "pop": 35003674, "cur": 17}, {"name": "Tripura", "region": "Northeast", "pop": 3673917, "cur": 2}, {"name": "Uttar Pradesh", "region": "North", "pop": 199812341, "cur": 80}, {"name": "Uttarakhand", "region": "North", "pop": 10086292, "cur": 5}, {"name": "West Bengal", "region": "East", "pop": 91276115, "cur": 42}, {"name": "Jammu & Kashmir", "region": "North", "pop": 12267032, "cur": 5}, {"name": "Ladakh", "region": "North", "pop": 274289, "cur": 1}, {"name": "NCT Delhi", "region": "North", "pop": 16787941, "cur": 7}, {"name": "Puducherry", "region": "UT/Other", "pop": 1247953, "cur": 1}, {"name": "Chandigarh", "region": "North", "pop": 1055450, "cur": 1}, {"name": "Andaman & Nicobar Islands", "region": "UT/Other", "pop": 380581, "cur": 1}, {"name": "Dadra & Nagar Haveli and Daman & Diu", "region": "UT/Other", "pop": 586956, "cur": 2}, {"name": "Lakshadweep", "region": "UT/Other", "pop": 64473, "cur": 1}];
+const REGION_SOUTH = ['Andhra Pradesh','Karnataka','Kerala','Tamil Nadu','Telangana'];
+const totalPop = STATES.reduce((a,s)=>a+s.pop,0);
+
+/* ---------- countdown to 14 Sep 2026 ---------- */
+(function(){
+  const target = new Date('2026-09-14T00:00:00+05:30').getTime();
+  function tick(){
+    const now=Date.now(); let d=Math.max(0,target-now);
+    const days=Math.floor(d/86400000); d-=days*86400000;
+    const hrs=Math.floor(d/3600000); d-=hrs*3600000;
+    const min=Math.floor(d/60000); d-=min*60000;
+    const sec=Math.floor(d/1000);
+    const P=n=>String(n).padStart(2,'0');
+    const set=(id,v)=>{const e=document.getElementById(id); if(e)e.textContent=v;};
+    set('cd',days); set('ch',P(hrs)); set('cm',P(min)); set('cs',P(sec));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ---------- Hamilton apportionment ---------- */
+function hamilton(weights, seats){
+  const sum=weights.reduce((a,b)=>a+b,0);
+  const q=weights.map(w=>w/sum*seats);
+  const fl=q.map(Math.floor);
+  let rem=seats-fl.reduce((a,b)=>a+b,0);
+  const order=q.map((v,i)=>({i,f:v-Math.floor(v)})).sort((a,b)=>b.f-a.f);
+  for(let k=0;k<rem;k++) fl[order[k].i]++;
+  return fl;
+}
+function apportion(H, protect){ // protect 0..1
+  const g=protect;
+  const floor=STATES.map(s=>Math.round(s.cur*g));
+  let F=floor.reduce((a,b)=>a+b,0);
+  let remaining=H-F;
+  if(remaining<0){
+    const trim=hamilton(floor.map(x=>Math.max(x,0.0001)), -remaining);
+    for(let i=0;i<floor.length;i++) floor[i]=Math.max(0,floor[i]-trim[i]);
+    remaining=0;
+  }
+  const addl = remaining>0 ? hamilton(STATES.map(s=>s.pop), remaining) : STATES.map(_=>0);
+  return floor.map((f,i)=>Math.max(0,f+addl[i]));
+}
+
+/* ---------- LAB ---------- */
+const lab = { house:543, prot:100, sel:null };
+function labColor(shareDelta){
+  // diverging: red (loses share) -> neutral -> blue/purple (gains share)
+  const x=Math.max(-1,Math.min(1, shareDelta*45)); // scale pp to -1..1
+  if(x>=0){ // gain -> toward purple/blue
+    const t=x; return mix([244,242,237],[90,46,158],t);
+  } else {
+    const t=-x; return mix([244,242,237],[216,52,42],t);
+  }
+}
+function mix(a,b,t){return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)})`;}
+
+function renderMap(){
+  const svg=document.getElementById('indiaMap'); if(!svg) return;
+  const H=lab.house, g=lab.prot/100;
+  const seats=apportion(H,g);
+  const idx=Object.fromEntries(STATES.map((s,i)=>[s.name,i]));
+  // shares
+  const curTot=543, newTot=H;
+  const data=STATES.map((s,i)=>{
+    const curShare=s.cur/curTot, newShare=seats[i]/newTot;
+    return {name:s.name, region:s.region, pop:s.pop, cur:s.cur, seats:seats[i],
+            delta:seats[i]-s.cur, curShare, newShare, shareDelta:newShare-curShare};
+  });
+  window._labData=data;
+  // draw paths
+  let html='';
+  data.forEach(d=>{
+    const p=PATHS[d.name]; if(!p) return;
+    const col=labColor(d.shareDelta);
+    const selCls = lab.sel===d.name ? ' sel' : '';
+    html+=`<path class="mapstate${selCls}" d="${p}" fill="${col}" data-name="${d.name}"></path>`;
+  });
+  svg.innerHTML=html;
+  // interactions
+  const tip=document.getElementById('mapTip');
+  svg.querySelectorAll('.mapstate').forEach(el=>{
+    const nm=el.dataset.name; const d=data.find(x=>x.name===nm);
+    el.addEventListener('mousemove',e=>{
+      const r=svg.getBoundingClientRect();
+      tip.style.opacity='1';
+      const dd=(d.delta>0?'+':'')+d.delta, sd=(d.shareDelta>=0?'+':'')+(d.shareDelta*100).toFixed(2)+'pp';
+      tip.innerHTML=`<div class="tn">${nm}</div>${d.cur} → ${d.seats} seats (${dd})<div class="tq">share ${sd}</div>`;
+      let x=e.clientX-r.left+14, y=e.clientY-r.top+14;
+      if(x>r.width-210) x=e.clientX-r.left-200;
+      tip.style.left=x+'px'; tip.style.top=y+'px';
+    });
+    el.addEventListener('mouseleave',()=>{tip.style.opacity='0';});
+    el.addEventListener('click',()=>{ lab.sel=nm; renderMap(); renderSel(); });
+  });
+  renderStats(data);
+  // legend swatch
+  const sw=document.getElementById('legendSw');
+  if(sw && !sw.dataset.done){
+    let s=''; for(let i=0;i<=10;i++){const t=(i/10)*2-1; s+=`<i style="background:${labColor(t/45)}"></i>`;}
+    sw.innerHTML=s; sw.dataset.done='1';
+  }
+}
+function renderStats(data){
+  const H=lab.house;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('stTotal',H);
+  set('stTotalSub', H===543?"today's House":('+'+(H-543)+' vs 543'));
+  set('stGain', data.filter(d=>d.delta>0).length);
+  set('stLoss', data.filter(d=>d.delta<0).length);
+  const southSeats=data.filter(d=>REGION_SOUTH.includes(d.name)).reduce((a,d)=>a+d.seats,0);
+  set('stSouth',(southSeats/H*100).toFixed(1)+'%');
+  const southCur=STATES.filter(s=>REGION_SOUTH.includes(s.name)).reduce((a,s)=>a+s.cur,0);
+  const base=(southCur/543*100);
+  const now=(southSeats/H*100);
+  set('stSouthSub', (now<base-0.05?'▼ ':(now>base+0.05?'▲ ':''))+'5 southern states');
+}
+function renderSel(){
+  const card=document.getElementById('selCard'); if(!card||!lab.sel){return;}
+  const d=(window._labData||[]).find(x=>x.name===lab.sel); if(!d) return;
+  const dc=d.delta>0?'pos':(d.delta<0?'neg':'zero');
+  const sc=d.shareDelta>0?'pos':(d.shareDelta<0?'neg':'zero');
+  card.innerHTML=`<div class="st">${d.name}</div><div class="sr">${d.region} · pop ${(d.pop/1e6).toFixed(1)}M</div>
+    <div class="row"><span>Seats today</span><b>${d.cur}</b></div>
+    <div class="row"><span>Seats, this scenario</span><b>${d.seats} <span class="delta ${dc}">(${d.delta>0?'+':''}${d.delta})</span></b></div>
+    <div class="row"><span>Seat share today</span><b>${(d.curShare*100).toFixed(2)}%</b></div>
+    <div class="row"><span>Seat share, scenario</span><b>${(d.newShare*100).toFixed(2)}%</b></div>
+    <div class="row"><span>Change in voice</span><b class="delta ${sc}">${d.shareDelta>=0?'+':''}${(d.shareDelta*100).toFixed(2)}pp</b></div>`;
+}
+function wireLab(){
+  const house=document.getElementById('house'), prot=document.getElementById('prot');
+  if(!house) return;
+  const upd=()=>{ lab.house=+house.value; lab.prot=+prot.value;
+    document.getElementById('vHouse').textContent=lab.house;
+    document.getElementById('vProt').textContent=lab.prot+'%';
+    clearPreset(); renderMap(); renderSel(); };
+  house.addEventListener('input',upd); prot.addEventListener('input',upd);
+  const presets={ status:[543,100], balanced:[848,100], purepop:[848,0], middle:[700,55], shield:[700,90] };
+  function clearPreset(){document.querySelectorAll('#labPresets button').forEach(b=>b.classList.remove('on'));}
+  document.querySelectorAll('#labPresets button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const [h,p]=presets[btn.dataset.p];
+      house.value=h; prot.value=p; lab.house=h; lab.prot=p;
+      document.getElementById('vHouse').textContent=h;
+      document.getElementById('vProt').textContent=p+'%';
+      clearPreset(); btn.classList.add('on'); renderMap(); renderSel();
+    });
+  });
+  renderMap();
+}
+
+/* ---------- PASSAGE WHIPCOUNT MODEL (Ed001 pattern) ---------- */
+var LS_TOTAL=543, RS_TOTAL=245, LS_FLOOR=272, RS_FLOOR=123;
+var LS_BASE=293, RS_BASE=139, CIRC=351.9;   // NDA committed strength, Apr 2026
+var RAT={
+ bjd:{name:"Biju Janata Dal",seats:"6 Rajya Sabha \u00b7 0 Lok Sabha",stance:"swing",label:"Swing \u2014 form for splitting",
+  why:"On the Waqf Bill the BJD formally opposed, declined to issue a whip, and let members vote their conscience \u2014 five of its seven Rajya Sabha MPs then voted with the government. The same mechanism could deliver its votes here without the party ever endorsing delimitation.",
+  interest:"Out of power in Odisha since 2024, BJD's remaining national leverage is almost entirely its Rajya Sabha bloc. Working relations with the Centre matter for state finances and clearances; open confrontation spends capital it cannot replenish.",
+  state:"But Odisha is not a high-growth state \u2014 on a population-based redraw it gains little and could lose share, so backing the bill has no upside at home and hands the ruling BJP a stick. The pull is toward opposition, whatever the floor tricks allow.",
+  flag:"Watch the whip, not the statement \u2014 but on delimitation, unlike Waqf, BJD's own seat interest points the other way."},
+ ysrcp:{name:"YSR Congress Party",seats:"4 Lok Sabha \u00b7 7 Rajya Sabha",stance:"swing",label:"Bailed the govt before",
+  why:"YSRCP has backed the government on the Citizenship Amendment Bill and One Nation One Election, and broke ranks to help on Waqf. It is the single most \u2018gettable\u2019 opposition bloc on paper.",
+  interest:"Andhra Pradesh is a southern state that controlled its population \u2014 delimitation on 2011 data costs it share directly. Supporting a bill that shrinks your own state's national voice is close to unthinkable, whatever the party's past cooperation.",
+  state:"Governing rival TDP has welcomed the bill, so YSRCP is squeezed: opposing lets TDP frame it as self-interest, but supporting would mean voting to cut Andhra's seats. On delimitation the state arithmetic overrides the usual pliability.",
+  flag:"Modelling YSRCP as gettable on THIS bill is the least defensible assumption in the model. Treat it as a stress test, not a forecast."},
+ aap:{name:"Aam Aadmi Party",seats:"3 Lok Sabha \u00b7 10 Rajya Sabha",stance:"opp",label:"Declared against",
+  why:"AAP sits in the opposition and has whipped against the government's constitutional moves. There is no recent form of it crossing the floor on a structural amendment.",
+  interest:"Its base is Delhi and Punjab \u2014 northern, but AAP's whole brand is anti-BJP positioning, and delimitation is now a marquee opposition-unity issue it will not break.",
+  state:"Breaking ranks would shatter the very opposition coalition AAP needs to stay nationally relevant. The cost at home is the alliance itself.",
+  flag:"Included as a swing only to show it does not move. Treat as committed opposition."},
+ nom:{name:"Nominated members + Independents",seats:"~8 Rajya Sabha",stance:"ally",label:"Reliable for the government",
+  why:"Nominated members are appointed by the President on the government's recommendation and align with the treasury benches on amendments as a matter of routine.",
+  interest:"They answer to no electorate and carry no state constituency, so supporting the government costs them nothing.",
+  state:"No state consequence \u2014 which is why this bloc is dependable and also why it is never decisive on its own.",
+  flag:"Near-certain, but nowhere near enough to close a 25-vote Rajya Sabha gap."},
+ nonalign:{name:"Non-aligned & Independents (LS)",seats:"~12 Lok Sabha",stance:"swing",label:"Individually negotiable",
+  why:"A scattered group without a common whip. Each member negotiates separately, which makes them reachable one at a time rather than as a bloc.",
+  interest:"Constituency-level returns \u2014 clearances, funding, local standing \u2014 tend to matter more than national positioning for members without a party machine.",
+  state:"Effects are hyper-local. The risk is a member from a state that loses seats being punished at home for a visible vote to shrink it.",
+  flag:"Small and unpredictable. Useful at the margin, never a strategy \u2014 and 12 votes against a 59-seat gap is not a strategy."}
+};
+function wireCalc(){
+  if(!document.getElementById('ls-fill')) return;
+  var chips=document.getElementById('chips');
+  function activeChips(){return Array.prototype.slice.call(document.querySelectorAll('#chips .chip.on'));}
+  function support(){var ls=LS_BASE, rs=RS_BASE;
+    activeChips().forEach(function(c){
+      if(c.dataset.house==='both'){ls+=+c.dataset.ls; rs+=+c.dataset.rs;}
+      else if(c.dataset.house==='ls') ls+=+c.dataset.seats; else rs+=+c.dataset.seats;});
+    return {ls:ls, rs:rs};}
+  function need(total,absent,floor){return Math.max(floor, Math.ceil((total-absent)*2/3));}
+  function setGap(id,s){var e=document.getElementById(id); if(!e)return;
+    if(s<=0){e.textContent='cleared'; e.className='clear';} else {e.textContent=s+' short'; e.className='short';}}
+  function render(){
+    var sup=support();
+    var lsAbs=+document.getElementById('lsabs').value, rsAbs=+document.getElementById('rsabs').value;
+    document.getElementById('lsabs-v').textContent=lsAbs;
+    document.getElementById('rsabs-v').textContent=rsAbs;
+    var lsNeed=need(LS_TOTAL,lsAbs,LS_FLOOR), rsNeed=need(RS_TOTAL,rsAbs,RS_FLOOR);
+    var lsShort=lsNeed-sup.ls, rsShort=rsNeed-sup.rs;
+    document.getElementById('ls-committed').textContent=sup.ls;
+    document.getElementById('rs-committed').textContent=sup.rs;
+    document.getElementById('ls-need').textContent=lsNeed;
+    document.getElementById('rs-need').textContent=rsNeed;
+    setGap('ls-gap',lsShort); setGap('rs-gap',rsShort);
+    document.getElementById('ls-fill').style.width=Math.min(100,sup.ls/LS_TOTAL*100)+'%';
+    document.getElementById('rs-fill').style.width=Math.min(100,sup.rs/RS_TOTAL*100)+'%';
+    document.getElementById('ls-th').style.left=(lsNeed/LS_TOTAL*100)+'%';
+    document.getElementById('rs-th').style.left=(rsNeed/RS_TOTAL*100)+'%';
+    document.getElementById('ls-note').textContent='Two-thirds of '+(LS_TOTAL-lsAbs)+' present \u00b7 absolute floor '+LS_FLOOR;
+    document.getElementById('rs-note').textContent='Two-thirds of '+(RS_TOTAL-rsAbs)+' present \u00b7 absolute floor '+RS_FLOOR;
+    var tot=Math.max(0,lsShort)+Math.max(0,rsShort);
+    var prob=Math.max(6,Math.min(94,Math.round(14+80*(1-tot/84))));
+    var col=prob<35?'#D8342A':(prob<60?'#C9A227':'#2E7D53');
+    var r=document.getElementById('ringfill');
+    r.setAttribute('stroke',col); r.style.strokeDashoffset=CIRC*(1-prob/100);
+    document.getElementById('pnum').textContent=prob+'%';
+    var v=document.getElementById('verdict2'), sb=document.getElementById('probsub');
+    var lsPass=lsShort<=0, rsPass=rsShort<=0;
+    if(lsPass&&rsPass){v.textContent='Both Houses clear.'; v.style.color='#2E7D53';
+      sb.innerHTML='On this configuration the bill crosses both thresholds. Note how much of the work was done by <b>absences</b> rather than votes \u2014 that is the mechanism the opposition denied it on 17 April.';}
+    else if(prob>=45){v.textContent='In striking distance.'; v.style.color='#8A6A15';
+      sb.textContent='One thinner chamber and it clears. This is the range where quiet absence, not persuasion, decides it \u2014 which is exactly why the opposition packed the benches.';}
+    else{v.textContent='Short on the floor.'; v.style.color='var(--ink)';
+      sb.textContent='On committed numbers the government cannot clear two-thirds. The swing blocs that could help are the states the redraw costs most \u2014 so persuasion has almost nowhere to go.';}
+    drawRationales();
+    updateJourney(lsPass, rsPass, sup.ls, lsNeed);
+  }
+  function drawRationales(){
+    var box=document.getElementById('rationales'); if(!box) return;
+    var on=activeChips();
+    if(!on.length){box.innerHTML=''; return;}
+    box.innerHTML=on.map(function(c){var d=RAT[c.dataset.key]; if(!d) return '';
+      return '<div class="rat"><div class="rt">'+d.name+'</div><span class="rpos '+d.stance+'">'+d.label+' \u00b7 '+d.seats+'</span>'+
+        '<h6>Why it might vote in favour</h6><p>'+d.why+'</p>'+
+        '<h6>The larger interest</h6><p>'+d.interest+'</p>'+
+        '<h6>What it costs at home</h6><p>'+d.state+'</p>'+
+        '<div class="rflag">'+d.flag+'</div></div>';}).join('');
+  }
+  if(chips && !chips.dataset.wired){
+    chips.addEventListener('click',function(e){var c=e.target.closest('.chip'); if(!c)return; c.classList.toggle('on'); render();});
+    chips.dataset.wired='1';
+  }
+  ['lsabs','rsabs'].forEach(function(id){var el=document.getElementById(id);
+    if(el && !el.dataset.wired){el.addEventListener('input',render); el.dataset.wired='1';}});
+  var rb=document.getElementById('wreset');
+  if(rb && !rb.dataset.wired){rb.addEventListener('click',function(){
+    document.querySelectorAll('#chips .chip.on').forEach(function(c){c.classList.remove('on');});
+    document.getElementById('lsabs').value=0; document.getElementById('rsabs').value=0; render();
+  }); rb.dataset.wired='1';}
+  render();
+}
+
+/* ---------- JOURNEY ---------- */
+const JOURNEY=[
+  {t:'Introduction in the Lok Sabha',d:'The three-bill package — 131st Amendment, Delimitation Bill, UT Laws Bill — is tabled in a special session.',m:'16 April 2026 · done',fixed:'done'},
+  {t:'Lok Sabha special-majority vote',d:'A constitutional amendment needs two-thirds of members present and voting. This is the gate that decided everything.',m:'live — set by the calculator above'},
+  {t:'Rajya Sabha special-majority vote',d:'The Upper House must clear the same two-thirds bar. The 2026 package never reached it.',m:'live'},
+  {t:'Ratification by half the states',d:'Because delimitation changes state representation, ≥15 of 28 state legislatures must ratify. No parliamentary majority can skip this.',m:'live'},
+  {t:'President\u2019s assent',d:'With both Houses and the states cleared, the amendment goes to the President and becomes part of the Constitution.',m:'pending'},
+  {t:'Delimitation Commission constituted',d:'Only now is the body formed that will readjust seats between and within states on the chosen census.',m:'pending'},
+  {t:'Draft order, objections, final order',d:'The Commission publishes a draft map, hears objections, and notifies the final allocation. This is when a seat actually moves.',m:'pending'}
+];
+function updateJourney(lsPass,rsPass,lsFor,lsNeed){
+  const el=document.getElementById('journey'); if(!el) return;
+  const bothHouses=lsPass&&rsPass;
+  const status=['done',
+    lsPass?'done':'fail',
+    lsPass?(rsPass?'done':'fail'):'pending',
+    bothHouses?'live':'pending',
+    'pending',
+    'pending',
+    'pending'];
+  el.innerHTML=JOURNEY.map((s,i)=>{
+    const st=status[i];
+    const icon = st==='done'?'✓':(st==='fail'?'✕':(i+1));
+    let m=s.m;
+    if(i===1&&!lsPass) m='FAILED HERE · '+lsFor+' committed, needed '+lsNeed+' — 17 April 2026';
+    if(i===1&&lsPass) m='cleared · '+lsFor+' for';
+    if(i===3&&bothHouses) m='now live — needs ≥15 of 28 states to ratify';
+    return `<div class="jstep ${st}">
+      <div class="rail"><div class="dot">${icon}</div><div class="line"></div></div>
+      <div class="jc"><div class="jt">${s.t}</div><div class="jd">${s.d}</div><div class="jm">${m}</div></div>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- ROUTER ---------- */
+function openReader(key){
+  document.querySelectorAll('.reader').forEach(r=>r.classList.remove('open'));
+  const r=document.getElementById('reader-'+key); if(!r) return;
+  r.classList.add('open'); document.body.classList.add('reading');
+  window.scrollTo(0,0);
+  if(key==='lab'){ wireLab(); renderSel(); }
+  if(key==='passage'){ wireCalc(); }
+}
+function closeReader(){
+  document.body.classList.remove('reading');
+  document.querySelectorAll('.reader').forEach(r=>r.classList.remove('open'));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-open]').forEach(el=>{
+  if(el.classList.contains('soon')) return;
+  el.addEventListener('click',()=>openReader(el.dataset.open));
+});
+document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',closeReader));
+</script>
+</body>
+</html>
